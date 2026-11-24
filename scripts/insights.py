@@ -210,7 +210,7 @@ def main():
             "python scripts/score.py                 # accuracy per pass",
             "python scripts/insights.py && python scripts/build_site.py   # -> site/index.html",
         ],
-        footer=("Built for the Composio AI Product Ops take-home. Data: <a href=\"dataset.json\">dataset.json</a> (100 records, 23 fields each, evidence URLs and correction log). "
+        footer=("Built for the Composio AI Product Ops take-home. Data: <a href=\"https://aashitha4.github.io/composio-app-research/dataset.json\">dataset.json</a> (100 records, 23 fields each, evidence URLs and correction log). "
                 "Every number on this page is computed from the data files at build time."),
     )
     (D / "insights.json").write_text(json.dumps(out, indent=1, ensure_ascii=False), encoding="utf-8")
