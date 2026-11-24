@@ -1,0 +1,13 @@
+{
+  "why": "urllib link check got HTTP 400 from developers.facebook.com (bot protection). Re-checked in a real browser (Claude desktop browser pane), same-origin fetch.",
+  "result": "7/7 returned 200 with the expected page title",
+  "urls": {
+    "https://developers.facebook.com/docs/development/create-an-app/threads-use-case": "200 Customize the Threads API use case",
+    "https://developers.facebook.com/docs/marketing-api/overview/authorization": "200 Authorization",
+    "https://developers.facebook.com/docs/marketing-apis/overview": "200 Marketing API overview",
+    "https://developers.facebook.com/docs/threads/get-started": "200 Get started with the Threads API",
+    "https://developers.facebook.com/docs/threads/overview": "200 Threads API overview",
+    "https://developers.facebook.com/docs/whatsapp/access-tokens": "200 Access Tokens Guide",
+    "https://developers.facebook.com/docs/whatsapp/cloud-api/get-started": "200 WhatsApp Cloud API Get Started"
+  }
+}

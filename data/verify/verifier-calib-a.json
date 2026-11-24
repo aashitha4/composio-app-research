@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "app": "Salesforce",
+    "checks": [
+      {"field": "auth_primary", "claimed": "oauth2", "agree": true, "correct_value": "oauth2", "evidence_url": "https://developer.salesforce.com/docs/platform/hosted-mcp-servers/guide/hosted-mcp-servers-overview.html", "reason": "Salesforce docs describe per-user OAuth 2.0 (with PKCE) via External Client Apps / Connected Apps as the authorization path for API and MCP clients."},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://developer.salesforce.com/docs/platform/api-rest/guide/intro-rest-compatible-editions.html", "reason": "API access is enabled by default in Developer Edition orgs, and Developer Edition is a free self-serve signup."},
+      {"field": "api_style", "claimed": ["rest", "soap", "graphql", "grpc"], "agree": true, "correct_value": ["rest", "soap", "graphql", "grpc"], "evidence_url": "https://developer.salesforce.com/docs/platform/api-rest/guide/intro-rest-compatible-editions.html", "reason": "REST API is the primary documented integration surface; SOAP, GraphQL and Pub/Sub (gRPC) exist alongside it."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://developer.salesforce.com/docs/platform/hosted-mcp-servers/guide/hosted-mcp-servers-overview.html", "reason": "Salesforce Hosted MCP Servers are documented on developer.salesforce.com and hosted by Salesforce (forcedotcom/mcp-hosted repo says they are GA)."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://developer.salesforce.com/docs/platform/api-rest/guide/intro-rest-compatible-editions.html", "reason": "Buildable on a free Developer Edition, but customer orgs on Professional Edition need an API add-on and each org must enable/authorize the external client app, so caveats apply."}
+    ]
+  },
+  {
+    "id": 2,
+    "app": "HubSpot",
+    "checks": [
+      {"field": "auth_primary", "claimed": "oauth2", "agree": true, "correct_value": "oauth2", "evidence_url": "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/manage-apps-in-hubspot", "reason": "Multi-account (marketplace/private distribution) apps use OAuth; static-token apps are limited to one account."},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://developers.hubspot.com/docs/api/account-types", "reason": "Standard accounts can be free and developer test accounts are free HubSpot accounts (with a 90-day Enterprise-feature trial), so credentials are obtainable at $0."},
+      {"field": "api_style", "claimed": ["rest"], "agree": true, "correct_value": ["rest"], "evidence_url": "https://developers.hubspot.com/docs/api-reference/overview", "reason": "API reference shows resource-oriented HTTP endpoints such as GET /crm/objects/.../contacts on api.hubapi.com."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://developers.hubspot.com/docs/build-with-ai/remote-mcp-server", "reason": "HubSpot documents a publicly hosted remote MCP server at https://mcp.hubspot.com using OAuth."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/manage-apps-in-hubspot", "reason": "Self-serve build/test works, but unlisted marketplace OAuth apps are capped at 25 installs until reviewed and listed, and some APIs need paid hubs."}
+    ]
+  },
+  {
+    "id": 5,
+    "app": "Twenty",
+    "checks": [
+      {"field": "auth_primary", "claimed": "api_key", "agree": false, "correct_value": "oauth2", "evidence_url": "https://docs.twenty.com/developers/extend/oauth", "reason": "Twenty's OAuth page maps 'External app acting on behalf of a user' to OAuth Authorization Code (with dynamic client registration) and reserves API keys for 'Internal scripts, automation'; API keys remain supported as a fallback."},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://twenty.com/pricing", "reason": "Cloud has no free plan (30-day no-card trial), but 'Self-hosting the open source core is free', giving $0 working credentials; borderline with self_serve_trial if only Cloud is considered."},
+      {"field": "api_style", "claimed": ["rest", "graphql"], "agree": true, "correct_value": ["rest", "graphql"], "evidence_url": "https://docs.twenty.com/developers/extend/api", "reason": "Docs state the Core and Metadata APIs are both available as REST and GraphQL."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://docs.twenty.com/developers/extend/mcp", "reason": "Docs say 'Twenty exposes an MCP server' at https://{workspace}/mcp for Cloud and self-hosted, with OAuth or API key."},
+      {"field": "verdict", "claimed": "ready", "agree": true, "correct_value": "ready", "evidence_url": "https://twenty.com/pricing", "reason": "Self-serve Cloud trial and free self-hosting allow building and testing today with no review gate."}
+    ]
+  },
+  {
+    "id": 13,
+    "app": "Freshdesk",
+    "checks": [
+      {"field": "auth_primary", "claimed": "api_key", "agree": true, "correct_value": "api_key", "evidence_url": "https://developers.freshdesk.com/api/", "reason": "API v2 authentication section: use your personal API key via HTTP Basic (apikey:X); no OAuth flow is documented."},
+      {"field": "access", "claimed": "self_serve_trial", "agree": true, "correct_value": "self_serve_trial", "evidence_url": "https://www.freshworks.com/freshdesk/pricing/", "reason": "Pricing lists only paid plans (Growth/Pro/Enterprise) plus a 14-day trial of the Enterprise plan; no free plan."},
+      {"field": "api_style", "claimed": ["rest"], "agree": true, "correct_value": ["rest"], "evidence_url": "https://developers.freshdesk.com/api/", "reason": "Freshdesk API v2 is a REST/JSON API."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://support.freshdesk.com/support/solutions/articles/50000012670", "reason": "Freshworks documents its own MCP server at https://<subdomain>.freshdesk.com/mcp (API-key auth), GA from September 10, 2026, on Growth/Pro/Enterprise."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://www.freshworks.com/freshdesk/pricing/", "reason": "Buildable via a self-serve trial, but continued testing requires a paid plan after 14 days."}
+    ]
+  },
+  {
+    "id": 14,
+    "app": "Front",
+    "checks": [
+      {"field": "auth_primary", "claimed": "oauth2", "agree": true, "correct_value": "oauth2", "evidence_url": "https://dev.frontapp.com/docs/oauth", "reason": "'OAuth is required for public integrations available to all Front customers unless you obtain an exception from us.'"},
+      {"field": "access", "claimed": "approval_required", "agree": true, "correct_value": "approval_required", "evidence_url": "https://dev.frontapp.com/docs/partnering-with-front", "reason": "A free development account is self-serve, but apps are private to their instance until published, and publishing requires Front to test and technically approve the integration."},
+      {"field": "api_style", "claimed": ["rest"], "agree": true, "correct_value": ["rest"], "evidence_url": "https://dev.frontapp.com/docs/oauth", "reason": "Front's Core API is a REST API accessed with OAuth or API tokens."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://dev.frontapp.com/docs/mcp-server", "reason": "Front documents its own MCP server at https://mcp.frontapp.com/mcp with OAuth via app.frontapp.com."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://dev.frontapp.com/docs/create-and-manage-apps", "reason": "Buildable on a free dev account, but multi-customer distribution needs publishing/approval and OAuth must be authorized by company admins."}
+    ]
+  },
+  {
+    "id": 20,
+    "app": "Gladly",
+    "checks": [
+      {"field": "auth_primary", "claimed": "basic", "agree": true, "correct_value": "basic", "evidence_url": "https://developer.gladly.com/rest/", "reason": "'Gladly API uses token-based Basic Authentication' with agent email as username and API token as password."},
+      {"field": "access", "claimed": "partner_gated", "agree": true, "correct_value": "partner_gated", "evidence_url": "https://help.gladly.com/docs/generate-api-tokens-and-create-webhooks.md", "reason": "Tokens are created inside a customer's Gladly org by users granted the API User role by a Gladly admin; gladly.com offers only 'Get a demo'/contact sales, no self-serve signup."},
+      {"field": "api_style", "claimed": ["rest"], "agree": true, "correct_value": ["rest"], "evidence_url": "https://developer.gladly.com/rest/", "reason": "Gladly publishes a REST API reference."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://help.gladly.com/docs/what-is-the-gladly-mcp-for-claude.md", "reason": "Gladly's help center (published 2026-11-18) documents the 'Gladly MCP for Claude' connector plus plugin at github.com/gladly/claude-plugin; scoped to Gladly AI (Guides, Workflows, sessions) and must be enabled per org by Gladly."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://help.gladly.com/docs/generate-api-tokens-and-create-webhooks.md", "reason": "API is usable once inside a customer org (sandbox env at {org}.gladly.qa exists), so the enterprise-customer gate limits testing rather than fully blocking it."}
+    ]
+  },
+  {
+    "id": 22,
+    "app": "Twilio",
+    "checks": [
+      {"field": "auth_primary", "claimed": "basic", "agree": true, "correct_value": "basic", "evidence_url": "https://www.twilio.com/docs/usage/requests-to-twilio", "reason": "Requests use HTTP Basic with API key SID/secret (default) or Account SID/Auth Token."},
+      {"field": "access", "claimed": "self_serve_trial", "agree": true, "correct_value": "self_serve_trial", "evidence_url": "https://www.twilio.com/docs/usage/trials", "reason": "'Trial accounts expire 30 days after sign-up'; afterwards you must upgrade to keep building."},
+      {"field": "api_style", "claimed": ["rest"], "agree": true, "correct_value": ["rest"], "evidence_url": "https://www.twilio.com/docs/usage/requests-to-twilio", "reason": "'Twilio APIs use standard RESTful HTTP methods to perform actions on resources.'"},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://www.twilio.com/docs/mcp", "reason": "Twilio hosts a docs MCP at mcp.twilio.com/docs (Public Beta, no account actions), and its twilio-labs GitHub org publishes @twilio-alpha/mcp exposing Twilio APIs."},
+      {"field": "verdict", "claimed": "ready", "agree": true, "correct_value": "ready", "evidence_url": "https://www.twilio.com/docs/usage/trials", "reason": "Self-serve trial credentials allow building and testing immediately; trial limits (30 days, verified recipients) are not an approval gate."}
+    ]
+  },
+  {
+    "id": 29,
+    "app": "Aircall",
+    "checks": [
+      {"field": "auth_primary", "claimed": "oauth2", "agree": true, "correct_value": "oauth2", "evidence_url": "https://developer.aircall.io/docs/oauth", "reason": "OAuth is the method for apps serving multiple Aircall customers; Basic api_id:api_token is for a company's own account."},
+      {"field": "access", "claimed": "partner_gated", "agree": true, "correct_value": "partner_gated", "evidence_url": "https://developer.aircall.io/docs/oauth", "reason": "OAuth credentials come from the Tech Partner program ('apply to the Tech Partner program'); only own-account Basic keys are available via a customer/trial account."},
+      {"field": "api_style", "claimed": ["rest"], "agree": true, "correct_value": ["rest"], "evidence_url": "https://developer.aircall.io/docs/basic-authentication", "reason": "Aircall Public API is a REST API at api.aircall.io/v1."},
+      {"field": "official_mcp", "claimed": "community_only", "agree": true, "correct_value": "community_only", "evidence_url": "https://developer.aircall.io/docs/mcp-faqs", "reason": "Aircall's MCP FAQ says it does not offer an MCP server yet; existing Aircall MCP servers are third-party (e.g. themobilefirstco, StackOne)."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://aircall.io/pricing/", "reason": "API access is on all plans and a free test period exists for Basic-key testing, but OAuth distribution requires Tech Partner status."}
+    ]
+  },
+  {
+    "id": 30,
+    "app": "Vonage",
+    "checks": [
+      {"field": "auth_primary", "claimed": "basic", "agree": true, "correct_value": "basic", "evidence_url": "https://developer.vonage.com/en/getting-started/concepts/authentication", "reason": "API key/secret (Basic) is accepted by 19 of 25 listed APIs (Accounts, Numbers, SMS, Messages, Verify2...); Vonage recommends JWT for most use-cases and Voice/Video require JWT."},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://api.support.vonage.com/hc/en-us/articles/204014853", "reason": "Signup gives €2 free credit with test-number restrictions and no stated time limit, so credentials are obtainable at $0."},
+      {"field": "api_style", "claimed": ["rest"], "agree": true, "correct_value": ["rest"], "evidence_url": "https://developer.vonage.com/en/getting-started/concepts/authentication", "reason": "Vonage APIs are HTTP REST APIs authenticated via Authorization header."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://developer.vonage.com/en/blog/introducing-the-vonage-mcp-tooling-server", "reason": "Vonage publishes a hosted Documentation MCP and the @vonage/vonage-mcp-server-api-bindings tooling server (balance, sms, numbers), documented on developer.vonage.com."},
+      {"field": "verdict", "claimed": "ready", "agree": true, "correct_value": "ready", "evidence_url": "https://api.support.vonage.com/hc/en-us/articles/204014853", "reason": "Self-serve free credit lets a toolkit be built and tested today; demo-mode limits only restrict destinations."}
+    ]
+  },
+  {
+    "id": 31,
+    "app": "Google Ads",
+    "checks": [
+      {"field": "auth_primary", "claimed": "oauth2", "agree": true, "correct_value": "oauth2", "evidence_url": "https://developers.google.com/google-ads/api/docs/developer-toolkit/mcp-server", "reason": "Access uses OAuth client or service account of a Google Cloud project; developer tokens were sunset on September 9, 2026."},
+      {"field": "access", "claimed": "approval_required", "agree": true, "correct_value": "approval_required", "evidence_url": "https://developers.google.com/google-ads/api/docs/api-policy/access-levels", "reason": "Enabling the API grants only Test access; production needs an Explorer application (automated review in most cases), and Basic/Standard need brand verification or manual audit."},
+      {"field": "api_style", "claimed": ["grpc", "rest"], "agree": true, "correct_value": ["grpc", "rest"], "evidence_url": "https://developers.google.com/google-ads/api/rest/overview", "reason": "'The Google Ads API can be called either using gRPC or REST'; official client libraries are gRPC-based."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://github.com/googleads/google-ads-mcp", "reason": "Google's own googleads GitHub org publishes google-ads-mcp and Google's developer docs provide its integration guide."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://developers.google.com/google-ads/api/docs/api-policy/access-levels", "reason": "Buildable against test accounts immediately, but production access requires an access-level application/review."}
+    ]
+  }
+]

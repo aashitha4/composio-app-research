@@ -1,0 +1,26 @@
+{
+  "50": {
+    "app": "fanbasis",
+    "issues": [
+      "missing evidence.auth"
+    ]
+  },
+  "60": {
+    "app": "Clay",
+    "issues": [
+      "access=self_serve_free but blocker_type=paid_plan"
+    ]
+  },
+  "85": {
+    "app": "iPayX",
+    "issues": [
+      "official MCP claimed on a low-confidence record"
+    ]
+  },
+  "87": {
+    "app": "Xero",
+    "issues": [
+      "access=self_serve_free but blocker_type=paid_plan"
+    ]
+  }
+}

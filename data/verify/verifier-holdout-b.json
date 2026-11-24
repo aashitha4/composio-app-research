@@ -1,0 +1,79 @@
+[
+  {
+    "id": 39,
+    "app": "Threads (Meta)",
+    "checks": [
+      {"field": "auth_primary", "claimed": "oauth2", "agree": true, "correct_value": "oauth2", "evidence_url": "https://developers.facebook.com/docs/threads/get-started", "reason": "Get-started page: API authentication uses Threads user access tokens that conform to the OAuth 2.0 protocol."},
+      {"field": "access", "claimed": "approval_required", "agree": true, "correct_value": "approval_required", "evidence_url": "https://developers.facebook.com/docs/threads/get-started", "reason": "Users without a role on the app can grant permissions only after each permission passes App Review and the app is published, so multi-tenant use needs Meta review."},
+      {"field": "api_style", "claimed": "rest", "agree": true, "correct_value": "rest", "evidence_url": "https://developers.facebook.com/docs/threads/get-started", "reason": "Endpoints are plain HTTP GET/POST Graph-style resources (e.g. GET /refresh_access_token); no GraphQL or SOAP."},
+      {"field": "official_mcp", "claimed": "community_only", "agree": true, "correct_value": "community_only", "evidence_url": "https://developers.facebook.com/documentation/mcp", "reason": "Meta's MCP hub lists only Meta Ads, Meta Social Technologies (devtools) and WhatsApp Business Tools servers, none for Threads; Threads MCPs found are third-party."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://developers.facebook.com/docs/threads/get-started", "reason": "Buildable and testable with tester accounts today, but App Review gates launch to other users."}
+    ]
+  },
+  {
+    "id": 48,
+    "app": "Gumroad",
+    "checks": [
+      {"field": "auth_primary", "claimed": "oauth2", "agree": true, "correct_value": "oauth2", "evidence_url": "https://docs.n8n.io/integrations/builtin/credentials/gumroad", "reason": "Creating an application under Settings > Advanced yields an Application ID/Secret for the OAuth2 flow (third-party doc; gumroad.com/api is client-rendered and returned no text); Gumroad's own MCP also uses OAuth."},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://gumroad.com/pricing", "reason": "Gumroad has no monthly fee (free to join, per-sale fee only) and any account can create an API application; no review or install cap found."},
+      {"field": "api_style", "claimed": "rest", "agree": true, "correct_value": "rest", "evidence_url": "https://gumroad.com/api", "reason": "UNSETTLED: the official API page is client-rendered and returned no text to fetch, so REST could not be confirmed from an opened page; no evidence of another style."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://gumroad.com/claude", "reason": "Gumroad, Inc. documents its own remote MCP endpoint https://gumroad.com/claude/v1/mcp with OAuth access to the user's store."},
+      {"field": "verdict", "claimed": "ready", "agree": true, "correct_value": "ready", "evidence_url": "https://gumroad.com/mcp", "reason": "Self-serve OAuth credentials at $0 and an official MCP; nothing blocks building and testing today."}
+    ]
+  },
+  {
+    "id": 55,
+    "app": "Apify",
+    "checks": [
+      {"field": "auth_primary", "claimed": "api_key", "agree": true, "correct_value": "api_key", "evidence_url": "https://docs.apify.com/api/v2", "reason": "API authenticates with an API token created in Console, sent as Bearer; the API docs do not mention OAuth (OAuth exists only for the MCP server)."},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://apify.com/pricing", "reason": "Free plan at $0 with $5 monthly usage, no credit card, renews monthly (not a trial)."},
+      {"field": "api_style", "claimed": "rest", "agree": true, "correct_value": "rest", "evidence_url": "https://docs.apify.com/api/v2", "reason": "Docs: the API is organized around RESTful HTTP endpoints."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://docs.apify.com/platform/integrations/mcp", "reason": "Apify hosts https://mcp.apify.com and publishes github.com/apify/apify-mcp-server."},
+      {"field": "verdict", "claimed": "ready", "agree": true, "correct_value": "ready", "evidence_url": "https://apify.com/pricing", "reason": "Free self-serve token, REST API and an official MCP; no gate."}
+    ]
+  },
+  {
+    "id": 60,
+    "app": "Clay",
+    "checks": [
+      {"field": "auth_primary", "claimed": "api_key", "agree": true, "correct_value": "api_key", "evidence_url": "https://developers.clay.com/quickstart.md", "reason": "Public API requests authenticate with a Clay API key in the clay-api-key header; OAuth appears only for the MCP server."},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://developers.clay.com/searches.md", "reason": "API/CLI limits table includes a Free plan (100 results per 30 days) separate from Trial; pricing lists 'Build with Clay via CLI / API' on Free. Tables are Enterprise-only, which is a caveat rather than the access gate."},
+      {"field": "api_style", "claimed": "rest", "agree": true, "correct_value": "rest", "evidence_url": "https://developers.clay.com/quickstart.md", "reason": "Public API is HTTP endpoints with request/response schemas; the CLI is secondary, so primary style is rest."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://university.clay.com/docs/connect-to-clay-mcp", "reason": "Clay runs the MCP server at https://api.clay.com/v3/mcp with OAuth+PKCE and open Dynamic Client Registration."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://www.clay.com/pricing", "reason": "Buildable on Free, but tiny free result quotas, webhooks/HTTP API on Growth+ and Tables on Enterprise limit testing."}
+    ]
+  },
+  {
+    "id": 66,
+    "app": "Neo4j",
+    "checks": [
+      {"field": "auth_primary", "claimed": "basic", "agree": true, "correct_value": "basic", "evidence_url": "https://neo4j.com/docs/query-api/current/authentication-authorization/", "reason": "Query API supports Basic and Bearer auth; requests use a valid database user's login credentials, so basic (username/password) is the typical toolkit path."},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://neo4j.com/pricing/", "reason": "AuraDB Free at $0, no credit card or payment method required; no app review for multi-tenant use since each user brings their own instance."},
+      {"field": "api_style", "claimed": "rest", "agree": true, "correct_value": "rest", "evidence_url": "https://neo4j.com/docs/query-api/current/authentication-authorization/", "reason": "Query API is HTTP (POST /db/neo4j/query/v2); Bolt is driver-only, so for a toolkit the HTTP API is the primary style."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://github.com/neo4j/mcp", "reason": "Repo in the neo4j GitHub org described as 'Neo4j official MCP Server', documented at neo4j.com/docs/mcp (local, username/password)."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://neo4j.com/pricing/", "reason": "Free self-serve, but every tenant must supply its own instance URI and credentials (per-tenant setup caveat)."}
+    ]
+  },
+  {
+    "id": 72,
+    "app": "Airtable",
+    "checks": [
+      {"field": "auth_primary", "claimed": "oauth2", "agree": true, "correct_value": "oauth2", "evidence_url": "https://airtable.com/developers/web/api/authentication", "reason": "Docs: 'Any integrations that allow other users to grant access to Airtable should use OAuth.'"},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://support.airtable.com/docs/managing-api-call-limits-in-airtable", "reason": "Free plan includes 1,000 API calls per workspace per month; the OAuth integration guide requires only privacy policy and terms URLs before sharing, with no review or install cap."},
+      {"field": "api_style", "claimed": "rest", "agree": true, "correct_value": "rest", "evidence_url": "https://airtable.com/developers/web/api/introduction", "reason": "Docs: the API 'closely follows REST semantics.'"},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://airtable.com/developers/agents/mcp/getting-started", "reason": "Airtable documents its own MCP server at https://mcp.airtable.com/mcp (OAuth or PAT), 'available to all users on all plans.'"},
+      {"field": "verdict", "claimed": "ready", "agree": true, "correct_value": "ready", "evidence_url": "https://airtable.com/developers/web/guides/oauth-integrations", "reason": "Self-serve OAuth integration with no review step; free tier is enough to build and test (1,000 calls/month is a usage limit, not a gate)."}
+    ]
+  },
+  {
+    "id": 85,
+    "app": "iPayX",
+    "checks": [
+      {"field": "auth_primary", "claimed": "api_key", "agree": true, "correct_value": "api_key", "evidence_url": "https://www.ipayx.ai/docs/api", "reason": "Every request needs a dashboard-generated key (ipx_live_...) sent as Bearer in the Authorization header; OAuth is only listed as 'Coming Q3 2026' for QuickBooks/Stripe apps."},
+      {"field": "access", "claimed": "paid_plan", "agree": true, "correct_value": "paid_plan", "evidence_url": "https://www.ipayx.ai/developers", "reason": "UNSETTLED: the developer page lists API tiers starting at a $99/mo Developer plan and the homepage says API access needs the Credit Pack or Unlimited plan, but the MCP server docs (ipayx.ai/docs/mcp-server) describe free tools at 10 audits/day per API key, so vendor pages conflict on a free key path."},
+      {"field": "api_style", "claimed": "rest", "agree": true, "correct_value": "rest", "evidence_url": "https://www.ipayx.ai/docs/api", "reason": "Reference page is titled 'REST API · v1' (base URL is a Supabase edge function)."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://www.ipayx.ai/developers", "reason": "Vendor developer page documents its own MCP endpoint https://mcp.ipayx.ai/mcp (author iPayX Protocol), also documented at ipayx.ai/docs/mcp-server."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://www.ipayx.ai/pricing", "reason": "REST API and official MCP exist, but full API use sits behind paid tiers (free tier is 3 audits), so a paid gate limits testing."}
+    ]
+  }
+]

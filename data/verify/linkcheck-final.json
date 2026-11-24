@@ -1,0 +1,1440 @@
+{
+  "summary": {
+    "ok": 351,
+    "error": 7
+  },
+  "urls": {
+    "https://agents.ramp.com/docs/mcp/overview": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://aircall.io/pricing/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://airtable.com/developers/agents/mcp/getting-started": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://airtable.com/developers/web/api/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://airtable.com/developers/web/api/introduction": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://api.docs.dealcloud.com/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://api.docs.dealcloud.com/docs/apikeys": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://api.docs.dealcloud.com/docs/token": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://api.docs.dealcloud.com/mcp/getting-started": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://apify.com/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://attio.com/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://cake-com.github.io/pumble-node-sdk/api-client.html": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://cake-com.github.io/pumble-node-sdk/authorization.html": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://claude.com/marketplace/connectors/pitchbook": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://coda.io/developers/apis/v1": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://coda.io/developers/apis/v1#section/Authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://commas.com": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://commas.com/enterprises": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://connect.superhuman.com/t/coming-soon-connect-your-workspace-to-your-favorite-ai-tools-with-coda-s-official-mcp/57944": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://consensus.app/home/api/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://consensus.app/home/mcp/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://core.telegram.org/bots/api": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://core.telegram.org/bots/features": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://dataforseo.com/model-context-protocol": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://dataforseo.com/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://dev.frontapp.com/docs/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://dev.frontapp.com/docs/mcp-server": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://dev.frontapp.com/docs/partnering-with-front.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://dev.frontapp.com/docs/welcome.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://dev.pinterest.com/docs/developer-tools/sandbox/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://dev.pinterest.com/docs/getting-started/set-up-authentication-and-authorization": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer-docs.amazon/sp-api/docs/connecting-to-the-selling-partner-api": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer-docs.amazon/sp-api/docs/registering-as-a-developer": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.adobe.com/commerce/extensibility/developer-agent/tools-overview": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.adobe.com/commerce/webapi/get-started/authentication/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.adobe.com/commerce/webapi/rest/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.aircall.io/docs/mcp-faqs": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.aircall.io/docs/plan-your-integration": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.atlassian.com/cloud/rovo-mcp/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.atlassian.com/platform/marketplace/getting-started/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.brex.com/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.brex.com/docs/authentication/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.brex.com/docs/mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.brex.com/guides/partner_authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.clickup.com/docs/apis-available-by-plan": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.clickup.com/docs/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.clickup.com/docs/rate-limits": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.close.com/llms.txt": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.close.com/mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.close.com/topics/authentication/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.copper.com/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.copper.com/introduction/oauth/index.html": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.gladly.com/rest/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.helpscout.com/mailbox-api/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.helpscout.com/mailbox-api/overview/authentication/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.monday.com/api-reference/docs/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.monday.com/api-reference/docs/mondaycom-mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.monday.com/api-reference/docs/rate-limits": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.monday.com/apps/docs/oauth": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.systeme.io/reference/api": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.vonage.com/en/blog/introducing-the-vonage-mcp-tooling-server": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.vonage.com/en/getting-started/concepts/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.vonage.com/en/getting-started/overview": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.vonage.com/en/messages/getting-started": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.woocommerce.com/docs/features/mcp/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.xero.com/faq/remote-mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.xero.com/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.zendesk.com/api-reference/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.zendesk.com/api-reference/introduction/security-and-auth/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developer.zendesk.com/documentation/marketplace/building-a-marketplace-app/set-up-a-global-oauth-client/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.aircall.io/api-references": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.asana.com/docs/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.asana.com/docs/oauth": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.asana.com/docs/rate-limits": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.asana.com/docs/using-asanas-mcp-server": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.binance.com/docs/binance-spot-api-docs/rest-api/general-api-information": {
+      "status": 202,
+      "kind": "ok"
+    },
+    "https://developers.binance.com/docs/binance-spot-api-docs/rest-api/request-security": {
+      "status": 202,
+      "kind": "ok"
+    },
+    "https://developers.binance.com/docs/login/introduction": {
+      "status": 202,
+      "kind": "ok"
+    },
+    "https://developers.binance.com/en/docs/agent-native/mcp-server/agentic": {
+      "status": 202,
+      "kind": "ok"
+    },
+    "https://developers.clay.com/llms.txt": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.clay.com/public-api/authentication.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.cloudflare.com/agents/model-context-protocol/mcp-servers-for-cloudflare/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.cloudflare.com/api/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.cloudflare.com/fundamentals/api/get-started/create-token/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.cloudflare.com/fundamentals/oauth/create-an-oauth-client/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.facebook.com/docs/development/create-an-app/threads-use-case": {
+      "status": 400,
+      "kind": "error"
+    },
+    "https://developers.facebook.com/docs/marketing-api/overview/authorization": {
+      "status": 400,
+      "kind": "error"
+    },
+    "https://developers.facebook.com/docs/marketing-apis/overview": {
+      "status": 400,
+      "kind": "error"
+    },
+    "https://developers.facebook.com/docs/threads/get-started": {
+      "status": 400,
+      "kind": "error"
+    },
+    "https://developers.facebook.com/docs/threads/overview": {
+      "status": 400,
+      "kind": "error"
+    },
+    "https://developers.facebook.com/docs/whatsapp/access-tokens": {
+      "status": 400,
+      "kind": "error"
+    },
+    "https://developers.facebook.com/docs/whatsapp/cloud-api/get-started": {
+      "status": 400,
+      "kind": "error"
+    },
+    "https://developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/ads-mcp-server-overview": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.facebook.com/documentation/business-messaging/whatsapp/solution-providers/app-review": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.facebook.com/documentation/mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.fathom.ai/faq": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.fathom.ai/llms.txt": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.fathom.ai/mcp-docs/index.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.fathom.ai/oauth.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.freshdesk.com/api/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.google.com/google-ads/api/docs/api-policy/access-levels": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.google.com/google-ads/api/docs/developer-toolkit/mcp-server": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.google.com/google-ads/api/docs/oauth/overview": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.google.com/google-ads/api/rest/overview": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.gorgias.com/docs/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.gorgias.com/docs/oauth2-authentication-for-creating-apps-with-gorgias": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.gorgias.com/docs/overview": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.grain.com/authentication.html": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.grain.com/endpoints.html": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.grain.com/mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/overview": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/integrate-with-the-remote-hubspot-mcp-server": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/manage-apps-in-hubspot": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.hubspot.com/docs/developer-tooling/platform/usage-guidelines": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.intercom.com/docs/guides/mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.intercom.com/docs/publish-to-the-app-store/review-publish-your-app": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.intercom.com/docs/references/introduction": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.klaviyo.com/en/docs/authenticate_": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.klaviyo.com/en/docs/connect_to_the_klaviyo_mcp_server": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.klaviyo.com/en/docs/create-a-test-account": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.klaviyo.com/en/reference/api_overview": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.notion.com/docs/authorization": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.notion.com/guides/mcp/get-started-with-mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.notion.com/reference/intro": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.pinterest.com/about-pinterest-mcp/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.pinterest.com/docs/key-concepts/access-tiers/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.pipedrive.com/docs/api/v1": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.podio.com/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.podio.com/doc": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.smartsheet.com/ai-mcp/smartsheet/install-the-smartsheet-mcp-server": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.smartsheet.com/api/smartsheet/guides/advanced-topics/oauth": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.smartsheet.com/api/smartsheet/introduction": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.squarespace.com/commerce-apis/authentication-and-permissions": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.squarespace.com/commerce-apis/oauth": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://developers.squarespace.com/commerce-apis/overview": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://devin.ai/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.ahrefs.com/api/docs/api-keys-creation-and-management.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.ahrefs.com/llms.txt": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.ahrefs.com/mcp/docs/introduction.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.apify.com/api/v2": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.apify.com/platform/integrations/api": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.apify.com/platform/integrations/mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.attio.com/llms.txt": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.attio.com/mcp/overview": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.attio.com/rest-api/guides/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.bigcommerce.com/developer/api-reference/mcp/overview": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.bigcommerce.com/docs/integrations/apps/guide/types": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.bigcommerce.com/docs/start/about": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.bigcommerce.com/docs/start/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.brightdata.com/api-reference/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.brightdata.com/general/account/billing-and-pricing/free-tier.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.brightdata.com/llms.txt": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.brightdata.com/mcp-server/overview": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks-sources": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/set-up-licensing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.codat.io/integrations/accounting/quickbooksonline/qbo-app-assessment-questionnaire": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.datadoghq.com/api/latest/authentication/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.datadoghq.com/developers/authorization/oauth2_in_datadog/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.datadoghq.com/mcp_server/setup/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.dataforseo.com/v3/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.dataforseo.com/v3/auth/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.devin.ai/api-reference/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.devin.ai/work-with-devin/devin-mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.discord.com/developers/events/gateway": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.discord.com/developers/topics/oauth2": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.ecwid.com/api-reference": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.ecwid.com/get-started/set-up-your-dev-environment-in-ecwid": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.ecwid.com/launch-apps/native-and-external-apps": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.firecrawl.dev/_llms/en/v2.txt": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.firecrawl.dev/authentication.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.firecrawl.dev/mcp-server": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.gorgias.com/en-US/connect-your-ai-assistant-to-gorgias-6310546": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.helpscout.com/article/1779-connect-your-ai-agent-with-help-scout-to-search-conversations-and-pull-reports": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.higgsfield.ai/docs/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.higgsfield.ai/docs/help/faq.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.higgsfield.ai/docs/how-to/introduction.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.mrscraper.com/docs/api/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.mrscraper.com/docs/api/overview": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.mrscraper.com/docs/getting-started/billing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.mrscraper.com/docs/getting-started/mcp-server": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.n8n.io/integrations/credentials/gumroad": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.netlify.com/api/get-started/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.netlify.com/build/build-with-ai/netlify-mcp-server/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.nmi.com/docs/mcp-api.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.nmi.com/reference": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.nmi.com/reference/authentication.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.nmi.com/reference/testing-methods": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.ramp.com/llms-guides/authorization.txt": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.ramp.com/llms-guides/build-with-ramp.txt": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.ramp.com/openapi/developer-api.json": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.reducto.ai/mcp-server/index.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.reducto.ai/quickstart/index.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.reducto.ai/studio-account": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.sentry.io/api/auth/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.sentry.io/organization/integrations/integration-platform/public-integration/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.slack.dev/ai/slack-mcp-server/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.slack.dev/authentication/installing-with-oauth": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.slack.dev/changelog/2025/05/29/rate-limit-changes-for-non-marketplace-apps": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.slack.dev/reference/methods": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.snowflake.com/en/developer-guide/snowflake-rest-api/snowflake-rest-api": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.snowflake.com/en/developer-guide/sql-api/authenticating": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.snowflake.com/en/user-guide/admin-trial-account": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.stripe.com/api/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.stripe.com/connect/oauth-reference": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.stripe.com/mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.twenty.com/developers/extend/api": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.twenty.com/developers/extend/mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.twenty.com/developers/introduction": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.usepylon.com/pylon-docs/developer/api/api-reference": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.usepylon.com/pylon-docs/developer/api/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.usepylon.com/pylon-docs/integrations/pylon-mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.waterfall.io/v1/authentication.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.waterfall.io/v1/introduction": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://docs.waterfall.io/v1/quickstart.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://documenter.gw.postman.com/view/metadata/TzCV1iRc": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://github.com/Consensus-NLP/consensus-mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://github.com/SalesforceCommerceCloud/commerce-sdk": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://github.com/ZeroPointRepo/TranscriptAPI-MCP": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://github.com/amzn/selling-partner-api-samples": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://github.com/antiwork/gumroad-cli": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://github.com/forcedotcom/mcp-hosted/wiki/Connecting-Your-MCP-Client": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://github.com/github/github-mcp-server": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://github.com/intuit/quickbooks-online-mcp-server": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://github.com/magento/magento2": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://github.com/mermaid-js/mermaid-cli": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://github.com/neo4j/mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://github.com/sherlock-project/sherlock": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://glama.ai/mcp/servers/Burnsedia/sherlock-mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://gumroad.com/api": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://gumroad.com/mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://help.ahrefs.com/en/articles/6559232-about-api-v3": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://help.getharvest.com/api-v2/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://help.getharvest.com/api-v2/authentication-api/authentication/authentication/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://help.gladly.com/docs/what-is-the-gladly-mcp-for-claude.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://help.gohighlevel.com/support/solutions/articles/48001060529": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://help.smartsheet.com/articles/2482389-generate-API-key": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://help.systeme.io/article/2323-how-to-create-a-public-api-key-on-systeme-io": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://help.systeme.io/article/9489-how-to-use-systeme-ios-mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://higgsfield.ai/mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://learn.microsoft.com/en-us/linkedin/marketing/increasing-access": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://learn.microsoft.com/en-us/linkedin/marketing/quick-start": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://linear.app/developers/graphql": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://linear.app/developers/oauth-2-0-authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://linear.app/docs/mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://linear.app/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://mailchimp.com/developer/marketing/docs/fundamentals/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://mailchimp.com/help/use-mailchimp-connector-claude": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://mailchimp.com/pricing/marketing/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://marketplace.gohighlevel.com/docs/Authorization/PrivateIntegrationsToken.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://marketplace.gohighlevel.com/docs/Authorization/authorization_doc": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://marketplace.gohighlevel.com/docs/other/mcp.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://mcp.sentry.dev/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://mermaid.ai/docs/ai/mcp-server": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://neo4j.com/docs/aura/api/overview/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://neo4j.com/docs/query-api/current/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://neo4j.com/docs/query-api/current/authentication-authorization/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://open.larksuite.com/document/server-docs/getting-started/overview-of-app-scopes.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://open.larksuite.com/llms.txt": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://otter.ai/integration/claude": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://otter.ai/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://pipedrive.readme.io/docs/core-api-concepts-authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://pipedrive.readme.io/docs/developer-sandbox-account": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://plaid.com/docs/account/billing/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://plaid.com/docs/api/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://plaid.com/docs/resources/mcp/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://pumble.com/help/integrations/add-pumble-apps/api-keys-integration": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://pumble.com/learn/?p=16174": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://raw.githubusercontent.com/XeroAPI/xero-mcp-server/HEAD/README.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://raw.githubusercontent.com/larksuite/lark-openapi-mcp/main/README.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://raw.githubusercontent.com/pleaseprompto/notebooklm-mcp/HEAD/README.md": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://reducto.ai/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://salesforcecommercecloud.github.io/b2c-developer-tooling/guide/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://salesforcecommercecloud.github.io/b2c-developer-tooling/mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://sentry.io/pricing/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://seranking.com/api-pricing.html": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://seranking.com/api/data/getting-started/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://seranking.com/api/mcp/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://seranking.com/api/project/getting-started/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://shopify.dev/docs/api/admin-graphql": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://shopify.dev/docs/apps/build/authentication-authorization": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://shopify.dev/docs/apps/build/devmcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://shopify.dev/docs/apps/launch/distribution": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://supabase.com/docs/guides/getting-started/mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://supabase.com/docs/guides/integrations/build-a-supabase-oauth-integration": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://supabase.com/docs/reference/api/introduction": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://supabase.com/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://support.airtable.com/docs/managing-api-call-limits-in-airtable": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://support.freshdesk.com/support/solutions/articles/50000012670": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://support.grain.com/en/articles/15507288-grain-api": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://support.liveagent.com/567924-Documentation": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://support.liveagent.com/647358-MCP-Integration-for-Agents": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://support.liveagent.com/741982-API-key": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://support.sendgrid.com/hc/en-us/articles/35270136965403": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://support.zendesk.com/hc/en-us/articles/11400026079130": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://systeme.io/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://trailhead.salesforce.com/content/learn/modules/api_basics/api_basics_overview": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://transcriptapi.com/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://transcriptapi.com/docs/api/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://twenty.com/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://university.clay.com/docs/mcp-settings": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://vercel.com/docs/mcp/vercel-mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://vercel.com/docs/rest-api": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://vercel.com/docs/rest-api/getting-started": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://vercel.com/docs/sign-in-with-vercel/scopes-and-permissions": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://woocommerce.com/document/woocommerce-rest-api/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://woocommerce.github.io/woocommerce-rest-api-docs/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.clay.com/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.close.com/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.copper.com/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.datadoghq.com/pricing/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.firecrawl.dev/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.freshworks.com/freshdesk/pricing/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.getharvest.com/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.gladly.ai/pricing/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.helpscout.com/pricing/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.ipayx.ai/.well-known/openapi.json": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.ipayx.ai/developers": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.ipayx.ai/docs/api": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.ipayx.ai/docs/mcp-server": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.liveagent.com/pricing/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.mongodb.com/docs/atlas/api/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.mongodb.com/docs/atlas/configure-api-access/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.mongodb.com/docs/mcp-server/tools/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.mongodb.com/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.netlify.com/pricing/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.pipedrive.com/en/newsroom/pipedrive-launches-native-mcp-server-bringing-crm-workflows-directly-into-ai-assistants": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.plain.com/docs/agents/mcp-server": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.plain.com/docs/api-reference/graphql": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.plain.com/docs/api-reference/graphql/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.plain.com/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.progress.com/podio/documentation/using-podio/podio-mcp-server": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.progress.com/podio/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.salesforce.com/blog/spring-26-release-architect-highlights/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.salesforce.com/editions-pricing/sales-cloud/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.salesforce.com/products/b2c-commerce-pricing/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.scalekit.com/blog/otter-mcp-vs-api": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.twilio.com/docs/mcp": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.twilio.com/docs/sendgrid/api-reference": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/authentication": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.twilio.com/docs/usage/requests-to-twilio": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.twilio.com/docs/usage/tutorials/how-to-use-your-free-trial-account": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.usepylon.com/pylon-facts": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.zoho.com/cliq/help/platform/zoho-cliq-mcp.html": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.zoho.com/cliq/help/restapi/v2/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.zoho.com/cliq/plan-comparison.html": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.zoho.com/crm/developer/docs/api/v8/": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.zoho.com/crm/developer/docs/api/v8/api-limits.html": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.zoho.com/crm/developer/docs/api/v8/oauth-overview.html": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://www.zoho.com/crm/developer/docs/mcp/overview.html": {
+      "status": 200,
+      "kind": "ok"
+    }
+  }
+}

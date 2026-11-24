@@ -1,0 +1,87 @@
+[
+ {
+  "id": 39,
+  "app": "Threads (Meta)",
+  "category": "Marketing / Ads / Email / Social",
+  "auth_primary": "oauth2",
+  "access": "approval_required",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "community_only",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 48,
+  "app": "Gumroad",
+  "category": "Ecommerce",
+  "auth_primary": "oauth2",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 55,
+  "app": "Apify",
+  "category": "Data / SEO / Scraping",
+  "auth_primary": "api_key",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 60,
+  "app": "Clay",
+  "category": "Data / SEO / Scraping",
+  "auth_primary": "api_key",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest",
+   "cli_only"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 66,
+  "app": "Neo4j",
+  "category": "Developer / Infra / Data",
+  "auth_primary": "basic",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 72,
+  "app": "Airtable",
+  "category": "Productivity & PM",
+  "auth_primary": "oauth2",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 85,
+  "app": "iPayX",
+  "category": "Finance & Fintech",
+  "auth_primary": "api_key",
+  "access": "paid_plan",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ }
+]

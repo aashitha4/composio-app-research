@@ -1,0 +1,123 @@
+[
+ {
+  "id": 69,
+  "app": "Datadog",
+  "category": "Developer / Infra / Data",
+  "auth_primary": "api_key",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 74,
+  "app": "Jira",
+  "category": "Productivity & PM",
+  "auth_primary": "oauth2",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 75,
+  "app": "Asana",
+  "category": "Productivity & PM",
+  "auth_primary": "oauth2",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 78,
+  "app": "Coda",
+  "category": "Productivity & PM",
+  "auth_primary": "api_key",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 81,
+  "app": "Stripe",
+  "category": "Finance & Fintech",
+  "auth_primary": "api_key",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 83,
+  "app": "Binance",
+  "category": "Finance & Fintech",
+  "auth_primary": "hmac_signature",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest",
+   "websocket"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 87,
+  "app": "Xero",
+  "category": "Finance & Fintech",
+  "auth_primary": "oauth2",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 93,
+  "app": "Fathom",
+  "category": "AI / Research / Media",
+  "auth_primary": "oauth2",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 95,
+  "app": "Reducto",
+  "category": "AI / Research / Media",
+  "auth_primary": "api_key",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 96,
+  "app": "Devin",
+  "category": "AI / Research / Media",
+  "auth_primary": "api_key",
+  "access": "paid_plan",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ }
+]

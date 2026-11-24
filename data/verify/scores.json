@@ -1,0 +1,84 @@
+{
+  "calibration": {
+    "n_fields": 150,
+    "n_apps": 30,
+    "n_unsettled": 0,
+    "pass0_closed_book": {
+      "accuracy": 73.3,
+      "accuracy_settled": 73.3,
+      "correct": 110,
+      "by_field": {
+        "auth_primary": 76.7,
+        "access": 73.3,
+        "api_style": 100.0,
+        "official_mcp": 53.3,
+        "verdict": 63.3
+      }
+    },
+    "pass1_grounded": {
+      "accuracy": 98.0,
+      "accuracy_settled": 98.0,
+      "correct": 147,
+      "by_field": {
+        "auth_primary": 96.7,
+        "access": 96.7,
+        "api_style": 100.0,
+        "official_mcp": 100.0,
+        "verdict": 96.7
+      }
+    },
+    "final": {
+      "accuracy": 100.0,
+      "accuracy_settled": 100.0,
+      "correct": 150,
+      "by_field": {
+        "auth_primary": 100.0,
+        "access": 100.0,
+        "api_style": 100.0,
+        "official_mcp": 100.0,
+        "verdict": 100.0
+      }
+    }
+  },
+  "holdout": {
+    "n_fields": 75,
+    "n_apps": 15,
+    "n_unsettled": 2,
+    "pass0_closed_book": {
+      "accuracy": 65.3,
+      "accuracy_settled": 67.1,
+      "correct": 49,
+      "by_field": {
+        "auth_primary": 80.0,
+        "access": 60.0,
+        "api_style": 86.7,
+        "official_mcp": 33.3,
+        "verdict": 66.7
+      }
+    },
+    "pass1_grounded": {
+      "accuracy": 96.0,
+      "accuracy_settled": 98.6,
+      "correct": 72,
+      "by_field": {
+        "auth_primary": 100.0,
+        "access": 86.7,
+        "api_style": 93.3,
+        "official_mcp": 100.0,
+        "verdict": 100.0
+      }
+    },
+    "final": {
+      "accuracy": 97.3,
+      "accuracy_settled": 100.0,
+      "correct": 73,
+      "by_field": {
+        "auth_primary": 100.0,
+        "access": 93.3,
+        "api_style": 93.3,
+        "official_mcp": 100.0,
+        "verdict": 100.0
+      }
+    }
+  }
+}

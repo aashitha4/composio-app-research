@@ -1,0 +1,112 @@
+[
+  {
+    "id": 37,
+    "app": "systeme.io",
+    "checks": [
+      {"field": "auth_primary", "claimed": "api_key", "agree": true, "correct_value": "api_key", "evidence_url": "https://developer.systeme.io/reference/api", "reason": "API reference says to attach the public API key to the X-API-Key header of each request; it is the only method offered."},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://systeme.io/mcp", "reason": "systeme.io has a never-expiring Free plan (pricing FAQ) and its MCP page says the MCP/API-key feature is included in all plans including Free; API reference states no plan restriction."},
+      {"field": "api_style", "claimed": ["rest"], "agree": true, "correct_value": ["rest"], "evidence_url": "https://developer.systeme.io/reference/api", "reason": "Docs say the public API follows RESTful conventions."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://developer.systeme.io/docs/mcp-server", "reason": "systeme.io's own developer docs document the Systeme.io MCP server (MCP key via X-MCP-Key header); the snzeeee GitHub server is a separate community project."},
+      {"field": "verdict", "claimed": "ready", "agree": true, "correct_value": "ready", "evidence_url": "https://developer.systeme.io/reference/api", "reason": "Self-serve API key from account settings on a free account with documented REST endpoints means a toolkit can be built and tested today."}
+    ]
+  },
+  {
+    "id": 40,
+    "app": "SendGrid",
+    "checks": [
+      {"field": "auth_primary", "claimed": "api_key", "agree": true, "correct_value": "api_key", "evidence_url": "https://www.twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/authentication", "reason": "v3 API is authenticated with an API key sent as 'Authorization: Bearer <API key>'; no OAuth is documented."},
+      {"field": "access", "claimed": "self_serve_trial", "agree": true, "correct_value": "self_serve_trial", "evidence_url": "https://support.sendgrid.com/hc/en-us/articles/35270136965403", "reason": "New accounts since March 25, 2025 get a 60-day free trial (100 emails/day); after it ends API-key integrations stop sending unless a paid plan is chosen; the free plan was retired."},
+      {"field": "api_style", "claimed": ["rest"], "agree": true, "correct_value": ["rest"], "evidence_url": "https://www.twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/authentication", "reason": "SendGrid Web API v3 is an HTTP/JSON REST API (SMTP relay is secondary)."},
+      {"field": "official_mcp", "claimed": "community_only", "agree": true, "correct_value": "community_only", "evidence_url": "https://www.twilio.com/docs/ai/mcp", "reason": "Twilio's only hosted MCP (mcp.twilio.com/docs) is documentation search that indexes SendGrid docs but 'does not connect to a Twilio account or execute any API calls'; execute-capable tools are listed as future, and twilio-labs/mcp exposes Twilio's Public API, not SendGrid v3 — so API-capable SendGrid MCPs are community only."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://support.sendgrid.com/hc/en-us/articles/35270136965403", "reason": "API keys can be created during the self-serve trial, but sending stops after 60 days without a paid plan, which is a caveat on testing/launch."}
+    ]
+  },
+  {
+    "id": 41,
+    "app": "Shopify",
+    "checks": [
+      {"field": "auth_primary", "claimed": "oauth2", "agree": true, "correct_value": "oauth2", "evidence_url": "https://shopify.dev/docs/api/admin-rest", "reason": "Apps created in the Dev Dashboard (public and custom) obtain access tokens through OAuth, sent as X-Shopify-Access-Token."},
+      {"field": "access", "claimed": "approval_required", "agree": true, "correct_value": "approval_required", "evidence_url": "https://shopify.dev/docs/apps/launch/distribution", "reason": "Development stores and custom apps need no approval, but distributing to many merchants requires public distribution, which the page lists as 'Approval required: Yes' (App Store review)."},
+      {"field": "api_style", "claimed": ["graphql", "rest"], "agree": true, "correct_value": ["graphql", "rest"], "evidence_url": "https://shopify.dev/docs/api/admin-rest", "reason": "REST Admin API is legacy since Oct 1, 2024 and new public apps must use the GraphQL Admin API from April 1, 2025, so GraphQL is primary as claimed."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://shopify.dev/docs/apps/build/devmcp", "reason": "Shopify documents its own Dev MCP server (@shopify/dev-mcp) and store-hosted UCP/Checkout/Customer Accounts MCP servers on shopify.dev."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://shopify.dev/docs/apps/launch/distribution", "reason": "Buildable and testable on free development stores, but multi-merchant launch requires public-distribution approval."}
+    ]
+  },
+  {
+    "id": 42,
+    "app": "WooCommerce",
+    "checks": [
+      {"field": "auth_primary", "claimed": "basic", "agree": true, "correct_value": "basic", "evidence_url": "https://woocommerce.github.io/woocommerce-rest-api-docs/#authentication", "reason": "Over HTTPS the REST API uses HTTP Basic Auth with the consumer key as username and consumer secret as password (OAuth 1.0a one-legged only over plain HTTP)."},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://woocommerce.github.io/woocommerce-rest-api-docs/#authentication", "reason": "Keys are self-generated at WooCommerce > Settings > Advanced > REST API (or via the /wc-auth/v1/authorize endpoint) on the free open-source plugin; no vendor gate."},
+      {"field": "api_style", "claimed": ["rest"], "agree": true, "correct_value": ["rest"], "evidence_url": "https://woocommerce.github.io/woocommerce-rest-api-docs/#authentication", "reason": "WooCommerce exposes a REST API under /wp-json/wc/v3."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://developer.woocommerce.com/docs/features/mcp/", "reason": "WooCommerce's developer docs document its MCP integration (developer preview): WooCommerce abilities served via the WordPress MCP Adapter and Automattic's @automattic/mcp-wordpress-remote proxy."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://developer.woocommerce.com/docs/features/mcp/", "reason": "Buildable today, but each store is self-hosted so base URL and keys are per-tenant, and the MCP is a developer preview subject to breaking changes."}
+    ]
+  },
+  {
+    "id": 44,
+    "app": "Salesforce Commerce Cloud",
+    "checks": [
+      {"field": "auth_primary", "claimed": "oauth2", "agree": true, "correct_value": "oauth2", "evidence_url": "https://salesforcecommercecloud.github.io/b2c-developer-tooling/guide/authentication.html", "reason": "SCAPI/OCAPI calls use an Account Manager API client via OAuth (sign-in, client credentials or JWT); Shopper APIs use SLAS OAuth."},
+      {"field": "access", "claimed": "partner_gated", "agree": true, "correct_value": "partner_gated", "evidence_url": "https://trailhead.salesforce.com/content/learn/modules/b2c-on-demand-sandbox/b2c-configure-on-demand-sandbox", "reason": "Sandboxes require the organization to purchase sandbox credits and a realm ID obtained from the account executive, plus Account Manager roles — no self-serve developer path."},
+      {"field": "api_style", "claimed": ["rest"], "agree": true, "correct_value": ["rest"], "evidence_url": "https://salesforcecommercecloud.github.io/b2c-developer-tooling/guide/authentication.html", "reason": "Salesforce Commerce API (SCAPI) and OCAPI are HTTP/JSON REST APIs authenticated with OAuth bearer tokens."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://salesforcecommercecloud.github.io/b2c-developer-tooling/mcp", "reason": "The B2C DX MCP server (@salesforce/b2c-dx-mcp) is published by Salesforce (SalesforceCommerceCloud org, Salesforce copyright) and can run Commerce API operations."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://trailhead.salesforce.com/content/learn/modules/b2c-on-demand-sandbox/b2c-configure-on-demand-sandbox", "reason": "Gate is being an enterprise customer/partner with a realm, which the verdict enum lists under ready_with_caveats; borderline with blocked since no self-serve sandbox exists for a toolkit builder."}
+    ]
+  },
+  {
+    "id": 51,
+    "app": "DataForSEO",
+    "checks": [
+      {"field": "auth_primary", "claimed": "basic", "agree": true, "correct_value": "basic", "evidence_url": "https://docs.dataforseo.com/v3/auth/", "reason": "HTTP Basic authentication with API login and auto-generated API password is the only way to access the API."},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://docs.dataforseo.com/v3/appendix/sandbox/", "reason": "Sandbox is 'completely free for any registered user' (dummy data, not billed); real data is pay-as-you-go — fits the free-sandbox definition."},
+      {"field": "api_style", "claimed": ["rest"], "agree": true, "correct_value": ["rest"], "evidence_url": "https://docs.dataforseo.com/v3/auth/", "reason": "DataForSEO v3 is an HTTP/JSON REST API."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://dataforseo.com/model-context-protocol", "reason": "DataForSEO's own page links github.com/dataforseo/mcp-server-typescript, npm dataforseo-mcp-server, Docker dataforseo/mcp, and a hosted endpoint mcp.dataforseo.com."},
+      {"field": "verdict", "claimed": "ready", "agree": true, "correct_value": "ready", "evidence_url": "https://docs.dataforseo.com/v3/appendix/sandbox/", "reason": "Self-serve credentials plus a free sandbox allow building and testing today."}
+    ]
+  },
+  {
+    "id": 54,
+    "app": "MrScraper",
+    "checks": [
+      {"field": "auth_primary", "claimed": "api_key", "agree": true, "correct_value": "api_key", "evidence_url": "https://docs.mrscraper.com/docs/api/overview", "reason": "All API endpoints require an API token passed in the x-api-token header."},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://docs.mrscraper.com/docs/getting-started/billing", "reason": "Billing docs list a 'Scraper Free' plan with API tokens and say it includes 100 tokens per month with no credit card required."},
+      {"field": "api_style", "claimed": ["rest"], "agree": true, "correct_value": ["rest"], "evidence_url": "https://docs.mrscraper.com/docs/api/overview", "reason": "API overview says it is built on REST principles with JSON bodies."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://docs.mrscraper.com/docs/getting-started/mcp-server", "reason": "Docs call it 'the official Model Context Protocol server for MrScraper' (@mrscraper/mcp), hosted at mcp.mrscraper.com/mcp with OAuth 2.1 or API-key fallback."},
+      {"field": "verdict", "claimed": "ready", "agree": true, "correct_value": "ready", "evidence_url": "https://docs.mrscraper.com/docs/getting-started/billing", "reason": "Free plan with API tokens means a toolkit can be built and tested today with self-serve credentials."}
+    ]
+  },
+  {
+    "id": 59,
+    "app": "Waterfall.io",
+    "checks": [
+      {"field": "auth_primary", "claimed": "api_key", "agree": true, "correct_value": "api_key", "evidence_url": "https://docs.waterfall.io/v1/introduction", "reason": "Docs say to send your API key in the x-api-key header to https://api.waterfall.io."},
+      {"field": "access", "claimed": "partner_gated", "agree": true, "correct_value": "partner_gated", "evidence_url": "https://docs.waterfall.io/v1/book-demo.md", "reason": "API access is not self-serve: a team member reviews each key request (work email or booked call) and pricing is discussed on the call — a contact-sales gate."},
+      {"field": "api_style", "claimed": ["rest"], "agree": true, "correct_value": ["rest"], "evidence_url": "https://docs.waterfall.io/v1/introduction", "reason": "HTTP JSON launcher/finder endpoints under api.waterfall.io with an OpenAPI spec."},
+      {"field": "official_mcp", "claimed": "none_found", "agree": true, "correct_value": "none_found", "evidence_url": "https://docs.waterfall.io/v1/skills-overview.md", "reason": "Waterfall's agent docs offer only two agent skills (waterfall-direct-api, waterfall-integration) and the docs index has no MCP page; search found only unrelated 'waterfall enrichment' MCPs (Workato, LeadEnrich)."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://docs.waterfall.io/v1/book-demo.md", "reason": "Usable documented API, but credentials require a sales-reviewed request, limiting testing until approved."}
+    ]
+  },
+  {
+    "id": 64,
+    "app": "Cloudflare",
+    "checks": [
+      {"field": "auth_primary", "claimed": "oauth2", "agree": true, "correct_value": "oauth2", "evidence_url": "https://developers.cloudflare.com/changelog/post/2026-06-03-public-oauth-clients/", "reason": "Since June 2026 developers can create self-managed OAuth clients (Authorization Code + PKCE) and make them public after domain verification; API tokens remain the alternative for direct API use."},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://developers.cloudflare.com/fundamentals/oauth/", "reason": "OAuth is available on all plans including Free, and API tokens can be created on any free account."},
+      {"field": "api_style", "claimed": ["rest"], "agree": true, "correct_value": ["rest"], "evidence_url": "https://developers.cloudflare.com/fundamentals/api/get-started/", "reason": "Cloudflare API v4 is REST (a GraphQL Analytics API exists but is secondary)."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://developers.cloudflare.com/agents/model-context-protocol/mcp-servers-for-cloudflare/", "reason": "Cloudflare hosts managed remote MCP servers, including the Cloudflare API MCP server at mcp.cloudflare.com/mcp covering 2,500+ endpoints with OAuth."},
+      {"field": "verdict", "claimed": "ready", "agree": true, "correct_value": "ready", "evidence_url": "https://developers.cloudflare.com/agents/model-context-protocol/mcp-servers-for-cloudflare/", "reason": "Free self-serve credentials, OAuth for third parties and a broad REST API allow building and testing today."}
+    ]
+  },
+  {
+    "id": 67,
+    "app": "Snowflake",
+    "checks": [
+      {"field": "auth_primary", "claimed": "oauth2", "agree": true, "correct_value": "oauth2", "evidence_url": "https://docs.snowflake.com/en/developer-guide/sql-api/authenticating", "reason": "SQL API supports OAuth and key-pair JWT (plus programmatic access tokens); Snowflake's MCP docs recommend OAuth, with PAT only as fallback."},
+      {"field": "access", "claimed": "self_serve_trial", "agree": true, "correct_value": "self_serve_trial", "evidence_url": "https://docs.snowflake.com/en/user-guide/admin-trial-account", "reason": "Trial runs 30 days or until the free usage balance is depleted, then the account is suspended until a credit card is added and it is upgraded; no permanent free plan."},
+      {"field": "api_style", "claimed": ["rest"], "agree": true, "correct_value": ["rest"], "evidence_url": "https://docs.snowflake.com/en/developer-guide/sql-api/authenticating", "reason": "Snowflake SQL API and Snowflake REST APIs are HTTP REST endpoints (drivers are the other access path)."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp", "reason": "Snowflake-managed MCP server (GA Nov 2025) is hosted by Snowflake and exposes Cortex Analyst/Search/Agents and SQL execution tools."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://docs.snowflake.com/en/user-guide/admin-trial-account", "reason": "Buildable via self-serve 30-day trial, but continued testing needs a paid account and OAuth requires per-account security-integration setup."}
+    ]
+  }
+]

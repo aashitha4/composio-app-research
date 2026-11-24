@@ -1,0 +1,58 @@
+{
+  "34": {
+    "app": "GoHighLevel",
+    "issues": [
+      "access=self_serve_free but blocker_type=paid_plan"
+    ]
+  },
+  "50": {
+    "app": "fanbasis",
+    "issues": [
+      "schema: api_breadth='unknown'",
+      "official MCP claimed on a low-confidence record",
+      "evidence.auth is third-party (zapier.com)"
+    ]
+  },
+  "58": {
+    "app": "Sherlock",
+    "issues": [
+      "local CLI tool: convention is access=self_serve_free + blocker_type=local_tool"
+    ]
+  },
+  "60": {
+    "app": "Clay",
+    "issues": [
+      "access=self_serve_free but blocker_type=paid_plan"
+    ]
+  },
+  "83": {
+    "app": "Binance",
+    "issues": [
+      "access=self_serve_free but blocker_type=partnership"
+    ]
+  },
+  "84": {
+    "app": "Paygent Connect",
+    "issues": [
+      "access=approval_required but blocker_type=other (expected app_review)"
+    ]
+  },
+  "85": {
+    "app": "iPayX",
+    "issues": [
+      "official MCP claimed on a low-confidence record"
+    ]
+  },
+  "87": {
+    "app": "Xero",
+    "issues": [
+      "access=self_serve_free but blocker_type=paid_plan"
+    ]
+  },
+  "92": {
+    "app": "Otter AI",
+    "issues": [
+      "access=partner_gated but blocker_type=paid_plan (expected partnership)"
+    ]
+  }
+}

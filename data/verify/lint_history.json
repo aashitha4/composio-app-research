@@ -1,0 +1,5 @@
+[
+  {"run": "lint v1 on pass 1", "flagged": 1, "note": "schema + basic verdict/blocker rules; too weak"},
+  {"run": "lint v2 on pass 1", "flagged": 9, "note": "added access-vs-blocker agreement, CLI convention, low-confidence MCP; 7 real fixes, 2 reviewed exceptions"},
+  {"run": "lint v2 on final", "flagged": 4, "note": "all 4 reviewed and kept on purpose: fanbasis has no first-party auth page; Clay/Xero are free to build but need a paid tier at scale; iPayX's MCP is vendor-documented"}
+]

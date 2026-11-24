@@ -1,0 +1,2780 @@
+[
+ {
+  "sample": "calibration",
+  "id": 1,
+  "app": "Salesforce",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.salesforce.com/docs/platform/hosted-mcp-servers/guide/hosted-mcp-servers-overview.html",
+  "note": "Salesforce docs describe per-user OAuth 2.0 (with PKCE) via External Client Apps / Connected Apps as the authorization path for API and MCP clients."
+ },
+ {
+  "sample": "calibration",
+  "id": 1,
+  "app": "Salesforce",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.salesforce.com/docs/platform/api-rest/guide/intro-rest-compatible-editions.html",
+  "note": "API access is enabled by default in Developer Edition orgs, and Developer Edition is a free self-serve signup."
+ },
+ {
+  "sample": "calibration",
+  "id": 1,
+  "app": "Salesforce",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.salesforce.com/docs/platform/api-rest/guide/intro-rest-compatible-editions.html",
+  "note": "REST API is the primary documented integration surface; SOAP, GraphQL and Pub/Sub (gRPC) exist alongside it."
+ },
+ {
+  "sample": "calibration",
+  "id": 1,
+  "app": "Salesforce",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.salesforce.com/docs/platform/hosted-mcp-servers/guide/hosted-mcp-servers-overview.html",
+  "note": "Salesforce Hosted MCP Servers are documented on developer.salesforce.com and hosted by Salesforce (forcedotcom/mcp-hosted repo says they are GA)."
+ },
+ {
+  "sample": "calibration",
+  "id": 1,
+  "app": "Salesforce",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.salesforce.com/docs/platform/api-rest/guide/intro-rest-compatible-editions.html",
+  "note": "Buildable on a free Developer Edition, but customer orgs on Professional Edition need an API add-on and each org must enable/authorize the external client app, so caveats apply."
+ },
+ {
+  "sample": "calibration",
+  "id": 2,
+  "app": "HubSpot",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/manage-apps-in-hubspot",
+  "note": "Multi-account (marketplace/private distribution) apps use OAuth; static-token apps are limited to one account."
+ },
+ {
+  "sample": "calibration",
+  "id": 2,
+  "app": "HubSpot",
+  "field": "access",
+  "truth_accept": [
+   "approval_required"
+  ],
+  "how": "orchestrator: definition sweep",
+  "evidence_url": "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/manage-apps-in-hubspot",
+  "note": "Verifier agreed with self_serve_free, but researcher.md defines 'free sandbox, production needs review' as approval_required; HubSpot caps unlisted OAuth apps at 25 installs until review. Researcher and verifier were both wrong by the spec."
+ },
+ {
+  "sample": "calibration",
+  "id": 2,
+  "app": "HubSpot",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.hubspot.com/docs/api-reference/overview",
+  "note": "API reference shows resource-oriented HTTP endpoints such as GET /crm/objects/.../contacts on api.hubapi.com."
+ },
+ {
+  "sample": "calibration",
+  "id": 2,
+  "app": "HubSpot",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.hubspot.com/docs/build-with-ai/remote-mcp-server",
+  "note": "HubSpot documents a publicly hosted remote MCP server at https://mcp.hubspot.com using OAuth."
+ },
+ {
+  "sample": "calibration",
+  "id": 2,
+  "app": "HubSpot",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/manage-apps-in-hubspot",
+  "note": "Self-serve build/test works, but unlisted marketplace OAuth apps are capped at 25 installs until reviewed and listed, and some APIs need paid hubs."
+ },
+ {
+  "sample": "calibration",
+  "id": 5,
+  "app": "Twenty",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "orchestrator browser re-check",
+  "evidence_url": "https://docs.twenty.com/developers/extend/oauth",
+  "note": "Verifier was right; confirmed on the page."
+ },
+ {
+  "sample": "calibration",
+  "id": 5,
+  "app": "Twenty",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://twenty.com/pricing",
+  "note": "Cloud has no free plan (30-day no-card trial), but 'Self-hosting the open source core is free', giving $0 working credentials; borderline with self_serve_trial if only Cloud is considered."
+ },
+ {
+  "sample": "calibration",
+  "id": 5,
+  "app": "Twenty",
+  "field": "api_style",
+  "truth_accept": [
+   "rest",
+   "graphql"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.twenty.com/developers/extend/api",
+  "note": "Docs state the Core and Metadata APIs are both available as REST and GraphQL. (API offered in both styles; either accepted)"
+ },
+ {
+  "sample": "calibration",
+  "id": 5,
+  "app": "Twenty",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.twenty.com/developers/extend/mcp",
+  "note": "Docs say 'Twenty exposes an MCP server' at https://{workspace}/mcp for Cloud and self-hosted, with OAuth or API key."
+ },
+ {
+  "sample": "calibration",
+  "id": 5,
+  "app": "Twenty",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://twenty.com/pricing",
+  "note": "Self-serve Cloud trial and free self-hosting allow building and testing today with no review gate."
+ },
+ {
+  "sample": "calibration",
+  "id": 13,
+  "app": "Freshdesk",
+  "field": "auth_primary",
+  "truth_accept": [
+   "api_key"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.freshdesk.com/api/",
+  "note": "API v2 authentication section: use your personal API key via HTTP Basic (apikey:X); no OAuth flow is documented."
+ },
+ {
+  "sample": "calibration",
+  "id": 13,
+  "app": "Freshdesk",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_trial"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://www.freshworks.com/freshdesk/pricing/",
+  "note": "Pricing lists only paid plans (Growth/Pro/Enterprise) plus a 14-day trial of the Enterprise plan; no free plan."
+ },
+ {
+  "sample": "calibration",
+  "id": 13,
+  "app": "Freshdesk",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.freshdesk.com/api/",
+  "note": "Freshdesk API v2 is a REST/JSON API."
+ },
+ {
+  "sample": "calibration",
+  "id": 13,
+  "app": "Freshdesk",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://support.freshdesk.com/support/solutions/articles/50000012670",
+  "note": "Freshworks documents its own MCP server at https://<subdomain>.freshdesk.com/mcp (API-key auth), GA from September 10, 2026, on Growth/Pro/Enterprise."
+ },
+ {
+  "sample": "calibration",
+  "id": 13,
+  "app": "Freshdesk",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://www.freshworks.com/freshdesk/pricing/",
+  "note": "Buildable via a self-serve trial, but continued testing requires a paid plan after 14 days."
+ },
+ {
+  "sample": "calibration",
+  "id": 14,
+  "app": "Front",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://dev.frontapp.com/docs/oauth",
+  "note": "'OAuth is required for public integrations available to all Front customers unless you obtain an exception from us.'"
+ },
+ {
+  "sample": "calibration",
+  "id": 14,
+  "app": "Front",
+  "field": "access",
+  "truth_accept": [
+   "approval_required"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://dev.frontapp.com/docs/partnering-with-front",
+  "note": "A free development account is self-serve, but apps are private to their instance until published, and publishing requires Front to test and technically approve the integration."
+ },
+ {
+  "sample": "calibration",
+  "id": 14,
+  "app": "Front",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://dev.frontapp.com/docs/oauth",
+  "note": "Front's Core API is a REST API accessed with OAuth or API tokens."
+ },
+ {
+  "sample": "calibration",
+  "id": 14,
+  "app": "Front",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://dev.frontapp.com/docs/mcp-server",
+  "note": "Front documents its own MCP server at https://mcp.frontapp.com/mcp with OAuth via app.frontapp.com."
+ },
+ {
+  "sample": "calibration",
+  "id": 14,
+  "app": "Front",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://dev.frontapp.com/docs/create-and-manage-apps",
+  "note": "Buildable on a free dev account, but multi-customer distribution needs publishing/approval and OAuth must be authorized by company admins."
+ },
+ {
+  "sample": "calibration",
+  "id": 20,
+  "app": "Gladly",
+  "field": "auth_primary",
+  "truth_accept": [
+   "basic"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.gladly.com/rest/",
+  "note": "'Gladly API uses token-based Basic Authentication' with agent email as username and API token as password."
+ },
+ {
+  "sample": "calibration",
+  "id": 20,
+  "app": "Gladly",
+  "field": "access",
+  "truth_accept": [
+   "partner_gated"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://help.gladly.com/docs/generate-api-tokens-and-create-webhooks.md",
+  "note": "Tokens are created inside a customer's Gladly org by users granted the API User role by a Gladly admin; gladly.com offers only 'Get a demo'/contact sales, no self-serve signup."
+ },
+ {
+  "sample": "calibration",
+  "id": 20,
+  "app": "Gladly",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.gladly.com/rest/",
+  "note": "Gladly publishes a REST API reference."
+ },
+ {
+  "sample": "calibration",
+  "id": 20,
+  "app": "Gladly",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://help.gladly.com/docs/what-is-the-gladly-mcp-for-claude.md",
+  "note": "Gladly's help center (published 2026-11-18) documents the 'Gladly MCP for Claude' connector plus plugin at github.com/gladly/claude-plugin; scoped to Gladly AI (Guides, Workflows, sessions) and must be enabled per org by Gladly."
+ },
+ {
+  "sample": "calibration",
+  "id": 20,
+  "app": "Gladly",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://help.gladly.com/docs/generate-api-tokens-and-create-webhooks.md",
+  "note": "API is usable once inside a customer org (sandbox env at {org}.gladly.qa exists), so the enterprise-customer gate limits testing rather than fully blocking it."
+ },
+ {
+  "sample": "calibration",
+  "id": 22,
+  "app": "Twilio",
+  "field": "auth_primary",
+  "truth_accept": [
+   "basic"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://www.twilio.com/docs/usage/requests-to-twilio",
+  "note": "Requests use HTTP Basic with API key SID/secret (default) or Account SID/Auth Token."
+ },
+ {
+  "sample": "calibration",
+  "id": 22,
+  "app": "Twilio",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_trial"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://www.twilio.com/docs/usage/trials",
+  "note": "'Trial accounts expire 30 days after sign-up'; afterwards you must upgrade to keep building."
+ },
+ {
+  "sample": "calibration",
+  "id": 22,
+  "app": "Twilio",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://www.twilio.com/docs/usage/requests-to-twilio",
+  "note": "'Twilio APIs use standard RESTful HTTP methods to perform actions on resources.'"
+ },
+ {
+  "sample": "calibration",
+  "id": 22,
+  "app": "Twilio",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://www.twilio.com/docs/mcp",
+  "note": "Twilio hosts a docs MCP at mcp.twilio.com/docs (Public Beta, no account actions), and its twilio-labs GitHub org publishes @twilio-alpha/mcp exposing Twilio APIs."
+ },
+ {
+  "sample": "calibration",
+  "id": 22,
+  "app": "Twilio",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://www.twilio.com/docs/usage/trials",
+  "note": "Self-serve trial credentials allow building and testing immediately; trial limits (30 days, verified recipients) are not an approval gate."
+ },
+ {
+  "sample": "calibration",
+  "id": 29,
+  "app": "Aircall",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.aircall.io/docs/oauth",
+  "note": "OAuth is the method for apps serving multiple Aircall customers; Basic api_id:api_token is for a company's own account."
+ },
+ {
+  "sample": "calibration",
+  "id": 29,
+  "app": "Aircall",
+  "field": "access",
+  "truth_accept": [
+   "partner_gated"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.aircall.io/docs/oauth",
+  "note": "OAuth credentials come from the Tech Partner program ('apply to the Tech Partner program'); only own-account Basic keys are available via a customer/trial account."
+ },
+ {
+  "sample": "calibration",
+  "id": 29,
+  "app": "Aircall",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.aircall.io/docs/basic-authentication",
+  "note": "Aircall Public API is a REST API at api.aircall.io/v1."
+ },
+ {
+  "sample": "calibration",
+  "id": 29,
+  "app": "Aircall",
+  "field": "official_mcp",
+  "truth_accept": [
+   "community_only"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.aircall.io/docs/mcp-faqs",
+  "note": "Aircall's MCP FAQ says it does not offer an MCP server yet; existing Aircall MCP servers are third-party (e.g. themobilefirstco, StackOne)."
+ },
+ {
+  "sample": "calibration",
+  "id": 29,
+  "app": "Aircall",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://aircall.io/pricing/",
+  "note": "API access is on all plans and a free test period exists for Basic-key testing, but OAuth distribution requires Tech Partner status."
+ },
+ {
+  "sample": "calibration",
+  "id": 30,
+  "app": "Vonage",
+  "field": "auth_primary",
+  "truth_accept": [
+   "basic"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.vonage.com/en/getting-started/concepts/authentication",
+  "note": "API key/secret (Basic) is accepted by 19 of 25 listed APIs (Accounts, Numbers, SMS, Messages, Verify2...); Vonage recommends JWT for most use-cases and Voice/Video require JWT."
+ },
+ {
+  "sample": "calibration",
+  "id": 30,
+  "app": "Vonage",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://api.support.vonage.com/hc/en-us/articles/204014853",
+  "note": "Signup gives €2 free credit with test-number restrictions and no stated time limit, so credentials are obtainable at $0."
+ },
+ {
+  "sample": "calibration",
+  "id": 30,
+  "app": "Vonage",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.vonage.com/en/getting-started/concepts/authentication",
+  "note": "Vonage APIs are HTTP REST APIs authenticated via Authorization header."
+ },
+ {
+  "sample": "calibration",
+  "id": 30,
+  "app": "Vonage",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.vonage.com/en/blog/introducing-the-vonage-mcp-tooling-server",
+  "note": "Vonage publishes a hosted Documentation MCP and the @vonage/vonage-mcp-server-api-bindings tooling server (balance, sms, numbers), documented on developer.vonage.com."
+ },
+ {
+  "sample": "calibration",
+  "id": 30,
+  "app": "Vonage",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://api.support.vonage.com/hc/en-us/articles/204014853",
+  "note": "Self-serve free credit lets a toolkit be built and tested today; demo-mode limits only restrict destinations."
+ },
+ {
+  "sample": "calibration",
+  "id": 31,
+  "app": "Google Ads",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "orchestrator browser re-check",
+  "evidence_url": "https://developers.google.com/google-ads/api/docs/api-policy/access-levels",
+  "note": "Confirmed developer tokens sunset 2026-09-09; access is per Cloud project, OAuth."
+ },
+ {
+  "sample": "calibration",
+  "id": 31,
+  "app": "Google Ads",
+  "field": "access",
+  "truth_accept": [
+   "approval_required"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.google.com/google-ads/api/docs/api-policy/access-levels",
+  "note": "Enabling the API grants only Test access; production needs an Explorer application (automated review in most cases), and Basic/Standard need brand verification or manual audit."
+ },
+ {
+  "sample": "calibration",
+  "id": 31,
+  "app": "Google Ads",
+  "field": "api_style",
+  "truth_accept": [
+   "grpc",
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.google.com/google-ads/api/rest/overview",
+  "note": "'The Google Ads API can be called either using gRPC or REST'; official client libraries are gRPC-based. (API offered in both styles; either accepted)"
+ },
+ {
+  "sample": "calibration",
+  "id": 31,
+  "app": "Google Ads",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://github.com/googleads/google-ads-mcp",
+  "note": "Google's own googleads GitHub org publishes google-ads-mcp and Google's developer docs provide its integration guide."
+ },
+ {
+  "sample": "calibration",
+  "id": 31,
+  "app": "Google Ads",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.google.com/google-ads/api/docs/api-policy/access-levels",
+  "note": "Buildable against test accounts immediately, but production access requires an access-level application/review."
+ },
+ {
+  "sample": "calibration",
+  "id": 37,
+  "app": "systeme.io",
+  "field": "auth_primary",
+  "truth_accept": [
+   "api_key"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.systeme.io/reference/api",
+  "note": "API reference says to attach the public API key to the X-API-Key header of each request; it is the only method offered."
+ },
+ {
+  "sample": "calibration",
+  "id": 37,
+  "app": "systeme.io",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://systeme.io/mcp",
+  "note": "systeme.io has a never-expiring Free plan (pricing FAQ) and its MCP page says the MCP/API-key feature is included in all plans including Free; API reference states no plan restriction."
+ },
+ {
+  "sample": "calibration",
+  "id": 37,
+  "app": "systeme.io",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.systeme.io/reference/api",
+  "note": "Docs say the public API follows RESTful conventions."
+ },
+ {
+  "sample": "calibration",
+  "id": 37,
+  "app": "systeme.io",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.systeme.io/docs/mcp-server",
+  "note": "systeme.io's own developer docs document the Systeme.io MCP server (MCP key via X-MCP-Key header); the snzeeee GitHub server is a separate community project."
+ },
+ {
+  "sample": "calibration",
+  "id": 37,
+  "app": "systeme.io",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.systeme.io/reference/api",
+  "note": "Self-serve API key from account settings on a free account with documented REST endpoints means a toolkit can be built and tested today."
+ },
+ {
+  "sample": "calibration",
+  "id": 40,
+  "app": "SendGrid",
+  "field": "auth_primary",
+  "truth_accept": [
+   "api_key"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://www.twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/authentication",
+  "note": "v3 API is authenticated with an API key sent as 'Authorization: Bearer <API key>'; no OAuth is documented."
+ },
+ {
+  "sample": "calibration",
+  "id": 40,
+  "app": "SendGrid",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_trial"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://support.sendgrid.com/hc/en-us/articles/35270136965403",
+  "note": "New accounts since March 25, 2025 get a 60-day free trial (100 emails/day); after it ends API-key integrations stop sending unless a paid plan is chosen; the free plan was retired."
+ },
+ {
+  "sample": "calibration",
+  "id": 40,
+  "app": "SendGrid",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://www.twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/authentication",
+  "note": "SendGrid Web API v3 is an HTTP/JSON REST API (SMTP relay is secondary)."
+ },
+ {
+  "sample": "calibration",
+  "id": 40,
+  "app": "SendGrid",
+  "field": "official_mcp",
+  "truth_accept": [
+   "community_only"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://www.twilio.com/docs/ai/mcp",
+  "note": "Twilio's only hosted MCP (mcp.twilio.com/docs) is documentation search that indexes SendGrid docs but 'does not connect to a Twilio account or execute any API calls'; execute-capable tools are listed as future, and twilio-labs/mcp exposes Twilio's Public API, not SendGrid v3 — so API-capable SendGrid MCPs are community only."
+ },
+ {
+  "sample": "calibration",
+  "id": 40,
+  "app": "SendGrid",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://support.sendgrid.com/hc/en-us/articles/35270136965403",
+  "note": "API keys can be created during the self-serve trial, but sending stops after 60 days without a paid plan, which is a caveat on testing/launch."
+ },
+ {
+  "sample": "calibration",
+  "id": 41,
+  "app": "Shopify",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://shopify.dev/docs/api/admin-rest",
+  "note": "Apps created in the Dev Dashboard (public and custom) obtain access tokens through OAuth, sent as X-Shopify-Access-Token."
+ },
+ {
+  "sample": "calibration",
+  "id": 41,
+  "app": "Shopify",
+  "field": "access",
+  "truth_accept": [
+   "approval_required"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://shopify.dev/docs/apps/launch/distribution",
+  "note": "Development stores and custom apps need no approval, but distributing to many merchants requires public distribution, which the page lists as 'Approval required: Yes' (App Store review)."
+ },
+ {
+  "sample": "calibration",
+  "id": 41,
+  "app": "Shopify",
+  "field": "api_style",
+  "truth_accept": [
+   "graphql",
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://shopify.dev/docs/api/admin-rest",
+  "note": "REST Admin API is legacy since Oct 1, 2024 and new public apps must use the GraphQL Admin API from April 1, 2025, so GraphQL is primary as claimed. (API offered in both styles; either accepted)"
+ },
+ {
+  "sample": "calibration",
+  "id": 41,
+  "app": "Shopify",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://shopify.dev/docs/apps/build/devmcp",
+  "note": "Shopify documents its own Dev MCP server (@shopify/dev-mcp) and store-hosted UCP/Checkout/Customer Accounts MCP servers on shopify.dev."
+ },
+ {
+  "sample": "calibration",
+  "id": 41,
+  "app": "Shopify",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://shopify.dev/docs/apps/launch/distribution",
+  "note": "Buildable and testable on free development stores, but multi-merchant launch requires public-distribution approval."
+ },
+ {
+  "sample": "calibration",
+  "id": 42,
+  "app": "WooCommerce",
+  "field": "auth_primary",
+  "truth_accept": [
+   "basic"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://woocommerce.github.io/woocommerce-rest-api-docs/#authentication",
+  "note": "Over HTTPS the REST API uses HTTP Basic Auth with the consumer key as username and consumer secret as password (OAuth 1.0a one-legged only over plain HTTP)."
+ },
+ {
+  "sample": "calibration",
+  "id": 42,
+  "app": "WooCommerce",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://woocommerce.github.io/woocommerce-rest-api-docs/#authentication",
+  "note": "Keys are self-generated at WooCommerce > Settings > Advanced > REST API (or via the /wc-auth/v1/authorize endpoint) on the free open-source plugin; no vendor gate."
+ },
+ {
+  "sample": "calibration",
+  "id": 42,
+  "app": "WooCommerce",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://woocommerce.github.io/woocommerce-rest-api-docs/#authentication",
+  "note": "WooCommerce exposes a REST API under /wp-json/wc/v3."
+ },
+ {
+  "sample": "calibration",
+  "id": 42,
+  "app": "WooCommerce",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.woocommerce.com/docs/features/mcp/",
+  "note": "WooCommerce's developer docs document its MCP integration (developer preview): WooCommerce abilities served via the WordPress MCP Adapter and Automattic's @automattic/mcp-wordpress-remote proxy."
+ },
+ {
+  "sample": "calibration",
+  "id": 42,
+  "app": "WooCommerce",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.woocommerce.com/docs/features/mcp/",
+  "note": "Buildable today, but each store is self-hosted so base URL and keys are per-tenant, and the MCP is a developer preview subject to breaking changes."
+ },
+ {
+  "sample": "calibration",
+  "id": 44,
+  "app": "Salesforce Commerce Cloud",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://salesforcecommercecloud.github.io/b2c-developer-tooling/guide/authentication.html",
+  "note": "SCAPI/OCAPI calls use an Account Manager API client via OAuth (sign-in, client credentials or JWT); Shopper APIs use SLAS OAuth."
+ },
+ {
+  "sample": "calibration",
+  "id": 44,
+  "app": "Salesforce Commerce Cloud",
+  "field": "access",
+  "truth_accept": [
+   "partner_gated"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://trailhead.salesforce.com/content/learn/modules/b2c-on-demand-sandbox/b2c-configure-on-demand-sandbox",
+  "note": "Sandboxes require the organization to purchase sandbox credits and a realm ID obtained from the account executive, plus Account Manager roles — no self-serve developer path."
+ },
+ {
+  "sample": "calibration",
+  "id": 44,
+  "app": "Salesforce Commerce Cloud",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://salesforcecommercecloud.github.io/b2c-developer-tooling/guide/authentication.html",
+  "note": "Salesforce Commerce API (SCAPI) and OCAPI are HTTP/JSON REST APIs authenticated with OAuth bearer tokens."
+ },
+ {
+  "sample": "calibration",
+  "id": 44,
+  "app": "Salesforce Commerce Cloud",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://salesforcecommercecloud.github.io/b2c-developer-tooling/mcp",
+  "note": "The B2C DX MCP server (@salesforce/b2c-dx-mcp) is published by Salesforce (SalesforceCommerceCloud org, Salesforce copyright) and can run Commerce API operations."
+ },
+ {
+  "sample": "calibration",
+  "id": 44,
+  "app": "Salesforce Commerce Cloud",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://trailhead.salesforce.com/content/learn/modules/b2c-on-demand-sandbox/b2c-configure-on-demand-sandbox",
+  "note": "Gate is being an enterprise customer/partner with a realm, which the verdict enum lists under ready_with_caveats; borderline with blocked since no self-serve sandbox exists for a toolkit builder."
+ },
+ {
+  "sample": "calibration",
+  "id": 51,
+  "app": "DataForSEO",
+  "field": "auth_primary",
+  "truth_accept": [
+   "basic"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.dataforseo.com/v3/auth/",
+  "note": "HTTP Basic authentication with API login and auto-generated API password is the only way to access the API."
+ },
+ {
+  "sample": "calibration",
+  "id": 51,
+  "app": "DataForSEO",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.dataforseo.com/v3/appendix/sandbox/",
+  "note": "Sandbox is 'completely free for any registered user' (dummy data, not billed); real data is pay-as-you-go — fits the free-sandbox definition."
+ },
+ {
+  "sample": "calibration",
+  "id": 51,
+  "app": "DataForSEO",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.dataforseo.com/v3/auth/",
+  "note": "DataForSEO v3 is an HTTP/JSON REST API."
+ },
+ {
+  "sample": "calibration",
+  "id": 51,
+  "app": "DataForSEO",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://dataforseo.com/model-context-protocol",
+  "note": "DataForSEO's own page links github.com/dataforseo/mcp-server-typescript, npm dataforseo-mcp-server, Docker dataforseo/mcp, and a hosted endpoint mcp.dataforseo.com."
+ },
+ {
+  "sample": "calibration",
+  "id": 51,
+  "app": "DataForSEO",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.dataforseo.com/v3/appendix/sandbox/",
+  "note": "Self-serve credentials plus a free sandbox allow building and testing today."
+ },
+ {
+  "sample": "calibration",
+  "id": 54,
+  "app": "MrScraper",
+  "field": "auth_primary",
+  "truth_accept": [
+   "api_key"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.mrscraper.com/docs/api/overview",
+  "note": "All API endpoints require an API token passed in the x-api-token header."
+ },
+ {
+  "sample": "calibration",
+  "id": 54,
+  "app": "MrScraper",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.mrscraper.com/docs/getting-started/billing",
+  "note": "Billing docs list a 'Scraper Free' plan with API tokens and say it includes 100 tokens per month with no credit card required."
+ },
+ {
+  "sample": "calibration",
+  "id": 54,
+  "app": "MrScraper",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.mrscraper.com/docs/api/overview",
+  "note": "API overview says it is built on REST principles with JSON bodies."
+ },
+ {
+  "sample": "calibration",
+  "id": 54,
+  "app": "MrScraper",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.mrscraper.com/docs/getting-started/mcp-server",
+  "note": "Docs call it 'the official Model Context Protocol server for MrScraper' (@mrscraper/mcp), hosted at mcp.mrscraper.com/mcp with OAuth 2.1 or API-key fallback."
+ },
+ {
+  "sample": "calibration",
+  "id": 54,
+  "app": "MrScraper",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.mrscraper.com/docs/getting-started/billing",
+  "note": "Free plan with API tokens means a toolkit can be built and tested today with self-serve credentials."
+ },
+ {
+  "sample": "calibration",
+  "id": 59,
+  "app": "Waterfall.io",
+  "field": "auth_primary",
+  "truth_accept": [
+   "api_key"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.waterfall.io/v1/introduction",
+  "note": "Docs say to send your API key in the x-api-key header to https://api.waterfall.io."
+ },
+ {
+  "sample": "calibration",
+  "id": 59,
+  "app": "Waterfall.io",
+  "field": "access",
+  "truth_accept": [
+   "partner_gated"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.waterfall.io/v1/book-demo.md",
+  "note": "API access is not self-serve: a team member reviews each key request (work email or booked call) and pricing is discussed on the call — a contact-sales gate."
+ },
+ {
+  "sample": "calibration",
+  "id": 59,
+  "app": "Waterfall.io",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.waterfall.io/v1/introduction",
+  "note": "HTTP JSON launcher/finder endpoints under api.waterfall.io with an OpenAPI spec."
+ },
+ {
+  "sample": "calibration",
+  "id": 59,
+  "app": "Waterfall.io",
+  "field": "official_mcp",
+  "truth_accept": [
+   "none_found"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.waterfall.io/v1/skills-overview.md",
+  "note": "Waterfall's agent docs offer only two agent skills (waterfall-direct-api, waterfall-integration) and the docs index has no MCP page; search found only unrelated 'waterfall enrichment' MCPs (Workato, LeadEnrich)."
+ },
+ {
+  "sample": "calibration",
+  "id": 59,
+  "app": "Waterfall.io",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.waterfall.io/v1/book-demo.md",
+  "note": "Usable documented API, but credentials require a sales-reviewed request, limiting testing until approved."
+ },
+ {
+  "sample": "calibration",
+  "id": 64,
+  "app": "Cloudflare",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.cloudflare.com/changelog/post/2026-06-03-public-oauth-clients/",
+  "note": "Since June 2026 developers can create self-managed OAuth clients (Authorization Code + PKCE) and make them public after domain verification; API tokens remain the alternative for direct API use."
+ },
+ {
+  "sample": "calibration",
+  "id": 64,
+  "app": "Cloudflare",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.cloudflare.com/fundamentals/oauth/",
+  "note": "OAuth is available on all plans including Free, and API tokens can be created on any free account."
+ },
+ {
+  "sample": "calibration",
+  "id": 64,
+  "app": "Cloudflare",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.cloudflare.com/fundamentals/api/get-started/",
+  "note": "Cloudflare API v4 is REST (a GraphQL Analytics API exists but is secondary)."
+ },
+ {
+  "sample": "calibration",
+  "id": 64,
+  "app": "Cloudflare",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.cloudflare.com/agents/model-context-protocol/mcp-servers-for-cloudflare/",
+  "note": "Cloudflare hosts managed remote MCP servers, including the Cloudflare API MCP server at mcp.cloudflare.com/mcp covering 2,500+ endpoints with OAuth."
+ },
+ {
+  "sample": "calibration",
+  "id": 64,
+  "app": "Cloudflare",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.cloudflare.com/agents/model-context-protocol/mcp-servers-for-cloudflare/",
+  "note": "Free self-serve credentials, OAuth for third parties and a broad REST API allow building and testing today."
+ },
+ {
+  "sample": "calibration",
+  "id": 67,
+  "app": "Snowflake",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.snowflake.com/en/developer-guide/sql-api/authenticating",
+  "note": "SQL API supports OAuth and key-pair JWT (plus programmatic access tokens); Snowflake's MCP docs recommend OAuth, with PAT only as fallback."
+ },
+ {
+  "sample": "calibration",
+  "id": 67,
+  "app": "Snowflake",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_trial"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.snowflake.com/en/user-guide/admin-trial-account",
+  "note": "Trial runs 30 days or until the free usage balance is depleted, then the account is suspended until a credit card is added and it is upgraded; no permanent free plan."
+ },
+ {
+  "sample": "calibration",
+  "id": 67,
+  "app": "Snowflake",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.snowflake.com/en/developer-guide/sql-api/authenticating",
+  "note": "Snowflake SQL API and Snowflake REST APIs are HTTP REST endpoints (drivers are the other access path)."
+ },
+ {
+  "sample": "calibration",
+  "id": 67,
+  "app": "Snowflake",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp",
+  "note": "Snowflake-managed MCP server (GA Nov 2025) is hosted by Snowflake and exposes Cortex Analyst/Search/Agents and SQL execution tools."
+ },
+ {
+  "sample": "calibration",
+  "id": 67,
+  "app": "Snowflake",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.snowflake.com/en/user-guide/admin-trial-account",
+  "note": "Buildable via self-serve 30-day trial, but continued testing needs a paid account and OAuth requires per-account security-integration setup."
+ },
+ {
+  "sample": "calibration",
+  "id": 69,
+  "app": "Datadog",
+  "field": "auth_primary",
+  "truth_accept": [
+   "api_key"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.datadoghq.com/api/latest/authentication/",
+  "note": "Datadog API auth page: write requests require an API key and read requests also require an application key; no OAuth described for general API use."
+ },
+ {
+  "sample": "calibration",
+  "id": 69,
+  "app": "Datadog",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://www.datadoghq.com/pricing/",
+  "note": "Pricing page offers a permanent Free tier ('up to five Basic hosts with 1-day metric retention, at no cost') and says trials can move to the Free tier, so credentials are obtainable at $0."
+ },
+ {
+  "sample": "calibration",
+  "id": 69,
+  "app": "Datadog",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.datadoghq.com/api/latest/authentication/",
+  "note": "Datadog's API reference is an HTTP/JSON REST API authenticated with API/application keys."
+ },
+ {
+  "sample": "calibration",
+  "id": 69,
+  "app": "Datadog",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.datadoghq.com/bits_ai/mcp_server/",
+  "note": "Datadog's own docs describe the 'Remote Datadog MCP Server' that provides remote access to most Datadog products (noted as under significant development, not GovCloud)."
+ },
+ {
+  "sample": "calibration",
+  "id": 69,
+  "app": "Datadog",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://www.datadoghq.com/pricing/",
+  "note": "Free tier plus self-serve API/app keys means a toolkit can be built and tested today without gates."
+ },
+ {
+  "sample": "calibration",
+  "id": 74,
+  "app": "Jira",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/",
+  "note": "Atlassian docs describe OAuth 2.0 (3LO) apps created self-serve in the developer console; basic auth/API tokens are only for simple scripts and collecting customer tokens is discouraged."
+ },
+ {
+  "sample": "calibration",
+  "id": 74,
+  "app": "Jira",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://www.atlassian.com/software/jira/pricing",
+  "note": "Jira pricing lists a Free plan, and 3LO apps can be created and shared without mandatory review (unreviewed apps only show a warning)."
+ },
+ {
+  "sample": "calibration",
+  "id": 74,
+  "app": "Jira",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/",
+  "note": "Jira Cloud platform is accessed via REST APIs (page refers to making REST API calls with 3LO or basic auth)."
+ },
+ {
+  "sample": "calibration",
+  "id": 74,
+  "app": "Jira",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.atlassian.com/cloud/rovo-mcp/",
+  "note": "Atlassian developer docs describe its cloud-hosted Rovo MCP server at https://mcp.atlassian.com/v2/mcp."
+ },
+ {
+  "sample": "calibration",
+  "id": 74,
+  "app": "Jira",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/",
+  "note": "Free site plus self-serve OAuth 3LO app creation allows building and testing today; review only affects the 'unreviewed app' warning."
+ },
+ {
+  "sample": "calibration",
+  "id": 75,
+  "app": "Asana",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.asana.com/docs/authentication",
+  "note": "Asana auth docs say OAuth is 'the best choice if multiple users need to sign in to your app'; PATs are for scripts, service accounts are Enterprise-only."
+ },
+ {
+  "sample": "calibration",
+  "id": 75,
+  "app": "Asana",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.asana.com/docs/overview",
+  "note": "Asana developer overview says you can 'create a free account' to build/test (sandbox only needed for premium features)."
+ },
+ {
+  "sample": "calibration",
+  "id": 75,
+  "app": "Asana",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.asana.com/docs/quick-start",
+  "note": "Quick start uses REST endpoints such as https://app.asana.com/api/1.0/workspaces with a PAT."
+ },
+ {
+  "sample": "calibration",
+  "id": 75,
+  "app": "Asana",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.asana.com/docs/using-asanas-mcp-server",
+  "note": "Asana's developer docs state 'Asana offers a Model Context Protocol (MCP) server' hosted at https://mcp.asana.com/v2/mcp."
+ },
+ {
+  "sample": "calibration",
+  "id": 75,
+  "app": "Asana",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.asana.com/docs/overview",
+  "note": "Free account plus self-serve OAuth/PAT credentials; no review gate stated for building and testing."
+ },
+ {
+  "sample": "calibration",
+  "id": 78,
+  "app": "Coda",
+  "field": "auth_primary",
+  "truth_accept": [
+   "api_key"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://coda.io/developers/apis/v1",
+  "note": "Coda (now Superhuman Docs) API reference uses 'Authorization: Bearer <your API token>' user API tokens; no OAuth for third-party API apps is described."
+ },
+ {
+  "sample": "calibration",
+  "id": 78,
+  "app": "Coda",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://coda.io/developers/apis/v1",
+  "note": "API page: 'We make the Superhuman Docs API available to all of our users free of charge, in both free and paid workspaces.'"
+ },
+ {
+  "sample": "calibration",
+  "id": 78,
+  "app": "Coda",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://coda.io/developers/apis/v1",
+  "note": "Coda API v1 is a REST/JSON API (GET/POST/PUT/PATCH endpoints with rate limits per method)."
+ },
+ {
+  "sample": "calibration",
+  "id": 78,
+  "app": "Coda",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://coda.io/resources/guides/getting_started_with_coda_mcp",
+  "note": "Coda's own guide says 'Superhuman Docs runs an MCP server built on the open Model Context Protocol standard' (endpoint coda.io/apis/mcp per its help center); community servers also exist but the vendor one is first-party."
+ },
+ {
+  "sample": "calibration",
+  "id": 78,
+  "app": "Coda",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "orchestrator re-check",
+  "evidence_url": "https://coda.io/developers/apis/v1",
+  "note": "Verifier was right; token-only auth is not a gate under the verdict definition."
+ },
+ {
+  "sample": "calibration",
+  "id": 81,
+  "app": "Stripe",
+  "field": "auth_primary",
+  "truth_accept": [
+   "api_key"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.stripe.com/keys",
+  "note": "Stripe docs: 'Stripe uses API keys to authenticate requests' (secret/restricted/agent keys); OAuth exists for Connect/Apps/MCP but API keys are the core API auth."
+ },
+ {
+  "sample": "calibration",
+  "id": 81,
+  "app": "Stripe",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.stripe.com/keys",
+  "note": "Any account gets sandbox test keys (sk_test_/rk_test_) for free to build and test; live keys come with account activation."
+ },
+ {
+  "sample": "calibration",
+  "id": 81,
+  "app": "Stripe",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.stripe.com/keys",
+  "note": "Stripe API is a REST API (v1 and v2 endpoints) authenticated by API keys."
+ },
+ {
+  "sample": "calibration",
+  "id": 81,
+  "app": "Stripe",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.stripe.com/mcp",
+  "note": "Stripe docs document its own hosted MCP server at https://mcp.stripe.com with OAuth or agent API keys."
+ },
+ {
+  "sample": "calibration",
+  "id": 81,
+  "app": "Stripe",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.stripe.com/keys",
+  "note": "Free sandbox keys allow a toolkit to be built and tested today."
+ },
+ {
+  "sample": "calibration",
+  "id": 83,
+  "app": "Binance",
+  "field": "auth_primary",
+  "truth_accept": [
+   "hmac_signature"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.binance.com/docs/binance-spot-api-docs/rest-api/request-security",
+  "note": "SIGNED endpoints need an API key plus a request signature; 'We support HMAC, RSA, and Ed25519 keys' (Ed25519 recommended, still a signature scheme)."
+ },
+ {
+  "sample": "calibration",
+  "id": 83,
+  "app": "Binance",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://testnet.binance.vision/",
+  "note": "Spot Test Network gives API keys free via 'Log In with GitHub' with virtual funds; live keys need 2FA, KYC and a deposit of any amount (FAQ 360002502072) but no approval."
+ },
+ {
+  "sample": "calibration",
+  "id": 83,
+  "app": "Binance",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.binance.com/docs/binance-spot-api-docs/rest-api/request-security",
+  "note": "Binance Spot API docs are organized as REST API (with WebSocket API/streams alongside); primary style REST matches."
+ },
+ {
+  "sample": "calibration",
+  "id": 83,
+  "app": "Binance",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.binance.com/en/docs/agent-native/mcp-server/agentic",
+  "note": "Binance Developer Docs document 'a Binance AI Tool' MCP server at https://agent.binance.com/mcp/agentic (Agent OS); the many GitHub Binance MCPs are community."
+ },
+ {
+  "sample": "calibration",
+  "id": 83,
+  "app": "Binance",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://www.binance.com/en/support/faq/how-to-create-api-keys-on-binance-360002502072",
+  "note": "Buildable on testnet today, but live keys require KYC, 2FA and a deposit (and regional restrictions), which limits launch."
+ },
+ {
+  "sample": "calibration",
+  "id": 87,
+  "app": "Xero",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://github.com/XeroAPI/xero-mcp-server",
+  "note": "Xero API access is OAuth2 (custom connections with client ID/secret or OAuth bearer tokens), as documented in Xero's own repo."
+ },
+ {
+  "sample": "calibration",
+  "id": 87,
+  "app": "Xero",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.xero.com/pricing",
+  "note": "Xero developer pricing has a Starter tier at $0 with 5 connections and no certification required; higher tiers are paid and Plus+ need App Certification."
+ },
+ {
+  "sample": "calibration",
+  "id": 87,
+  "app": "Xero",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://github.com/XeroAPI/xero-mcp-server",
+  "note": "Xero's Accounting API and related APIs are REST/JSON APIs wrapped by the MCP server."
+ },
+ {
+  "sample": "calibration",
+  "id": 87,
+  "app": "Xero",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://github.com/XeroAPI/xero-mcp-server",
+  "note": "The MCP server is published in Xero's XeroAPI GitHub org as @xeroapi/xero-mcp-server (local npx server)."
+ },
+ {
+  "sample": "calibration",
+  "id": 87,
+  "app": "Xero",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developer.xero.com/pricing",
+  "note": "Testable free on Starter (5 connections) but scaling needs paid tiers and App Certification/security assessment."
+ },
+ {
+  "sample": "calibration",
+  "id": 93,
+  "app": "Fathom",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.fathom.ai/oauth.md",
+  "note": "Fathom supports API keys for personal use and OAuth apps for integrations other users install; OAuth app registration is a self-serve form (fathom.video/marketplace_applications/new)."
+ },
+ {
+  "sample": "calibration",
+  "id": 93,
+  "app": "Fathom",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://www.fathom.ai/features/api",
+  "note": "Fathom API page: 'API keys, webhooks, and SDKs are included on every Fathom plan, including Free.'"
+ },
+ {
+  "sample": "calibration",
+  "id": 93,
+  "app": "Fathom",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.fathom.ai/api-overview",
+  "note": "API overview: 'All REST API resources are authenticated with API keys generated via the Fathom website's settings area.'"
+ },
+ {
+  "sample": "calibration",
+  "id": 93,
+  "app": "Fathom",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://developers.fathom.ai/mcp-docs",
+  "note": "Fathom's developer docs describe an 'official MCP (Model Context Protocol) server' at https://api.fathom.ai/mcp."
+ },
+ {
+  "sample": "calibration",
+  "id": 93,
+  "app": "Fathom",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://www.fathom.ai/features/api",
+  "note": "Free plan includes API keys and OAuth apps are self-registered; review only applies to promotion."
+ },
+ {
+  "sample": "calibration",
+  "id": 95,
+  "app": "Reducto",
+  "field": "auth_primary",
+  "truth_accept": [
+   "api_key"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.reducto.ai/quickstart",
+  "note": "Quickstart uses 'Authorization: Bearer $REDUCTO_API_KEY' with keys created in Studio."
+ },
+ {
+  "sample": "calibration",
+  "id": 95,
+  "app": "Reducto",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://reducto.ai/pricing",
+  "note": "Pricing: Standard plan includes '$150 in free usage' (no time limit stated) and quickstart says sign up for a free account and create a key."
+ },
+ {
+  "sample": "calibration",
+  "id": 95,
+  "app": "Reducto",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.reducto.ai/quickstart",
+  "note": "Quickstart shows cURL REST calls (plus SDKs wrapping the REST API)."
+ },
+ {
+  "sample": "calibration",
+  "id": 95,
+  "app": "Reducto",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.reducto.ai/mcp-server",
+  "note": "Reducto docs document a hosted MCP server at https://mcp.reducto.ai/mcp and local package mcp-server-reducto."
+ },
+ {
+  "sample": "calibration",
+  "id": 95,
+  "app": "Reducto",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.reducto.ai/quickstart",
+  "note": "Free account with self-serve API key lets a toolkit be built and tested today."
+ },
+ {
+  "sample": "calibration",
+  "id": 96,
+  "app": "Devin",
+  "field": "auth_primary",
+  "truth_accept": [
+   "api_key"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.devin.ai/api-reference/authentication",
+  "note": "Devin API uses service-user credentials / PATs (cog_ prefix) sent as Bearer tokens, i.e. API keys."
+ },
+ {
+  "sample": "calibration",
+  "id": 96,
+  "app": "Devin",
+  "field": "access",
+  "truth_accept": [
+   "paid_plan"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://devin.ai/pricing",
+  "note": "Pricing comparison table marks 'Devin API' as not included on Free ($0) and included on Pro ($20/mo), Max, Teams and Enterprise."
+ },
+ {
+  "sample": "calibration",
+  "id": 96,
+  "app": "Devin",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.devin.ai/api-reference/overview",
+  "note": "Devin API reference is a REST API (v3 organization/enterprise endpoints, legacy v1/v2)."
+ },
+ {
+  "sample": "calibration",
+  "id": 96,
+  "app": "Devin",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://docs.devin.ai/work-with-devin/devin-mcp",
+  "note": "Devin docs document the official Devin MCP server at https://mcp.devin.ai/mcp using a Devin API key."
+ },
+ {
+  "sample": "calibration",
+  "id": 96,
+  "app": "Devin",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "evidence_url": "https://devin.ai/pricing",
+  "note": "Buildable with self-serve keys but requires at least the paid Pro plan, a paid-tier gate."
+ },
+ {
+  "sample": "holdout",
+  "id": 6,
+  "app": "Podio",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developers.podio.com/authentication",
+  "note": "Apps must be registered for a Client ID/Client Secret and use OAuth2 server-side or client-side flows; username/password flow is described as a last resort."
+ },
+ {
+  "sample": "holdout",
+  "id": 6,
+  "app": "Podio",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://www.progress.com/podio/pricing",
+  "note": "The $0 Free plan lists 'API Integrations: 1000 calls per hour', and developers.podio.com/api-key says you just sign up and open the API key tab; no app review or install cap is documented (limits are per user per key, add-ons only raise rate)."
+ },
+ {
+  "sample": "holdout",
+  "id": 6,
+  "app": "Podio",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developers.podio.com/authentication",
+  "note": "Podio API is a JSON-over-HTTPS REST API called with an OAuth2 Authorization header."
+ },
+ {
+  "sample": "holdout",
+  "id": 6,
+  "app": "Podio",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://www.progress.com/podio/documentation/using-podio/podio-mcp-server",
+  "note": "Vendor (Progress) documentation says the Podio MCP Server is live at https://mcp.podio.com/mcp with OAuth; it is in beta."
+ },
+ {
+  "sample": "holdout",
+  "id": 6,
+  "app": "Podio",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developers.podio.com/index/limits",
+  "note": "Free self-serve keys with no review; only gate is rate limits (1,000 calls/hour per user per key), which does not block building or testing."
+ },
+ {
+  "sample": "holdout",
+  "id": 7,
+  "app": "Zoho CRM",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://www.zoho.com/crm/developer/docs/api/v8/register-client.html",
+  "note": "Clients are registered in the Zoho Developer Console to get Client ID/Secret; server-based apps are 'intended for use by multiple Zoho accounts'."
+ },
+ {
+  "sample": "holdout",
+  "id": 7,
+  "app": "Zoho CRM",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://www.zoho.com/crm/developer/docs/api/v8/api-limits.html",
+  "note": "The credit table includes 'Free Edition | 5000 credits', so the API works on the free edition; client registration is self-serve with no review or install cap described."
+ },
+ {
+  "sample": "holdout",
+  "id": 7,
+  "app": "Zoho CRM",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://www.zoho.com/crm/developer/docs/api/v8/api-limits.html",
+  "note": "Zoho CRM API v8 is a REST API metered by credits."
+ },
+ {
+  "sample": "holdout",
+  "id": 7,
+  "app": "Zoho CRM",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://www.zoho.com/crm/developer/docs/mcp/overview.html",
+  "note": "Zoho CRM developer docs: 'Zoho CRM provides these as pre-built MCP servers, so you don't need to build, host, or maintain any infrastructure.'"
+ },
+ {
+  "sample": "holdout",
+  "id": 7,
+  "app": "Zoho CRM",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://www.zoho.com/crm/developer/docs/api/v8/register-client.html",
+  "note": "Self-serve OAuth client plus free-edition API credits allow building and testing today."
+ },
+ {
+  "sample": "holdout",
+  "id": 9,
+  "app": "Copper",
+  "field": "auth_primary",
+  "truth_accept": [
+   "api_key"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://support.copper.com/en/articles/8823347-generating-an-api-key",
+  "note": "Admins generate API keys under Settings > Integrations > API Keys; OAuth client credentials are not self-serve, so a toolkit would use API keys."
+ },
+ {
+  "sample": "holdout",
+  "id": 9,
+  "app": "Copper",
+  "field": "access",
+  "truth_accept": [
+   "approval_required"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developer.copper.com/introduction/oauth/index.html",
+  "note": "OAuth apps can only be registered by contacting Copper ('To register your application, contact us' -> partners@copper.com), an approval gate for multi-tenant install; the Developer API is Professional/Business-tier only (support article 9623758) but every plan has a 14-day free trial, so per v2 precedence approval_required holds (would be paid_plan only if trials exclude the API, which docs do not say)."
+ },
+ {
+  "sample": "holdout",
+  "id": 9,
+  "app": "Copper",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developer.copper.com/",
+  "note": "Copper Developer API is a REST/JSON API documented per resource (people, companies, opportunities, etc.)."
+ },
+ {
+  "sample": "holdout",
+  "id": 9,
+  "app": "Copper",
+  "field": "official_mcp",
+  "truth_accept": [
+   "none_found"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://www.copper.com/mcp",
+  "note": "Copper's page says an official MCP server is 'COMING SOON' with beta launching November 2026 but documents no endpoint; a marketing announcement alone counts as none_found."
+ },
+ {
+  "sample": "holdout",
+  "id": 9,
+  "app": "Copper",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://support.copper.com/en/articles/9623758-copper-plans-feature-comparison",
+  "note": "'Developer API' is listed only for Professional (and Business) tiers and OAuth needs Copper registration, so buildable but gated."
+ },
+ {
+  "sample": "holdout",
+  "id": 10,
+  "app": "DealCloud",
+  "field": "auth_primary",
+  "truth_accept": [
+   "api_key"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://api.docs.dealcloud.com/docs/apikeys",
+  "note": "Users enable and copy an API Key from their Profile; it is exchanged (with client ID) for a 15-minute token via OAuth2 client_credentials, so the end-user credential is an API key."
+ },
+ {
+  "sample": "holdout",
+  "id": 10,
+  "app": "DealCloud",
+  "field": "access",
+  "truth_accept": [
+   "partner_gated"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://www.intapp.com/dealcloud",
+  "note": "DealCloud offers only 'Schedule a demo' (no trial/self-serve signup); API capability must be enabled by a site admin or the customer's CSM per the API Keys doc, so credentials require being an enterprise customer."
+ },
+ {
+  "sample": "holdout",
+  "id": 10,
+  "app": "DealCloud",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://api.docs.dealcloud.com/docs/token",
+  "note": "REST endpoints under {baseUrl}/api/rest/v1/ with Bearer tokens."
+ },
+ {
+  "sample": "holdout",
+  "id": 10,
+  "app": "DealCloud",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://api.docs.dealcloud.com/mcp/connections",
+  "note": "Intapp's DealCloud API docs document the DealCloud MCP Server with OAuth 2.0 and .well-known discovery for Claude/ChatGPT/Copilot clients."
+ },
+ {
+  "sample": "holdout",
+  "id": 10,
+  "app": "DealCloud",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://api.docs.dealcloud.com/docs/apikeys",
+  "note": "Buildable with a customer site's API key, but gated on being an enterprise customer with API capability enabled; the enum lists 'enterprise customer' as a caveat gate."
+ },
+ {
+  "sample": "holdout",
+  "id": 15,
+  "app": "Pylon",
+  "field": "auth_primary",
+  "truth_accept": [
+   "bearer_token"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://docs.usepylon.com/pylon-docs/developer/api/authentication",
+  "note": "'The Pylon API uses Bearer authentication' with admin-created API tokens; no OAuth app option is documented for the REST API."
+ },
+ {
+  "sample": "holdout",
+  "id": 15,
+  "app": "Pylon",
+  "field": "access",
+  "truth_accept": [
+   "partner_gated"
+  ],
+  "how": "verifier agreed + orchestrator browser check",
+  "unsettled": false,
+  "evidence_url": "https://www.usepylon.com/pricing",
+  "note": "No free plan; plans are booked via demo/sales and 'Pylon offers free trials for prospects' set up by a sales rep, so credentials come only through sales."
+ },
+ {
+  "sample": "holdout",
+  "id": 15,
+  "app": "Pylon",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://www.usepylon.com/pricing",
+  "note": "Feature table lists 'REST API' and 'Webhooks' on Professional, Advanced and Enterprise."
+ },
+ {
+  "sample": "holdout",
+  "id": 15,
+  "app": "Pylon",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://docs.usepylon.com/pylon-docs/integrations/pylon-mcp",
+  "note": "Pylon docs document its hosted MCP server at https://mcp.usepylon.com (US) and https://mcp.eu.usepylon.com (EU)."
+ },
+ {
+  "sample": "holdout",
+  "id": 15,
+  "app": "Pylon",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed + orchestrator browser check",
+  "unsettled": false,
+  "evidence_url": "https://www.usepylon.com/pricing",
+  "note": "Full REST API exists but testing requires a sales-provisioned trial or paid customer account."
+ },
+ {
+  "sample": "holdout",
+  "id": 18,
+  "app": "Help Scout",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developer.helpscout.com/mailbox-api/overview/authentication/",
+  "note": "'You need to create an OAuth2 application before you can use the API'; the Authorization Code flow 'is typically used for integrations to be used by other Help Scout users', with no review step described."
+ },
+ {
+  "sample": "holdout",
+  "id": 18,
+  "app": "Help Scout",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_trial"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://docs.helpscout.com/article/1140-mailbox-api",
+  "note": "'The Free plan does not include access to the API or integrations'; API is on Standard/Plus/Pro, and the pricing FAQ gives a 15-day no-card trial of Standard/Plus with all plan features, so the free path to credentials is trial-only."
+ },
+ {
+  "sample": "holdout",
+  "id": 18,
+  "app": "Help Scout",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://docs.helpscout.com/article/1140-mailbox-api",
+  "note": "Inbox (Mailbox) API 2.0 is a REST API with per-plan rate limits (200/400/800 calls per minute)."
+ },
+ {
+  "sample": "holdout",
+  "id": 18,
+  "app": "Help Scout",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://docs.helpscout.com/article/1779-connect-your-ai-agent-with-help-scout-to-search-conversations-and-pull-reports",
+  "note": "Help Scout docs: 'Help Scout MCP gives AI assistants secure, official access', endpoint https://mcp.helpscout.net/mcp, on Standard/Plus/Pro."
+ },
+ {
+  "sample": "holdout",
+  "id": 18,
+  "app": "Help Scout",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://www.helpscout.com/pricing/",
+  "note": "Buildable via self-serve OAuth app, but API needs a paid tier after the 15-day trial (Free plan excluded)."
+ },
+ {
+  "sample": "holdout",
+  "id": 19,
+  "app": "Gorgias",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developers.gorgias.com/docs/overview",
+  "note": "API keys are for private apps only; OAuth2 is mandatory for public apps installed by other merchants."
+ },
+ {
+  "sample": "holdout",
+  "id": 19,
+  "app": "Gorgias",
+  "field": "access",
+  "truth_accept": [
+   "approval_required"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developers.gorgias.com/docs/overview",
+  "note": "Public apps must be submitted on the Developer Portal for Gorgias review (with a test account) before they are listed/installable; sandbox is a trial account converted by the partnerships team. Review outranks the trial gate under v2 precedence."
+ },
+ {
+  "sample": "holdout",
+  "id": 19,
+  "app": "Gorgias",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developers.gorgias.com/docs/overview",
+  "note": "Gorgias exposes a REST API (tickets, customers, macros, etc.) authenticated by API key or OAuth2 bearer token."
+ },
+ {
+  "sample": "holdout",
+  "id": 19,
+  "app": "Gorgias",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://updates.gorgias.com/publications/gorgias-mcp-is-now-in-open-beta",
+  "note": "Gorgias announces 'a first-party server' in open beta, included at no extra cost on any plan."
+ },
+ {
+  "sample": "holdout",
+  "id": 19,
+  "app": "Gorgias",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developers.gorgias.com/docs/overview",
+  "note": "Buildable and testable via trial/sandbox, but public multi-tenant launch needs Gorgias app review."
+ },
+ {
+  "sample": "holdout",
+  "id": 27,
+  "app": "Telegram",
+  "field": "auth_primary",
+  "truth_accept": [
+   "api_key"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://core.telegram.org/bots/api",
+  "note": "'Each bot is given a unique authentication token' from BotFather, passed in the URL path https://api.telegram.org/bot<token>/METHOD_NAME (a static key, not OAuth)."
+ },
+ {
+  "sample": "holdout",
+  "id": 27,
+  "app": "Telegram",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://core.telegram.org/bots/api",
+  "note": "Anyone can create a bot via BotFather and get a token at no cost; no review or install cap is documented."
+ },
+ {
+  "sample": "holdout",
+  "id": 27,
+  "app": "Telegram",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://core.telegram.org/bots/api",
+  "note": "HTTP-based API over HTTPS supporting GET/POST with query, form or JSON parameters (RPC-style HTTP; rest is the closest enum value)."
+ },
+ {
+  "sample": "holdout",
+  "id": 27,
+  "app": "Telegram",
+  "field": "official_mcp",
+  "truth_accept": [
+   "community_only"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://core.telegram.org/bots/api",
+  "note": "Telegram's Bot API docs make no mention of MCP, and searching turned up only community servers (sparfenyuk, chigwell, overpod, lexfrei), none on Telegram's domains."
+ },
+ {
+  "sample": "holdout",
+  "id": 27,
+  "app": "Telegram",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://core.telegram.org/bots/api",
+  "note": "Free, instant bot tokens and a documented HTTP API mean a toolkit can be built and tested today."
+ },
+ {
+  "sample": "holdout",
+  "id": 39,
+  "app": "Threads (Meta)",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developers.facebook.com/docs/threads/get-started",
+  "note": "Get-started page: API authentication uses Threads user access tokens that conform to the OAuth 2.0 protocol."
+ },
+ {
+  "sample": "holdout",
+  "id": 39,
+  "app": "Threads (Meta)",
+  "field": "access",
+  "truth_accept": [
+   "approval_required"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developers.facebook.com/docs/threads/get-started",
+  "note": "Users without a role on the app can grant permissions only after each permission passes App Review and the app is published, so multi-tenant use needs Meta review."
+ },
+ {
+  "sample": "holdout",
+  "id": 39,
+  "app": "Threads (Meta)",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developers.facebook.com/docs/threads/get-started",
+  "note": "Endpoints are plain HTTP GET/POST Graph-style resources (e.g. GET /refresh_access_token); no GraphQL or SOAP."
+ },
+ {
+  "sample": "holdout",
+  "id": 39,
+  "app": "Threads (Meta)",
+  "field": "official_mcp",
+  "truth_accept": [
+   "community_only"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developers.facebook.com/documentation/mcp",
+  "note": "Meta's MCP hub lists only Meta Ads, Meta Social Technologies (devtools) and WhatsApp Business Tools servers, none for Threads; Threads MCPs found are third-party."
+ },
+ {
+  "sample": "holdout",
+  "id": 39,
+  "app": "Threads (Meta)",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developers.facebook.com/docs/threads/get-started",
+  "note": "Buildable and testable with tester accounts today, but App Review gates launch to other users."
+ },
+ {
+  "sample": "holdout",
+  "id": 48,
+  "app": "Gumroad",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://docs.n8n.io/integrations/builtin/credentials/gumroad",
+  "note": "Creating an application under Settings > Advanced yields an Application ID/Secret for the OAuth2 flow (third-party doc; gumroad.com/api is client-rendered and returned no text); Gumroad's own MCP also uses OAuth."
+ },
+ {
+  "sample": "holdout",
+  "id": 48,
+  "app": "Gumroad",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://gumroad.com/pricing",
+  "note": "Gumroad has no monthly fee (free to join, per-sale fee only) and any account can create an API application; no review or install cap found."
+ },
+ {
+  "sample": "holdout",
+  "id": 48,
+  "app": "Gumroad",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "unsettled": true,
+  "evidence_url": "https://gumroad.com/api",
+  "note": "UNSETTLED: the official API page is client-rendered and returned no text to fetch, so REST could not be confirmed from an opened page; no evidence of another style."
+ },
+ {
+  "sample": "holdout",
+  "id": 48,
+  "app": "Gumroad",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://gumroad.com/claude",
+  "note": "Gumroad, Inc. documents its own remote MCP endpoint https://gumroad.com/claude/v1/mcp with OAuth access to the user's store."
+ },
+ {
+  "sample": "holdout",
+  "id": 48,
+  "app": "Gumroad",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://gumroad.com/mcp",
+  "note": "Self-serve OAuth credentials at $0 and an official MCP; nothing blocks building and testing today."
+ },
+ {
+  "sample": "holdout",
+  "id": 55,
+  "app": "Apify",
+  "field": "auth_primary",
+  "truth_accept": [
+   "api_key"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://docs.apify.com/api/v2",
+  "note": "API authenticates with an API token created in Console, sent as Bearer; the API docs do not mention OAuth (OAuth exists only for the MCP server)."
+ },
+ {
+  "sample": "holdout",
+  "id": 55,
+  "app": "Apify",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://apify.com/pricing",
+  "note": "Free plan at $0 with $5 monthly usage, no credit card, renews monthly (not a trial)."
+ },
+ {
+  "sample": "holdout",
+  "id": 55,
+  "app": "Apify",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://docs.apify.com/api/v2",
+  "note": "Docs: the API is organized around RESTful HTTP endpoints."
+ },
+ {
+  "sample": "holdout",
+  "id": 55,
+  "app": "Apify",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://docs.apify.com/platform/integrations/mcp",
+  "note": "Apify hosts https://mcp.apify.com and publishes github.com/apify/apify-mcp-server."
+ },
+ {
+  "sample": "holdout",
+  "id": 55,
+  "app": "Apify",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://apify.com/pricing",
+  "note": "Free self-serve token, REST API and an official MCP; no gate."
+ },
+ {
+  "sample": "holdout",
+  "id": 60,
+  "app": "Clay",
+  "field": "auth_primary",
+  "truth_accept": [
+   "api_key"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developers.clay.com/quickstart.md",
+  "note": "Public API requests authenticate with a Clay API key in the clay-api-key header; OAuth appears only for the MCP server."
+ },
+ {
+  "sample": "holdout",
+  "id": 60,
+  "app": "Clay",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developers.clay.com/searches.md",
+  "note": "API/CLI limits table includes a Free plan (100 results per 30 days) separate from Trial; pricing lists 'Build with Clay via CLI / API' on Free. Tables are Enterprise-only, which is a caveat rather than the access gate."
+ },
+ {
+  "sample": "holdout",
+  "id": 60,
+  "app": "Clay",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://developers.clay.com/quickstart.md",
+  "note": "Public API is HTTP endpoints with request/response schemas; the CLI is secondary, so primary style is rest."
+ },
+ {
+  "sample": "holdout",
+  "id": 60,
+  "app": "Clay",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://university.clay.com/docs/connect-to-clay-mcp",
+  "note": "Clay runs the MCP server at https://api.clay.com/v3/mcp with OAuth+PKCE and open Dynamic Client Registration."
+ },
+ {
+  "sample": "holdout",
+  "id": 60,
+  "app": "Clay",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://www.clay.com/pricing",
+  "note": "Buildable on Free, but tiny free result quotas, webhooks/HTTP API on Growth+ and Tables on Enterprise limit testing."
+ },
+ {
+  "sample": "holdout",
+  "id": 66,
+  "app": "Neo4j",
+  "field": "auth_primary",
+  "truth_accept": [
+   "basic"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://neo4j.com/docs/query-api/current/authentication-authorization/",
+  "note": "Query API supports Basic and Bearer auth; requests use a valid database user's login credentials, so basic (username/password) is the typical toolkit path."
+ },
+ {
+  "sample": "holdout",
+  "id": 66,
+  "app": "Neo4j",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://neo4j.com/pricing/",
+  "note": "AuraDB Free at $0, no credit card or payment method required; no app review for multi-tenant use since each user brings their own instance."
+ },
+ {
+  "sample": "holdout",
+  "id": 66,
+  "app": "Neo4j",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://neo4j.com/docs/query-api/current/authentication-authorization/",
+  "note": "Query API is HTTP (POST /db/neo4j/query/v2); Bolt is driver-only, so for a toolkit the HTTP API is the primary style."
+ },
+ {
+  "sample": "holdout",
+  "id": 66,
+  "app": "Neo4j",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://github.com/neo4j/mcp",
+  "note": "Repo in the neo4j GitHub org described as 'Neo4j official MCP Server', documented at neo4j.com/docs/mcp (local, username/password)."
+ },
+ {
+  "sample": "holdout",
+  "id": 66,
+  "app": "Neo4j",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://neo4j.com/pricing/",
+  "note": "Free self-serve, but every tenant must supply its own instance URI and credentials (per-tenant setup caveat)."
+ },
+ {
+  "sample": "holdout",
+  "id": 72,
+  "app": "Airtable",
+  "field": "auth_primary",
+  "truth_accept": [
+   "oauth2"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://airtable.com/developers/web/api/authentication",
+  "note": "Docs: 'Any integrations that allow other users to grant access to Airtable should use OAuth.'"
+ },
+ {
+  "sample": "holdout",
+  "id": 72,
+  "app": "Airtable",
+  "field": "access",
+  "truth_accept": [
+   "self_serve_free"
+  ],
+  "how": "verifier agreed + orchestrator browser check",
+  "unsettled": false,
+  "evidence_url": "https://airtable.com/developers/web/guides/oauth-integrations",
+  "note": "Free plan includes 1,000 API calls per workspace per month; the OAuth integration guide requires only privacy policy and terms URLs before sharing, with no review or install cap."
+ },
+ {
+  "sample": "holdout",
+  "id": 72,
+  "app": "Airtable",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://airtable.com/developers/web/api/introduction",
+  "note": "Docs: the API 'closely follows REST semantics.'"
+ },
+ {
+  "sample": "holdout",
+  "id": 72,
+  "app": "Airtable",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://airtable.com/developers/agents/mcp/getting-started",
+  "note": "Airtable documents its own MCP server at https://mcp.airtable.com/mcp (OAuth or PAT), 'available to all users on all plans.'"
+ },
+ {
+  "sample": "holdout",
+  "id": 72,
+  "app": "Airtable",
+  "field": "verdict",
+  "truth_accept": [
+   "ready"
+  ],
+  "how": "verifier agreed + orchestrator browser check",
+  "unsettled": false,
+  "evidence_url": "https://airtable.com/developers/web/guides/oauth-integrations",
+  "note": "Self-serve OAuth integration with no review step; free tier is enough to build and test (1,000 calls/month is a usage limit, not a gate)."
+ },
+ {
+  "sample": "holdout",
+  "id": 85,
+  "app": "iPayX",
+  "field": "auth_primary",
+  "truth_accept": [
+   "api_key"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://www.ipayx.ai/docs/api",
+  "note": "Every request needs a dashboard-generated key (ipx_live_...) sent as Bearer in the Authorization header; OAuth is only listed as 'Coming Q3 2026' for QuickBooks/Stripe apps."
+ },
+ {
+  "sample": "holdout",
+  "id": 85,
+  "app": "iPayX",
+  "field": "access",
+  "truth_accept": [
+   "paid_plan"
+  ],
+  "how": "verifier agreed",
+  "unsettled": true,
+  "evidence_url": "https://www.ipayx.ai/developers",
+  "note": "UNSETTLED: the developer page lists API tiers starting at a $99/mo Developer plan and the homepage says API access needs the Credit Pack or Unlimited plan, but the MCP server docs (ipayx.ai/docs/mcp-server) describe free tools at 10 audits/day per API key, so vendor pages conflict on a free key path."
+ },
+ {
+  "sample": "holdout",
+  "id": 85,
+  "app": "iPayX",
+  "field": "api_style",
+  "truth_accept": [
+   "rest"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://www.ipayx.ai/docs/api",
+  "note": "Reference page is titled 'REST API · v1' (base URL is a Supabase edge function)."
+ },
+ {
+  "sample": "holdout",
+  "id": 85,
+  "app": "iPayX",
+  "field": "official_mcp",
+  "truth_accept": [
+   "official"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://www.ipayx.ai/developers",
+  "note": "Vendor developer page documents its own MCP endpoint https://mcp.ipayx.ai/mcp (author iPayX Protocol), also documented at ipayx.ai/docs/mcp-server."
+ },
+ {
+  "sample": "holdout",
+  "id": 85,
+  "app": "iPayX",
+  "field": "verdict",
+  "truth_accept": [
+   "ready_with_caveats"
+  ],
+  "how": "verifier agreed",
+  "unsettled": false,
+  "evidence_url": "https://www.ipayx.ai/pricing",
+  "note": "REST API and official MCP exist, but full API use sits behind paid tiers (free tier is 3 audits), so a paid gate limits testing."
+ }
+]

@@ -1,0 +1,462 @@
+[
+ {
+  "id": 69,
+  "app": "Datadog",
+  "checks": [
+   {
+    "field": "auth_primary",
+    "claimed": "api_key",
+    "agree": true,
+    "correct_value": "api_key",
+    "evidence_url": "https://docs.datadoghq.com/api/latest/authentication/",
+    "reason": "Datadog API auth page: write requests require an API key and read requests also require an application key; no OAuth described for general API use."
+   },
+   {
+    "field": "access",
+    "claimed": "self_serve_free",
+    "agree": true,
+    "correct_value": "self_serve_free",
+    "evidence_url": "https://www.datadoghq.com/pricing/",
+    "reason": "Pricing page offers a permanent Free tier ('up to five Basic hosts with 1-day metric retention, at no cost') and says trials can move to the Free tier, so credentials are obtainable at $0."
+   },
+   {
+    "field": "api_style",
+    "claimed": "rest",
+    "agree": true,
+    "correct_value": "rest",
+    "evidence_url": "https://docs.datadoghq.com/api/latest/authentication/",
+    "reason": "Datadog's API reference is an HTTP/JSON REST API authenticated with API/application keys."
+   },
+   {
+    "field": "official_mcp",
+    "claimed": "official",
+    "agree": true,
+    "correct_value": "official",
+    "evidence_url": "https://docs.datadoghq.com/bits_ai/mcp_server/",
+    "reason": "Datadog's own docs describe the 'Remote Datadog MCP Server' that provides remote access to most Datadog products (noted as under significant development, not GovCloud)."
+   },
+   {
+    "field": "verdict",
+    "claimed": "ready",
+    "agree": true,
+    "correct_value": "ready",
+    "evidence_url": "https://www.datadoghq.com/pricing/",
+    "reason": "Free tier plus self-serve API/app keys means a toolkit can be built and tested today without gates."
+   }
+  ]
+ },
+ {
+  "id": 74,
+  "app": "Jira",
+  "checks": [
+   {
+    "field": "auth_primary",
+    "claimed": "oauth2",
+    "agree": true,
+    "correct_value": "oauth2",
+    "evidence_url": "https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/",
+    "reason": "Atlassian docs describe OAuth 2.0 (3LO) apps created self-serve in the developer console; basic auth/API tokens are only for simple scripts and collecting customer tokens is discouraged."
+   },
+   {
+    "field": "access",
+    "claimed": "self_serve_free",
+    "agree": true,
+    "correct_value": "self_serve_free",
+    "evidence_url": "https://www.atlassian.com/software/jira/pricing",
+    "reason": "Jira pricing lists a Free plan, and 3LO apps can be created and shared without mandatory review (unreviewed apps only show a warning)."
+   },
+   {
+    "field": "api_style",
+    "claimed": "rest",
+    "agree": true,
+    "correct_value": "rest",
+    "evidence_url": "https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/",
+    "reason": "Jira Cloud platform is accessed via REST APIs (page refers to making REST API calls with 3LO or basic auth)."
+   },
+   {
+    "field": "official_mcp",
+    "claimed": "official",
+    "agree": true,
+    "correct_value": "official",
+    "evidence_url": "https://developer.atlassian.com/cloud/rovo-mcp/",
+    "reason": "Atlassian developer docs describe its cloud-hosted Rovo MCP server at https://mcp.atlassian.com/v2/mcp."
+   },
+   {
+    "field": "verdict",
+    "claimed": "ready",
+    "agree": true,
+    "correct_value": "ready",
+    "evidence_url": "https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/",
+    "reason": "Free site plus self-serve OAuth 3LO app creation allows building and testing today; review only affects the 'unreviewed app' warning."
+   }
+  ]
+ },
+ {
+  "id": 75,
+  "app": "Asana",
+  "checks": [
+   {
+    "field": "auth_primary",
+    "claimed": "oauth2",
+    "agree": true,
+    "correct_value": "oauth2",
+    "evidence_url": "https://developers.asana.com/docs/authentication",
+    "reason": "Asana auth docs say OAuth is 'the best choice if multiple users need to sign in to your app'; PATs are for scripts, service accounts are Enterprise-only."
+   },
+   {
+    "field": "access",
+    "claimed": "self_serve_free",
+    "agree": true,
+    "correct_value": "self_serve_free",
+    "evidence_url": "https://developers.asana.com/docs/overview",
+    "reason": "Asana developer overview says you can 'create a free account' to build/test (sandbox only needed for premium features)."
+   },
+   {
+    "field": "api_style",
+    "claimed": "rest",
+    "agree": true,
+    "correct_value": "rest",
+    "evidence_url": "https://developers.asana.com/docs/quick-start",
+    "reason": "Quick start uses REST endpoints such as https://app.asana.com/api/1.0/workspaces with a PAT."
+   },
+   {
+    "field": "official_mcp",
+    "claimed": "official",
+    "agree": true,
+    "correct_value": "official",
+    "evidence_url": "https://developers.asana.com/docs/using-asanas-mcp-server",
+    "reason": "Asana's developer docs state 'Asana offers a Model Context Protocol (MCP) server' hosted at https://mcp.asana.com/v2/mcp."
+   },
+   {
+    "field": "verdict",
+    "claimed": "ready",
+    "agree": true,
+    "correct_value": "ready",
+    "evidence_url": "https://developers.asana.com/docs/overview",
+    "reason": "Free account plus self-serve OAuth/PAT credentials; no review gate stated for building and testing."
+   }
+  ]
+ },
+ {
+  "id": 78,
+  "app": "Coda",
+  "checks": [
+   {
+    "field": "auth_primary",
+    "claimed": "api_key",
+    "agree": true,
+    "correct_value": "api_key",
+    "evidence_url": "https://coda.io/developers/apis/v1",
+    "reason": "Coda (now Superhuman Docs) API reference uses 'Authorization: Bearer <your API token>' user API tokens; no OAuth for third-party API apps is described."
+   },
+   {
+    "field": "access",
+    "claimed": "self_serve_free",
+    "agree": true,
+    "correct_value": "self_serve_free",
+    "evidence_url": "https://coda.io/developers/apis/v1",
+    "reason": "API page: 'We make the Superhuman Docs API available to all of our users free of charge, in both free and paid workspaces.'"
+   },
+   {
+    "field": "api_style",
+    "claimed": "rest",
+    "agree": true,
+    "correct_value": "rest",
+    "evidence_url": "https://coda.io/developers/apis/v1",
+    "reason": "Coda API v1 is a REST/JSON API (GET/POST/PUT/PATCH endpoints with rate limits per method)."
+   },
+   {
+    "field": "official_mcp",
+    "claimed": "official",
+    "agree": true,
+    "correct_value": "official",
+    "evidence_url": "https://coda.io/resources/guides/getting_started_with_coda_mcp",
+    "reason": "Coda's own guide says 'Superhuman Docs runs an MCP server built on the open Model Context Protocol standard' (endpoint coda.io/apis/mcp per its help center); community servers also exist but the vendor one is first-party."
+   },
+   {
+    "field": "verdict",
+    "claimed": "ready_with_caveats",
+    "agree": false,
+    "correct_value": "ready",
+    "evidence_url": "https://coda.io/developers/apis/v1",
+    "reason": "The API is free for all users in free and paid workspaces with self-serve tokens, and no review, paid tier, per-tenant setup or enterprise gate is documented, so it meets 'ready' (rate limits and token-only auth are not gates)."
+   }
+  ]
+ },
+ {
+  "id": 81,
+  "app": "Stripe",
+  "checks": [
+   {
+    "field": "auth_primary",
+    "claimed": "api_key",
+    "agree": true,
+    "correct_value": "api_key",
+    "evidence_url": "https://docs.stripe.com/keys",
+    "reason": "Stripe docs: 'Stripe uses API keys to authenticate requests' (secret/restricted/agent keys); OAuth exists for Connect/Apps/MCP but API keys are the core API auth."
+   },
+   {
+    "field": "access",
+    "claimed": "self_serve_free",
+    "agree": true,
+    "correct_value": "self_serve_free",
+    "evidence_url": "https://docs.stripe.com/keys",
+    "reason": "Any account gets sandbox test keys (sk_test_/rk_test_) for free to build and test; live keys come with account activation."
+   },
+   {
+    "field": "api_style",
+    "claimed": "rest",
+    "agree": true,
+    "correct_value": "rest",
+    "evidence_url": "https://docs.stripe.com/keys",
+    "reason": "Stripe API is a REST API (v1 and v2 endpoints) authenticated by API keys."
+   },
+   {
+    "field": "official_mcp",
+    "claimed": "official",
+    "agree": true,
+    "correct_value": "official",
+    "evidence_url": "https://docs.stripe.com/mcp",
+    "reason": "Stripe docs document its own hosted MCP server at https://mcp.stripe.com with OAuth or agent API keys."
+   },
+   {
+    "field": "verdict",
+    "claimed": "ready",
+    "agree": true,
+    "correct_value": "ready",
+    "evidence_url": "https://docs.stripe.com/keys",
+    "reason": "Free sandbox keys allow a toolkit to be built and tested today."
+   }
+  ]
+ },
+ {
+  "id": 83,
+  "app": "Binance",
+  "checks": [
+   {
+    "field": "auth_primary",
+    "claimed": "hmac_signature",
+    "agree": true,
+    "correct_value": "hmac_signature",
+    "evidence_url": "https://developers.binance.com/docs/binance-spot-api-docs/rest-api/request-security",
+    "reason": "SIGNED endpoints need an API key plus a request signature; 'We support HMAC, RSA, and Ed25519 keys' (Ed25519 recommended, still a signature scheme)."
+   },
+   {
+    "field": "access",
+    "claimed": "self_serve_free",
+    "agree": true,
+    "correct_value": "self_serve_free",
+    "evidence_url": "https://testnet.binance.vision/",
+    "reason": "Spot Test Network gives API keys free via 'Log In with GitHub' with virtual funds; live keys need 2FA, KYC and a deposit of any amount (FAQ 360002502072) but no approval."
+   },
+   {
+    "field": "api_style",
+    "claimed": "rest, websocket",
+    "agree": true,
+    "correct_value": "rest, websocket",
+    "evidence_url": "https://developers.binance.com/docs/binance-spot-api-docs/rest-api/request-security",
+    "reason": "Binance Spot API docs are organized as REST API (with WebSocket API/streams alongside); primary style REST matches."
+   },
+   {
+    "field": "official_mcp",
+    "claimed": "official",
+    "agree": true,
+    "correct_value": "official",
+    "evidence_url": "https://developers.binance.com/en/docs/agent-native/mcp-server/agentic",
+    "reason": "Binance Developer Docs document 'a Binance AI Tool' MCP server at https://agent.binance.com/mcp/agentic (Agent OS); the many GitHub Binance MCPs are community."
+   },
+   {
+    "field": "verdict",
+    "claimed": "ready_with_caveats",
+    "agree": true,
+    "correct_value": "ready_with_caveats",
+    "evidence_url": "https://www.binance.com/en/support/faq/how-to-create-api-keys-on-binance-360002502072",
+    "reason": "Buildable on testnet today, but live keys require KYC, 2FA and a deposit (and regional restrictions), which limits launch."
+   }
+  ]
+ },
+ {
+  "id": 87,
+  "app": "Xero",
+  "checks": [
+   {
+    "field": "auth_primary",
+    "claimed": "oauth2",
+    "agree": true,
+    "correct_value": "oauth2",
+    "evidence_url": "https://github.com/XeroAPI/xero-mcp-server",
+    "reason": "Xero API access is OAuth2 (custom connections with client ID/secret or OAuth bearer tokens), as documented in Xero's own repo."
+   },
+   {
+    "field": "access",
+    "claimed": "self_serve_free",
+    "agree": true,
+    "correct_value": "self_serve_free",
+    "evidence_url": "https://developer.xero.com/pricing",
+    "reason": "Xero developer pricing has a Starter tier at $0 with 5 connections and no certification required; higher tiers are paid and Plus+ need App Certification."
+   },
+   {
+    "field": "api_style",
+    "claimed": "rest",
+    "agree": true,
+    "correct_value": "rest",
+    "evidence_url": "https://github.com/XeroAPI/xero-mcp-server",
+    "reason": "Xero's Accounting API and related APIs are REST/JSON APIs wrapped by the MCP server."
+   },
+   {
+    "field": "official_mcp",
+    "claimed": "official",
+    "agree": true,
+    "correct_value": "official",
+    "evidence_url": "https://github.com/XeroAPI/xero-mcp-server",
+    "reason": "The MCP server is published in Xero's XeroAPI GitHub org as @xeroapi/xero-mcp-server (local npx server)."
+   },
+   {
+    "field": "verdict",
+    "claimed": "ready_with_caveats",
+    "agree": true,
+    "correct_value": "ready_with_caveats",
+    "evidence_url": "https://developer.xero.com/pricing",
+    "reason": "Testable free on Starter (5 connections) but scaling needs paid tiers and App Certification/security assessment."
+   }
+  ]
+ },
+ {
+  "id": 93,
+  "app": "Fathom",
+  "checks": [
+   {
+    "field": "auth_primary",
+    "claimed": "oauth2",
+    "agree": true,
+    "correct_value": "oauth2",
+    "evidence_url": "https://developers.fathom.ai/oauth.md",
+    "reason": "Fathom supports API keys for personal use and OAuth apps for integrations other users install; OAuth app registration is a self-serve form (fathom.video/marketplace_applications/new)."
+   },
+   {
+    "field": "access",
+    "claimed": "self_serve_free",
+    "agree": true,
+    "correct_value": "self_serve_free",
+    "evidence_url": "https://www.fathom.ai/features/api",
+    "reason": "Fathom API page: 'API keys, webhooks, and SDKs are included on every Fathom plan, including Free.'"
+   },
+   {
+    "field": "api_style",
+    "claimed": "rest",
+    "agree": true,
+    "correct_value": "rest",
+    "evidence_url": "https://developers.fathom.ai/api-overview",
+    "reason": "API overview: 'All REST API resources are authenticated with API keys generated via the Fathom website's settings area.'"
+   },
+   {
+    "field": "official_mcp",
+    "claimed": "official",
+    "agree": true,
+    "correct_value": "official",
+    "evidence_url": "https://developers.fathom.ai/mcp-docs",
+    "reason": "Fathom's developer docs describe an 'official MCP (Model Context Protocol) server' at https://api.fathom.ai/mcp."
+   },
+   {
+    "field": "verdict",
+    "claimed": "ready",
+    "agree": true,
+    "correct_value": "ready",
+    "evidence_url": "https://www.fathom.ai/features/api",
+    "reason": "Free plan includes API keys and OAuth apps are self-registered; review only applies to promotion."
+   }
+  ]
+ },
+ {
+  "id": 95,
+  "app": "Reducto",
+  "checks": [
+   {
+    "field": "auth_primary",
+    "claimed": "api_key",
+    "agree": true,
+    "correct_value": "api_key",
+    "evidence_url": "https://docs.reducto.ai/quickstart",
+    "reason": "Quickstart uses 'Authorization: Bearer $REDUCTO_API_KEY' with keys created in Studio."
+   },
+   {
+    "field": "access",
+    "claimed": "self_serve_free",
+    "agree": true,
+    "correct_value": "self_serve_free",
+    "evidence_url": "https://reducto.ai/pricing",
+    "reason": "Pricing: Standard plan includes '$150 in free usage' (no time limit stated) and quickstart says sign up for a free account and create a key."
+   },
+   {
+    "field": "api_style",
+    "claimed": "rest",
+    "agree": true,
+    "correct_value": "rest",
+    "evidence_url": "https://docs.reducto.ai/quickstart",
+    "reason": "Quickstart shows cURL REST calls (plus SDKs wrapping the REST API)."
+   },
+   {
+    "field": "official_mcp",
+    "claimed": "official",
+    "agree": true,
+    "correct_value": "official",
+    "evidence_url": "https://docs.reducto.ai/mcp-server",
+    "reason": "Reducto docs document a hosted MCP server at https://mcp.reducto.ai/mcp and local package mcp-server-reducto."
+   },
+   {
+    "field": "verdict",
+    "claimed": "ready",
+    "agree": true,
+    "correct_value": "ready",
+    "evidence_url": "https://docs.reducto.ai/quickstart",
+    "reason": "Free account with self-serve API key lets a toolkit be built and tested today."
+   }
+  ]
+ },
+ {
+  "id": 96,
+  "app": "Devin",
+  "checks": [
+   {
+    "field": "auth_primary",
+    "claimed": "api_key",
+    "agree": true,
+    "correct_value": "api_key",
+    "evidence_url": "https://docs.devin.ai/api-reference/authentication",
+    "reason": "Devin API uses service-user credentials / PATs (cog_ prefix) sent as Bearer tokens, i.e. API keys."
+   },
+   {
+    "field": "access",
+    "claimed": "paid_plan",
+    "agree": true,
+    "correct_value": "paid_plan",
+    "evidence_url": "https://devin.ai/pricing",
+    "reason": "Pricing comparison table marks 'Devin API' as not included on Free ($0) and included on Pro ($20/mo), Max, Teams and Enterprise."
+   },
+   {
+    "field": "api_style",
+    "claimed": "rest",
+    "agree": true,
+    "correct_value": "rest",
+    "evidence_url": "https://docs.devin.ai/api-reference/overview",
+    "reason": "Devin API reference is a REST API (v3 organization/enterprise endpoints, legacy v1/v2)."
+   },
+   {
+    "field": "official_mcp",
+    "claimed": "official",
+    "agree": true,
+    "correct_value": "official",
+    "evidence_url": "https://docs.devin.ai/work-with-devin/devin-mcp",
+    "reason": "Devin docs document the official Devin MCP server at https://mcp.devin.ai/mcp using a Devin API key."
+   },
+   {
+    "field": "verdict",
+    "claimed": "ready_with_caveats",
+    "agree": true,
+    "correct_value": "ready_with_caveats",
+    "evidence_url": "https://devin.ai/pricing",
+    "reason": "Buildable with self-serve keys but requires at least the paid Pro plan, a paid-tier gate."
+   }
+  ]
+ }
+]

@@ -1,0 +1,98 @@
+[
+ {
+  "id": 6,
+  "app": "Podio",
+  "category": "CRM & Sales",
+  "auth_primary": "oauth2",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 7,
+  "app": "Zoho CRM",
+  "category": "CRM & Sales",
+  "auth_primary": "oauth2",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 9,
+  "app": "Copper",
+  "category": "CRM & Sales",
+  "auth_primary": "api_key",
+  "access": "approval_required",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "none_found",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 10,
+  "app": "DealCloud",
+  "category": "CRM & Sales",
+  "auth_primary": "api_key",
+  "access": "partner_gated",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 15,
+  "app": "Pylon",
+  "category": "Support & Helpdesk",
+  "auth_primary": "bearer_token",
+  "access": "partner_gated",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 18,
+  "app": "Help Scout",
+  "category": "Support & Helpdesk",
+  "auth_primary": "oauth2",
+  "access": "self_serve_trial",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 19,
+  "app": "Gorgias",
+  "category": "Support & Helpdesk",
+  "auth_primary": "oauth2",
+  "access": "approval_required",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 27,
+  "app": "Telegram",
+  "category": "Communications & Messaging",
+  "auth_primary": "api_key",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "community_only",
+  "verdict": "ready"
+ }
+]

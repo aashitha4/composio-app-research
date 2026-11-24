@@ -1,0 +1,123 @@
+[
+ {
+  "id": 37,
+  "app": "systeme.io",
+  "category": "Marketing / Ads / Email / Social",
+  "auth_primary": "api_key",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 40,
+  "app": "SendGrid",
+  "category": "Marketing / Ads / Email / Social",
+  "auth_primary": "api_key",
+  "access": "self_serve_trial",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "community_only",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 41,
+  "app": "Shopify",
+  "category": "Ecommerce",
+  "auth_primary": "oauth2",
+  "access": "approval_required",
+  "api_style": [
+   "graphql",
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 42,
+  "app": "WooCommerce",
+  "category": "Ecommerce",
+  "auth_primary": "basic",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 44,
+  "app": "Salesforce Commerce Cloud",
+  "category": "Ecommerce",
+  "auth_primary": "oauth2",
+  "access": "partner_gated",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 51,
+  "app": "DataForSEO",
+  "category": "Data / SEO / Scraping",
+  "auth_primary": "basic",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 54,
+  "app": "MrScraper",
+  "category": "Data / SEO / Scraping",
+  "auth_primary": "api_key",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 59,
+  "app": "Waterfall.io",
+  "category": "Data / SEO / Scraping",
+  "auth_primary": "api_key",
+  "access": "partner_gated",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "none_found",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 64,
+  "app": "Cloudflare",
+  "category": "Developer / Infra / Data",
+  "auth_primary": "oauth2",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 67,
+  "app": "Snowflake",
+  "category": "Developer / Infra / Data",
+  "auth_primary": "oauth2",
+  "access": "self_serve_trial",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ }
+]

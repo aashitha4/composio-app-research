@@ -1,0 +1,127 @@
+[
+ {
+  "id": 1,
+  "app": "Salesforce",
+  "category": "CRM & Sales",
+  "auth_primary": "oauth2",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest",
+   "soap",
+   "graphql",
+   "grpc"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 2,
+  "app": "HubSpot",
+  "category": "CRM & Sales",
+  "auth_primary": "oauth2",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 5,
+  "app": "Twenty",
+  "category": "CRM & Sales",
+  "auth_primary": "api_key",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest",
+   "graphql"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 13,
+  "app": "Freshdesk",
+  "category": "Support & Helpdesk",
+  "auth_primary": "api_key",
+  "access": "self_serve_trial",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 14,
+  "app": "Front",
+  "category": "Support & Helpdesk",
+  "auth_primary": "oauth2",
+  "access": "approval_required",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 20,
+  "app": "Gladly",
+  "category": "Support & Helpdesk",
+  "auth_primary": "basic",
+  "access": "partner_gated",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 22,
+  "app": "Twilio",
+  "category": "Communications & Messaging",
+  "auth_primary": "basic",
+  "access": "self_serve_trial",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 29,
+  "app": "Aircall",
+  "category": "Communications & Messaging",
+  "auth_primary": "oauth2",
+  "access": "partner_gated",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "community_only",
+  "verdict": "ready_with_caveats"
+ },
+ {
+  "id": 30,
+  "app": "Vonage",
+  "category": "Communications & Messaging",
+  "auth_primary": "basic",
+  "access": "self_serve_free",
+  "api_style": [
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready"
+ },
+ {
+  "id": 31,
+  "app": "Google Ads",
+  "category": "Marketing / Ads / Email / Social",
+  "auth_primary": "oauth2",
+  "access": "approval_required",
+  "api_style": [
+   "grpc",
+   "rest"
+  ],
+  "official_mcp": "official",
+  "verdict": "ready_with_caveats"
+ }
+]

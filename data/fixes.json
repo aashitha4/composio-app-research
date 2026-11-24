@@ -1,0 +1,153 @@
+[
+ {
+  "id": 34,
+  "field": "verdict",
+  "to": "ready",
+  "source": "lint",
+  "reason": "Lint: access=self_serve_free contradicts blocker=paid_plan. Notes show a free Marketplace developer account with sandbox sub-accounts; HighLevel has no free customer plan, so every end user already pays. Paying is not an integrator blocker."
+ },
+ {
+  "id": 34,
+  "field": "blocker_type",
+  "to": "none",
+  "source": "lint",
+  "reason": "Same as verdict fix; Founder-only endpoints (sub-account creation) noted, core CRM actions are on all plans."
+ },
+ {
+  "id": 34,
+  "field": "blocker",
+  "to": "none (a few agency endpoints need the Founder plan)",
+  "source": "lint",
+  "reason": "Consistency with verdict=ready."
+ },
+ {
+  "id": 50,
+  "field": "api_breadth",
+  "to": "none",
+  "source": "lint",
+  "reason": "Schema: 'unknown' is not an allowed value; no public API docs were found, so breadth is none."
+ },
+ {
+  "id": 50,
+  "field": "api_style",
+  "to": [
+   "none"
+  ],
+  "source": "lint",
+  "reason": "No documented public API; 'rest' was an assumption."
+ },
+ {
+  "id": 50,
+  "field": "official_mcp",
+  "to": "none_found",
+  "source": "lint",
+  "reason": "Rule: 'official' needs a documented endpoint or repo. The homepage only mentions 'MCP (beta)' with no setup docs."
+ },
+ {
+  "id": 50,
+  "field": "evidence.auth",
+  "to": null,
+  "source": "lint",
+  "reason": "Third-party citation (zapier.com) removed; nothing first-party documents auth."
+ },
+ {
+  "id": 58,
+  "field": "access",
+  "to": "self_serve_free",
+  "source": "lint",
+  "reason": "Convention for local open-source CLIs (Sherlock, Mermaid CLI): free to install, no credentials; the limit is captured by blocker_type=local_tool."
+ },
+ {
+  "id": 83,
+  "field": "blocker_type",
+  "to": "other",
+  "source": "lint",
+  "reason": "API keys are self-serve; only the 'Binance Login' OAuth flow is partner-only. The real caveat is that users must hand over signed trading keys (plus KYC/region limits), not a partnership."
+ },
+ {
+  "id": 84,
+  "field": "blocker_type",
+  "to": "app_review",
+  "source": "lint",
+  "reason": "access=approval_required: live keys need an approved merchant account (underwriting). Mapped to the approval blocker for consistency."
+ },
+ {
+  "id": 92,
+  "field": "blocker_type",
+  "to": "partnership",
+  "source": "lint",
+  "reason": "REST API and webhooks are on the contact-sales Enterprise tier only, which is a sales gate, not a self-serve paid plan."
+ },
+ {
+  "id": 2,
+  "field": "access",
+  "to": "approval_required",
+  "source": "sweep",
+  "reason": "Unlisted OAuth app capped at 25 installs until Marketplace review. Sweep rule (applied to all 100): access = the strictest gate on real multi-tenant use, precedence partner > paid > approval > trial > free. researcher.md already says 'free sandbox but production needs app review = approval_required'; this record's own blocker is app review, so it was labelled inconsistently with Slack, Front, Shopify, Intercom."
+ },
+ {
+  "id": 4,
+  "field": "access",
+  "to": "approval_required",
+  "source": "sweep",
+  "reason": "Unpublished OAuth app limited to 25 workspaces until Attio approval. Sweep rule (applied to all 100): access = the strictest gate on real multi-tenant use, precedence partner > paid > approval > trial > free. researcher.md already says 'free sandbox but production needs app review = approval_required'; this record's own blocker is app review, so it was labelled inconsistently with Slack, Front, Shopify, Intercom."
+ },
+ {
+  "id": 9,
+  "field": "access",
+  "to": "approval_required",
+  "source": "sweep",
+  "reason": "OAuth client needs manual registration with Copper (and no free plan). Sweep rule (applied to all 100): access = the strictest gate on real multi-tenant use, precedence partner > paid > approval > trial > free. researcher.md already says 'free sandbox but production needs app review = approval_required'; this record's own blocker is app review, so it was labelled inconsistently with Slack, Front, Shopify, Intercom."
+ },
+ {
+  "id": 26,
+  "field": "access",
+  "to": "approval_required",
+  "source": "sweep",
+  "reason": "Bots in 100+ servers need verification; privileged intents need review. Sweep rule (applied to all 100): access = the strictest gate on real multi-tenant use, precedence partner > paid > approval > trial > free. researcher.md already says 'free sandbox but production needs app review = approval_required'; this record's own blocker is app review, so it was labelled inconsistently with Slack, Front, Shopify, Intercom."
+ },
+ {
+  "id": 43,
+  "field": "access",
+  "to": "approval_required",
+  "source": "sweep",
+  "reason": "Multi-store OAuth app needs Marketplace approval (and credentials are trial-only). Sweep rule (applied to all 100): access = the strictest gate on real multi-tenant use, precedence partner > paid > approval > trial > free. researcher.md already says 'free sandbox but production needs app review = approval_required'; this record's own blocker is app review, so it was labelled inconsistently with Slack, Front, Shopify, Intercom."
+ },
+ {
+  "id": 100,
+  "field": "access",
+  "to": "approval_required",
+  "source": "sweep",
+  "reason": "Workspace-level OAuth scope needs Grain verification. Sweep rule (applied to all 100): access = the strictest gate on real multi-tenant use, precedence partner > paid > approval > trial > free. researcher.md already says 'free sandbox but production needs app review = approval_required'; this record's own blocker is app review, so it was labelled inconsistently with Slack, Front, Shopify, Intercom."
+ },
+ {
+  "id": 5,
+  "field": "auth_primary",
+  "to": "oauth2",
+  "source": "verifier",
+  "evidence": "https://docs.twenty.com/developers/extend/oauth",
+  "reason": "Verifier disagreed; re-checked in browser. Twenty's OAuth page maps 'External app acting on behalf of a user' to OAuth Authorization Code (dynamic client registration); API keys are for internal scripts. The researcher's own note says it never fetched the OAuth page."
+ },
+ {
+  "id": 78,
+  "field": "verdict",
+  "to": "ready",
+  "source": "verifier",
+  "evidence": "https://coda.io/developers/apis/v1",
+  "reason": "Verifier disagreed; upheld. The API is free in free and paid workspaces with self-made tokens. Token-only auth is not a gate (Telegram, Firecrawl are 'ready' on the same basis)."
+ },
+ {
+  "id": 78,
+  "field": "blocker_type",
+  "to": "none",
+  "source": "verifier",
+  "reason": "Follows verdict=ready."
+ },
+ {
+  "id": 78,
+  "field": "blocker",
+  "to": "none (no OAuth for the REST API; users paste a personal token)",
+  "source": "verifier",
+  "reason": "Follows verdict=ready; caveat kept as a note."
+ }
+]

@@ -1,0 +1,16 @@
+{
+  "researchers": {"agents": 10, "apps_per_agent": 10, "tool_calls": 886, "subagent_tokens": 1568177,
+                   "wall_clock_minutes": {"fastest": 8.5, "slowest": 16.6}, "mode": "parallel, one agent per category"},
+  "per_agent": [
+    {"category": "CRM & Sales", "tool_calls": 96, "tokens": 150604, "minutes": 11.0},
+    {"category": "Support & Helpdesk", "tool_calls": 100, "tokens": 169632, "minutes": 11.7},
+    {"category": "Communications & Messaging", "tool_calls": 83, "tokens": 160842, "minutes": 12.0},
+    {"category": "Marketing / Ads / Email / Social", "tool_calls": 106, "tokens": 181907, "minutes": 8.7},
+    {"category": "Ecommerce", "tool_calls": 103, "tokens": 155828, "minutes": 11.0},
+    {"category": "Data / SEO / Scraping", "tool_calls": 68, "tokens": 123829, "minutes": 8.9},
+    {"category": "Developer / Infra / Data", "tool_calls": 70, "tokens": 146406, "minutes": 8.5},
+    {"category": "Productivity & PM", "tool_calls": 88, "tokens": 144456, "minutes": 8.8},
+    {"category": "Finance & Fintech", "tool_calls": 93, "tokens": 182145, "minutes": 16.6},
+    {"category": "AI / Research / Media", "tool_calls": 79, "tokens": 152528, "minutes": 9.4}
+  ]
+}

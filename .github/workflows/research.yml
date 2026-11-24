@@ -1,0 +1,35 @@
+name: Run research agent
+# Runnable trigger: Actions tab -> "Run research agent" -> Run workflow -> enter app ids (e.g. 41 or 1-10,55).
+# Needs repository secret ANTHROPIC_API_KEY. Optional secret COMPOSIO_MCP_URL adds Composio tools.
+on:
+  workflow_dispatch:
+    inputs:
+      ids: {description: "App ids from data/apps.csv (e.g. 41 or 1-10,55)", required: true, default: "41"}
+      verify: {description: "Also run the independent verifier on a sample of this size (0 = skip)", required: false, default: "0"}
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -r requirements.txt
+      - name: Offline test (no key needed)
+        run: python tests/test_agent_offline.py
+      - name: Research
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          COMPOSIO_MCP_URL: ${{ secrets.COMPOSIO_MCP_URL }}
+          IDS: ${{ inputs.ids }}
+        run: |
+          if [ -n "$COMPOSIO_MCP_URL" ]; then
+            python agent/research.py research --ids "$IDS" --composio-mcp-url "$COMPOSIO_MCP_URL"
+          else
+            python agent/research.py research --ids "$IDS"
+          fi
+      - name: Verify sample
+        if: ${{ inputs.verify != '0' }}
+        env: {ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}", SAMPLE: "${{ inputs.verify }}"}
+        run: python agent/research.py verify --sample "$SAMPLE" --seed 42
+      - uses: actions/upload-artifact@v4
+        with: {name: research-output, path: "data/pass1/app-*.json\ndata/verify/agent-verifier.json"}

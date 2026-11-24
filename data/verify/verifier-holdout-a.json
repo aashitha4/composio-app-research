@@ -1,0 +1,90 @@
+[
+  {
+    "id": 6,
+    "app": "Podio",
+    "checks": [
+      {"field": "auth_primary", "claimed": "oauth2", "agree": true, "correct_value": "oauth2", "evidence_url": "https://developers.podio.com/authentication", "reason": "Apps must be registered for a Client ID/Client Secret and use OAuth2 server-side or client-side flows; username/password flow is described as a last resort."},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://www.progress.com/podio/pricing", "reason": "The $0 Free plan lists 'API Integrations: 1000 calls per hour', and developers.podio.com/api-key says you just sign up and open the API key tab; no app review or install cap is documented (limits are per user per key, add-ons only raise rate)."},
+      {"field": "api_style", "claimed": "rest", "agree": true, "correct_value": "rest", "evidence_url": "https://developers.podio.com/authentication", "reason": "Podio API is a JSON-over-HTTPS REST API called with an OAuth2 Authorization header."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://www.progress.com/podio/documentation/using-podio/podio-mcp-server", "reason": "Vendor (Progress) documentation says the Podio MCP Server is live at https://mcp.podio.com/mcp with OAuth; it is in beta."},
+      {"field": "verdict", "claimed": "ready", "agree": true, "correct_value": "ready", "evidence_url": "https://developers.podio.com/index/limits", "reason": "Free self-serve keys with no review; only gate is rate limits (1,000 calls/hour per user per key), which does not block building or testing."}
+    ]
+  },
+  {
+    "id": 7,
+    "app": "Zoho CRM",
+    "checks": [
+      {"field": "auth_primary", "claimed": "oauth2", "agree": true, "correct_value": "oauth2", "evidence_url": "https://www.zoho.com/crm/developer/docs/api/v8/register-client.html", "reason": "Clients are registered in the Zoho Developer Console to get Client ID/Secret; server-based apps are 'intended for use by multiple Zoho accounts'."},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://www.zoho.com/crm/developer/docs/api/v8/api-limits.html", "reason": "The credit table includes 'Free Edition | 5000 credits', so the API works on the free edition; client registration is self-serve with no review or install cap described."},
+      {"field": "api_style", "claimed": "rest", "agree": true, "correct_value": "rest", "evidence_url": "https://www.zoho.com/crm/developer/docs/api/v8/api-limits.html", "reason": "Zoho CRM API v8 is a REST API metered by credits."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://www.zoho.com/crm/developer/docs/mcp/overview.html", "reason": "Zoho CRM developer docs: 'Zoho CRM provides these as pre-built MCP servers, so you don't need to build, host, or maintain any infrastructure.'"},
+      {"field": "verdict", "claimed": "ready", "agree": true, "correct_value": "ready", "evidence_url": "https://www.zoho.com/crm/developer/docs/api/v8/register-client.html", "reason": "Self-serve OAuth client plus free-edition API credits allow building and testing today."}
+    ]
+  },
+  {
+    "id": 9,
+    "app": "Copper",
+    "checks": [
+      {"field": "auth_primary", "claimed": "api_key", "agree": true, "correct_value": "api_key", "evidence_url": "https://support.copper.com/en/articles/8823347-generating-an-api-key", "reason": "Admins generate API keys under Settings > Integrations > API Keys; OAuth client credentials are not self-serve, so a toolkit would use API keys."},
+      {"field": "access", "claimed": "approval_required", "agree": true, "correct_value": "approval_required", "evidence_url": "https://developer.copper.com/introduction/oauth/index.html", "reason": "OAuth apps can only be registered by contacting Copper ('To register your application, contact us' -> partners@copper.com), an approval gate for multi-tenant install; the Developer API is Professional/Business-tier only (support article 9623758) but every plan has a 14-day free trial, so per v2 precedence approval_required holds (would be paid_plan only if trials exclude the API, which docs do not say)."},
+      {"field": "api_style", "claimed": "rest", "agree": true, "correct_value": "rest", "evidence_url": "https://developer.copper.com/", "reason": "Copper Developer API is a REST/JSON API documented per resource (people, companies, opportunities, etc.)."},
+      {"field": "official_mcp", "claimed": "none_found", "agree": true, "correct_value": "none_found", "evidence_url": "https://www.copper.com/mcp", "reason": "Copper's page says an official MCP server is 'COMING SOON' with beta launching November 2026 but documents no endpoint; a marketing announcement alone counts as none_found."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://support.copper.com/en/articles/9623758-copper-plans-feature-comparison", "reason": "'Developer API' is listed only for Professional (and Business) tiers and OAuth needs Copper registration, so buildable but gated."}
+    ]
+  },
+  {
+    "id": 10,
+    "app": "DealCloud",
+    "checks": [
+      {"field": "auth_primary", "claimed": "api_key", "agree": true, "correct_value": "api_key", "evidence_url": "https://api.docs.dealcloud.com/docs/apikeys", "reason": "Users enable and copy an API Key from their Profile; it is exchanged (with client ID) for a 15-minute token via OAuth2 client_credentials, so the end-user credential is an API key."},
+      {"field": "access", "claimed": "partner_gated", "agree": true, "correct_value": "partner_gated", "evidence_url": "https://www.intapp.com/dealcloud", "reason": "DealCloud offers only 'Schedule a demo' (no trial/self-serve signup); API capability must be enabled by a site admin or the customer's CSM per the API Keys doc, so credentials require being an enterprise customer."},
+      {"field": "api_style", "claimed": "rest", "agree": true, "correct_value": "rest", "evidence_url": "https://api.docs.dealcloud.com/docs/token", "reason": "REST endpoints under {baseUrl}/api/rest/v1/ with Bearer tokens."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://api.docs.dealcloud.com/mcp/connections", "reason": "Intapp's DealCloud API docs document the DealCloud MCP Server with OAuth 2.0 and .well-known discovery for Claude/ChatGPT/Copilot clients."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://api.docs.dealcloud.com/docs/apikeys", "reason": "Buildable with a customer site's API key, but gated on being an enterprise customer with API capability enabled; the enum lists 'enterprise customer' as a caveat gate."}
+    ]
+  },
+  {
+    "id": 15,
+    "app": "Pylon",
+    "checks": [
+      {"field": "auth_primary", "claimed": "bearer_token", "agree": true, "correct_value": "bearer_token", "evidence_url": "https://docs.usepylon.com/pylon-docs/developer/api/authentication", "reason": "'The Pylon API uses Bearer authentication' with admin-created API tokens; no OAuth app option is documented for the REST API."},
+      {"field": "access", "claimed": "partner_gated", "agree": true, "correct_value": "partner_gated", "evidence_url": "https://www.usepylon.com/pricing", "reason": "No free plan; plans are booked via demo/sales and 'Pylon offers free trials for prospects' set up by a sales rep, so credentials come only through sales."},
+      {"field": "api_style", "claimed": "rest", "agree": true, "correct_value": "rest", "evidence_url": "https://www.usepylon.com/pricing", "reason": "Feature table lists 'REST API' and 'Webhooks' on Professional, Advanced and Enterprise."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://docs.usepylon.com/pylon-docs/integrations/pylon-mcp", "reason": "Pylon docs document its hosted MCP server at https://mcp.usepylon.com (US) and https://mcp.eu.usepylon.com (EU)."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://www.usepylon.com/pricing", "reason": "Full REST API exists but testing requires a sales-provisioned trial or paid customer account."}
+    ]
+  },
+  {
+    "id": 18,
+    "app": "Help Scout",
+    "checks": [
+      {"field": "auth_primary", "claimed": "oauth2", "agree": true, "correct_value": "oauth2", "evidence_url": "https://developer.helpscout.com/mailbox-api/overview/authentication/", "reason": "'You need to create an OAuth2 application before you can use the API'; the Authorization Code flow 'is typically used for integrations to be used by other Help Scout users', with no review step described."},
+      {"field": "access", "claimed": "self_serve_trial", "agree": true, "correct_value": "self_serve_trial", "evidence_url": "https://docs.helpscout.com/article/1140-mailbox-api", "reason": "'The Free plan does not include access to the API or integrations'; API is on Standard/Plus/Pro, and the pricing FAQ gives a 15-day no-card trial of Standard/Plus with all plan features, so the free path to credentials is trial-only."},
+      {"field": "api_style", "claimed": "rest", "agree": true, "correct_value": "rest", "evidence_url": "https://docs.helpscout.com/article/1140-mailbox-api", "reason": "Inbox (Mailbox) API 2.0 is a REST API with per-plan rate limits (200/400/800 calls per minute)."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://docs.helpscout.com/article/1779-connect-your-ai-agent-with-help-scout-to-search-conversations-and-pull-reports", "reason": "Help Scout docs: 'Help Scout MCP gives AI assistants secure, official access', endpoint https://mcp.helpscout.net/mcp, on Standard/Plus/Pro."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://www.helpscout.com/pricing/", "reason": "Buildable via self-serve OAuth app, but API needs a paid tier after the 15-day trial (Free plan excluded)."}
+    ]
+  },
+  {
+    "id": 19,
+    "app": "Gorgias",
+    "checks": [
+      {"field": "auth_primary", "claimed": "oauth2", "agree": true, "correct_value": "oauth2", "evidence_url": "https://developers.gorgias.com/docs/overview", "reason": "API keys are for private apps only; OAuth2 is mandatory for public apps installed by other merchants."},
+      {"field": "access", "claimed": "approval_required", "agree": true, "correct_value": "approval_required", "evidence_url": "https://developers.gorgias.com/docs/overview", "reason": "Public apps must be submitted on the Developer Portal for Gorgias review (with a test account) before they are listed/installable; sandbox is a trial account converted by the partnerships team. Review outranks the trial gate under v2 precedence."},
+      {"field": "api_style", "claimed": "rest", "agree": true, "correct_value": "rest", "evidence_url": "https://developers.gorgias.com/docs/overview", "reason": "Gorgias exposes a REST API (tickets, customers, macros, etc.) authenticated by API key or OAuth2 bearer token."},
+      {"field": "official_mcp", "claimed": "official", "agree": true, "correct_value": "official", "evidence_url": "https://updates.gorgias.com/publications/gorgias-mcp-is-now-in-open-beta", "reason": "Gorgias announces 'a first-party server' in open beta, included at no extra cost on any plan."},
+      {"field": "verdict", "claimed": "ready_with_caveats", "agree": true, "correct_value": "ready_with_caveats", "evidence_url": "https://developers.gorgias.com/docs/overview", "reason": "Buildable and testable via trial/sandbox, but public multi-tenant launch needs Gorgias app review."}
+    ]
+  },
+  {
+    "id": 27,
+    "app": "Telegram",
+    "checks": [
+      {"field": "auth_primary", "claimed": "api_key", "agree": true, "correct_value": "api_key", "evidence_url": "https://core.telegram.org/bots/api", "reason": "'Each bot is given a unique authentication token' from BotFather, passed in the URL path https://api.telegram.org/bot<token>/METHOD_NAME (a static key, not OAuth)."},
+      {"field": "access", "claimed": "self_serve_free", "agree": true, "correct_value": "self_serve_free", "evidence_url": "https://core.telegram.org/bots/api", "reason": "Anyone can create a bot via BotFather and get a token at no cost; no review or install cap is documented."},
+      {"field": "api_style", "claimed": "rest", "agree": true, "correct_value": "rest", "evidence_url": "https://core.telegram.org/bots/api", "reason": "HTTP-based API over HTTPS supporting GET/POST with query, form or JSON parameters (RPC-style HTTP; rest is the closest enum value)."},
+      {"field": "official_mcp", "claimed": "community_only", "agree": true, "correct_value": "community_only", "evidence_url": "https://core.telegram.org/bots/api", "reason": "Telegram's Bot API docs make no mention of MCP, and searching turned up only community servers (sparfenyuk, chigwell, overpod, lexfrei), none on Telegram's domains."},
+      {"field": "verdict", "claimed": "ready", "agree": true, "correct_value": "ready", "evidence_url": "https://core.telegram.org/bots/api", "reason": "Free, instant bot tokens and a documented HTTP API mean a toolkit can be built and tested today."}
+    ]
+  }
+]

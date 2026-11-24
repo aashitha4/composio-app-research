@@ -1,0 +1,448 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>100-App Toolkit Recon</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Agent-built research on 100 apps: auth, access gates, API surface, MCP and toolkit buildability, with verified accuracy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: a field report. Headline findings first, then the matrix, the 100-row ledger, the machine, and the audit. */
+:root {
+  --bg: #f6f7f9; --surface: #ffffff; --sunk: #eef0f4; --line: #dde1e8; --fg: #141821; --muted: #5b6372; --faint: #8a92a1;
+  --accent: #2346d8; --accent-soft: #e6ebfd;
+  --ok: #157a4a; --ok-soft: #dcf1e5; --warn: #a15c00; --warn-soft: #fbeccf; --bad: #b42318; --bad-soft: #fbe1de;
+  --s1: #2346d8; --s2: #6b86ee; --s3: #b3c1f6; --s4: #d39b3a; --s5: #b42318; --s6: #8a92a1;
+  --display: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --body: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0d1016; --surface: #151a22; --sunk: #1b212b; --line: #2a313d; --fg: #e7eaf0; --muted: #a1a9b7; --faint: #737c8c;
+  --accent: #8ea4ff; --accent-soft: #1d2647;
+  --ok: #5fd39a; --ok-soft: #12301f; --warn: #f0b552; --warn-soft: #36280f; --bad: #ff8a7d; --bad-soft: #3a1714;
+  --s1: #8ea4ff; --s2: #5d75d6; --s3: #36447d; --s4: #d9a64b; --s5: #ff8a7d; --s6: #737c8c; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0d1016; --surface: #151a22; --sunk: #1b212b; --line: #2a313d; --fg: #e7eaf0; --muted: #a1a9b7; --faint: #737c8c;
+  --accent: #8ea4ff; --accent-soft: #1d2647;
+  --ok: #5fd39a; --ok-soft: #12301f; --warn: #f0b552; --warn-soft: #36280f; --bad: #ff8a7d; --bad-soft: #3a1714;
+  --s1: #8ea4ff; --s2: #5d75d6; --s3: #36447d; --s4: #d9a64b; --s5: #ff8a7d; --s6: #737c8c; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 1180px; margin: 0 auto; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; letter-spacing: -0.02em; margin: 0; }
+h1 { font-size: clamp(30px, 5vw, 50px); line-height: 1.05; font-weight: 800; }
+h2 { font-size: clamp(22px, 3vw, 30px); line-height: 1.15; font-weight: 700; }
+h3 { font-size: 17px; font-weight: 650; letter-spacing: -0.01em; }
+p { margin: 0; max-width: 68ch; }
+.mono, code { font-family: var(--mono); font-size: 0.86em; }
+code { background: var(--sunk); padding: 1px 5px; border-radius: 4px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.muted { color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+
+header.top { padding-block: 40px 28px; display: grid; gap: 16px; }
+.lede { font-size: 18px; color: var(--muted); max-width: 72ch; }
+.lede b { color: var(--fg); font-weight: 600; }
+.metarow { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--muted); align-items: center; }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border: 1px solid var(--line); background: var(--surface); color: var(--fg);
+  border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 550; cursor: pointer; font-family: var(--body); }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+nav.toc { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line);
+  margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding: 10px max(16px, env(safe-area-inset-left, 0px)); overflow-x: auto; }
+nav.toc .wrap { display: flex; gap: 4px; white-space: nowrap; }
+nav.toc a { font-size: 13px; color: var(--muted); text-decoration: none; padding: 5px 10px; border-radius: 6px; font-weight: 550; }
+nav.toc a:hover { background: var(--sunk); color: var(--fg); }
+
+section { padding-block: 44px 8px; display: grid; gap: 20px; scroll-margin-top: 56px; }
+.sechead { display: grid; gap: 8px; }
+
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 2px; align-content: start; }
+.kpi .v { font-family: var(--display); font-size: 32px; font-weight: 750; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.kpi .l { font-size: 13px; color: var(--muted); }
+.kpi.ok .v { color: var(--ok); } .kpi.warn .v { color: var(--warn); } .kpi.bad .v { color: var(--bad); } .kpi.acc .v { color: var(--accent); }
+
+.findings { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.finding { display: grid; grid-template-columns: 120px 1fr; gap: 20px; padding-block: 18px; border-bottom: 1px solid var(--line); }
+.finding .big { font-family: var(--display); font-size: 40px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.finding .big small { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: var(--muted); font-weight: 500; margin-top: 6px; text-transform: uppercase; }
+.finding .txt { display: grid; gap: 6px; min-width: 0; }
+.finding .so { font-size: 14px; color: var(--muted); }
+.finding .so b { color: var(--fg); font-weight: 600; }
+@media (max-width: 620px) { .finding { grid-template-columns: 1fr; gap: 8px; } }
+
+/* matrix */
+.matrix-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+table.matrix { border-collapse: collapse; width: 100%; min-width: 860px; font-size: 13px; }
+table.matrix th, table.matrix td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: middle; }
+table.matrix th { font-family: var(--mono); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); background: var(--sunk); }
+table.matrix tr:last-child td { border-bottom: 0; }
+.stack { display: flex; height: 18px; border-radius: 4px; overflow: hidden; background: var(--sunk); min-width: 150px; }
+.stack span { display: block; height: 100%; }
+.stack span + span { box-shadow: inset 1px 0 0 var(--surface); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+.dots { display: flex; gap: 3px; }
+.dots b { width: 9px; height: 9px; border-radius: 50%; background: var(--sunk); border: 1px solid var(--line); }
+.dots b.on { background: var(--accent); border-color: var(--accent); }
+
+/* lanes */
+.lanes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 900px) { .lanes { grid-template-columns: 1fr; } }
+.lane { border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 16px; display: grid; gap: 12px; align-content: start; }
+.lane header { display: grid; gap: 4px; }
+.lane .count { font-family: var(--display); font-size: 26px; font-weight: 750; font-variant-numeric: tabular-nums; }
+.lane.ok { border-top: 3px solid var(--ok); } .lane.warn { border-top: 3px solid var(--warn); } .lane.bad { border-top: 3px solid var(--bad); }
+.group { display: grid; gap: 6px; }
+.group .gl { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--sunk); border: 1px solid var(--line); color: var(--fg); cursor: pointer; font-family: var(--body); }
+.chip:hover { border-color: var(--accent); }
+
+/* pills */
+.pill { display: inline-block; font-family: var(--mono); font-size: 11px; padding: 2px 7px; border-radius: 5px; white-space: nowrap; font-weight: 500; }
+.v-ready { background: var(--ok-soft); color: var(--ok); }
+.v-ready_with_caveats { background: var(--warn-soft); color: var(--warn); }
+.v-blocked { background: var(--bad-soft); color: var(--bad); }
+.p-neutral { background: var(--sunk); color: var(--fg); border: 1px solid var(--line); }
+.p-accent { background: var(--accent-soft); color: var(--accent); }
+.conf-low { color: var(--bad); } .conf-medium { color: var(--warn); } .conf-high { color: var(--ok); }
+
+/* ledger */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.filters input, .filters select { font: inherit; font-size: 13px; padding: 7px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); }
+.filters input { flex: 1 1 220px; min-width: 0; }
+.filters .count { font-size: 13px; color: var(--muted); margin-left: auto; }
+.ledger-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+table.ledger { border-collapse: collapse; width: 100%; min-width: 1040px; font-size: 13px; }
+table.ledger th { position: sticky; top: 0; background: var(--sunk); font-family: var(--mono); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--muted); text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); cursor: pointer; user-select: none; white-space: nowrap; }
+table.ledger td { padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.ledger tr.row { cursor: pointer; }
+table.ledger tr.row:hover td { background: var(--sunk); }
+table.ledger tr.row.open td { background: var(--accent-soft); }
+.appname { font-weight: 650; }
+.oneliner { color: var(--muted); font-size: 12px; max-width: 34ch; }
+.authlist { font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+.authlist b { color: var(--fg); font-weight: 600; }
+.fixmark { font-family: var(--mono); font-size: 10.5px; color: var(--accent); white-space: nowrap; }
+tr.detail td { background: var(--bg); padding: 16px 18px; }
+.detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px 22px; }
+.detail-grid > div { display: grid; gap: 4px; min-width: 0; }
+.detail-grid .k { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.detail-grid p { font-size: 13px; overflow-wrap: anywhere; }
+.evlinks { display: grid; gap: 3px; font-size: 12.5px; }
+.evlinks a { overflow-wrap: anywhere; }
+.corr { font-size: 12.5px; border-left: 2px solid var(--accent); padding-left: 10px; display: grid; gap: 3px; }
+
+/* pipeline */
+.pipe { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; counter-reset: step; }
+.step { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 5px; align-content: start; }
+.step .n { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.05em; }
+.step h3 { font-size: 15px; }
+.step p { font-size: 13px; color: var(--muted); }
+.step .tag { justify-self: start; }
+.step.human { border-color: var(--warn); }
+.step .out { font-family: var(--mono); font-size: 11.5px; color: var(--fg); background: var(--sunk); border-radius: 6px; padding: 4px 7px; }
+.twocol { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
+@media (max-width: 800px) { .twocol { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.card ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 14px; }
+
+/* accuracy chart */
+.accchart { display: grid; gap: 14px; }
+.accrow { display: grid; grid-template-columns: 190px minmax(0, 1fr) 64px; gap: 12px; align-items: center; font-size: 13px; }
+.accrow .bar { height: 22px; background: var(--sunk); border-radius: 5px; position: relative; overflow: hidden; }
+.accrow .bar span { position: absolute; inset: 0 auto 0 0; border-radius: 5px; }
+.accrow .val { font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 600; text-align: right; }
+.accgroup { display: grid; gap: 8px; }
+.accgroup .gl { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.axis { display: grid; grid-template-columns: 190px minmax(0, 1fr) 64px; gap: 12px; font-family: var(--mono); font-size: 10.5px; color: var(--faint); }
+.axis .ticks { display: flex; justify-content: space-between; }
+@media (max-width: 560px) { .accrow, .axis { grid-template-columns: 110px minmax(0, 1fr) 52px; } }
+table.simple { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.simple th, table.simple td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+table.simple th { font-family: var(--mono); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); background: var(--sunk); }
+.tscroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.tscroll table.simple { min-width: 720px; }
+.hit { color: var(--ok); font-weight: 600; } .miss { color: var(--bad); font-weight: 600; }
+pre.cmd { background: var(--sunk); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; overflow-x: auto; font-family: var(--mono); font-size: 12.5px; line-height: 1.6; margin: 0; }
+footer { padding-block: 40px 60px; color: var(--muted); font-size: 13px; }
+details.more summary { cursor: pointer; font-weight: 600; font-size: 14px; }
+@media (prefers-reduced-motion: no-preference) { .stack span, .accrow .bar span { transition: width .4s ease; } }
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Composio · AI Product Ops Intern · take-home</div>
+  <h1>100 apps, researched by an agent, checked against the docs</h1>
+  <p class="lede" id="lede"></p>
+  <div class="metarow">
+    <a class="btn primary" href="#findings">Jump to the 100 apps</a>
+    <a class="btn" id="repoLink" href="#run">Source repo &amp; how to run</a>
+    <a class="btn" href="dataset.json">dataset.json</a>
+    <span id="asof"></span>
+  </div>
+</header>
+</div>
+
+<nav class="toc" aria-label="Sections"><div class="wrap">
+  <a href="#patterns">Patterns</a><a href="#matrix">Matrix</a><a href="#start">Where to start</a><a href="#findings">All 100</a>
+  <a href="#agent">The agent</a><a href="#verify">Verification</a><a href="#limits">Limits</a><a href="#run">Run it</a>
+</div></nav>
+
+<main class="wrap">
+<section id="patterns">
+  <div class="sechead"><div class="eyebrow">The headline</div><h2>What 100 apps say about building agent toolkits</h2></div>
+  <div class="kpis" id="kpis"></div>
+  <div class="findings" id="insights"></div>
+</section>
+
+<section id="matrix">
+  <div class="sechead"><div class="eyebrow">Category × gate</div><h2>Who is self-serve, who is gated</h2>
+    <p class="muted">Each bar is one category of 10 apps, drawn to scale. Sorted by how many apps a developer can get free credentials for.</p></div>
+  <div class="matrix-scroll"><table class="matrix" id="matrixTbl"></table></div>
+  <div class="legend" id="matrixLegend"></div>
+</section>
+
+<section id="start">
+  <div class="sechead"><div class="eyebrow">Prioritisation</div><h2>Easy wins vs. what needs outreach</h2>
+    <p class="muted">Click any app to open its row in the table.</p></div>
+  <div class="lanes" id="lanes"></div>
+</section>
+
+<section id="findings">
+  <div class="sechead"><div class="eyebrow">The ledger</div><h2>All 100 apps</h2>
+    <p class="muted">Click a row for auth, access and MCP notes, evidence links, and any correction the verification loops made. Column headers sort.</p></div>
+  <div class="filters">
+    <input id="q" type="search" placeholder="Search app, note, blocker…" aria-label="Search">
+    <select id="fCat" aria-label="Category"></select>
+    <select id="fVerdict" aria-label="Verdict"></select>
+    <select id="fAccess" aria-label="Access"></select>
+    <select id="fAuth" aria-label="Primary auth"></select>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="ledger-scroll"><table class="ledger" id="ledger"></table></div>
+</section>
+
+<section id="agent">
+  <div class="sechead"><div class="eyebrow">How it was made</div><h2>The research agent and its loops</h2>
+    <p class="muted" id="agentLede"></p></div>
+  <div class="pipe" id="pipe"></div>
+  <div class="twocol">
+    <div class="card"><h3>Where a human was needed</h3><ul id="humanList"></ul></div>
+    <div class="card"><h3>What the agent got wrong on its own</h3><ul id="agentFails"></ul></div>
+  </div>
+</section>
+
+<section id="verify">
+  <div class="sechead"><div class="eyebrow">Proof</div><h2>How accurate is it?</h2>
+    <p class="muted" id="verifyLede"></p></div>
+  <div class="twocol">
+    <div class="card"><h3>Field accuracy on checked samples</h3><div class="accchart" id="accChart"></div></div>
+    <div class="card"><h3>What each loop caught</h3><div id="loopTbl"></div></div>
+  </div>
+  <div class="card"><h3>Per-field accuracy</h3><div class="tscroll" style="border:0"><table class="simple" id="fieldTbl"></table></div></div>
+  <div class="sechead"><h3>Every correction, with its source</h3>
+    <p class="muted">Hits and misses, shown as they happened. "From" is what the first grounded pass said.</p></div>
+  <div class="tscroll"><table class="simple" id="corrTbl"></table></div>
+  <div class="sechead"><h3>Human spot-check</h3><p class="muted" id="humanLede"></p></div>
+  <div class="tscroll"><table class="simple" id="humanTbl"></table></div>
+</section>
+
+<section id="limits">
+  <div class="sechead"><div class="eyebrow">Honesty</div><h2>Limits and known soft spots</h2></div>
+  <div class="card"><ul id="limitsList"></ul></div>
+</section>
+
+<section id="run">
+  <div class="sechead"><div class="eyebrow">Reproduce</div><h2>Run it yourself</h2><p class="muted" id="runLede"></p></div>
+  <pre class="cmd" id="runCmds"></pre>
+  <p class="muted">For agents: the full dataset is embedded in this page as <code>&lt;script type="application/json" id="dataset"&gt;</code> and published next to it as <a href="dataset.json">dataset.json</a>. Schema and enum definitions: <code>agent/prompts/researcher.md</code>.</p>
+</section>
+<footer id="foot"></footer>
+</main>
+
+<script type="application/json" id="dataset">/*__DATA__*/{}</script>
+<script>
+(function () {
+const D = JSON.parse(document.getElementById("dataset").textContent);
+const R = D.records, S = D.stats, I = D.insights || {};
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const prim = (v) => Array.isArray(v) ? v[0] : v;
+const LABEL = {
+  self_serve_free: "Self-serve, free", self_serve_trial: "Trial only", paid_plan: "Paid plan", approval_required: "Approval / review",
+  partner_gated: "Partner / sales", no_public_api: "No public API",
+  ready: "Ready", ready_with_caveats: "Ready w/ caveats", blocked: "Blocked",
+  oauth2: "OAuth2", api_key: "API key", bearer_token: "Bearer/PAT", basic: "Basic", jwt: "JWT", hmac_signature: "HMAC", none: "None", other: "Other",
+  official: "Official", community_only: "Community", none_found: "None found",
+  app_review: "App review", partnership: "Partnership", no_api: "No API", self_hosted_only: "Self-hosted", per_tenant_setup: "Per-tenant setup", local_tool: "Local tool",
+};
+const L = (k) => LABEL[k] || k;
+const ACCESS = ["self_serve_free", "self_serve_trial", "approval_required", "paid_plan", "partner_gated", "no_public_api"];
+const VERD = ["ready", "ready_with_caveats", "blocked"];
+const AUTHS = ["oauth2", "api_key", "bearer_token", "basic", "hmac_signature", "jwt", "none", "other"];
+const ACOL = { self_serve_free: "var(--ok)", self_serve_trial: "var(--s2)", approval_required: "var(--s4)", paid_plan: "var(--s3)", partner_gated: "var(--bad)", no_public_api: "var(--s6)" };
+const VCOL = { ready: "var(--ok)", ready_with_caveats: "var(--warn)", blocked: "var(--bad)" };
+const AUCOL = { oauth2: "var(--s1)", api_key: "var(--s4)", bearer_token: "var(--s2)", basic: "var(--s3)", hmac_signature: "var(--s5)", jwt: "var(--s6)", none: "var(--line)", other: "var(--s6)" };
+const pct = (a, b) => b ? Math.round(1000 * a / b) / 10 : 0;
+
+// ---------- header ----------
+const sc = D.scores || {}, cal = sc.calibration, hold = sc.holdout;
+const finalAcc = hold && hold.final ? hold.final.accuracy : null;  // only the holdout is an honest headline number
+$("#lede").innerHTML = `An agent pipeline researched auth, access gates, API surface, MCP and buildability for <b>${S.n} apps</b>, citing official docs for each answer.` +
+  (finalAcc != null ? ` Independent verifier agents, a real-browser link check and a human spot-check put the final field accuracy at <b>${finalAcc}%</b> on apps the pipeline never tuned on.` : "") +
+  ` <b>${S.ready}</b> apps can be built today with self-serve credentials, <b>${S.caveats}</b> are buildable behind a gate, and <b>${S.blocked}</b> are blocked.`;
+$("#asof").textContent = I.as_of ? `Researched ${I.as_of}` : "";
+if (I.repo_url) { $("#repoLink").href = I.repo_url; }
+
+// ---------- KPIs + insights ----------
+const kpis = [
+  ["ok", S.ready, "ready to build today"], ["warn", S.caveats, "buildable behind a gate"], ["bad", S.blocked, "blocked"],
+  ["", S.oauth_primary, "use OAuth2 as primary auth"], ["acc", finalAcc != null ? finalAcc + "%" : "—", "verified field accuracy (holdout)"],
+];
+$("#kpis").innerHTML = kpis.map(([c, v, l]) => `<div class="kpi ${c}"><span class="v">${v}</span><span class="l">${l}</span></div>`).join("");
+$("#insights").innerHTML = (I.findings || []).map((f) => `<div class="finding"><div class="big">${esc(f.big)}<small>${esc(f.unit || "")}</small></div>
+  <div class="txt"><h3>${esc(f.title)}</h3><p>${f.body}</p>${f.so ? `<p class="so"><b>So what for Composio:</b> ${f.so}</p>` : ""}</div></div>`).join("");
+
+// ---------- matrix ----------
+const cats = [...new Set(R.map((r) => r.category))];
+const byCat = Object.fromEntries(cats.map((c) => [c, R.filter((r) => r.category === c)]));
+cats.sort((a, b) => byCat[b].filter((r) => r.access === "self_serve_free").length - byCat[a].filter((r) => r.access === "self_serve_free").length);
+const stack = (rows, key, order, col) => {
+  const n = rows.length, cnt = {};
+  rows.forEach((r) => { const k = prim(r[key]); cnt[k] = (cnt[k] || 0) + 1; });
+  return `<div class="stack" role="img" aria-label="${order.filter((k) => cnt[k]).map((k) => `${L(k)} ${cnt[k]}`).join(", ")}">` +
+    order.filter((k) => cnt[k]).map((k) => `<span style="width:${100 * cnt[k] / n}%;background:${col[k]}" title="${L(k)}: ${cnt[k]}"></span>`).join("") + "</div>";
+};
+$("#matrixTbl").innerHTML = `<thead><tr><th>Category</th><th>Free self-serve</th><th>Access path</th><th>Verdict</th><th>Primary auth</th><th>Official MCP</th></tr></thead><tbody>` +
+  cats.map((c) => { const rows = byCat[c]; const free = rows.filter((r) => r.access === "self_serve_free").length; const m = rows.filter((r) => r.official_mcp === "official").length;
+    return `<tr><td><b>${esc(c)}</b></td><td class="mono num">${free}/10</td><td>${stack(rows, "access", ACCESS, ACOL)}</td><td>${stack(rows, "verdict", VERD, VCOL)}</td><td>${stack(rows, "auth_primary", AUTHS, AUCOL)}</td>
+      <td><div class="dots" aria-label="${m} of ${rows.length}">${rows.map((r) => `<b class="${r.official_mcp === "official" ? "on" : ""}" title="${esc(r.app)}: ${L(r.official_mcp)}"></b>`).join("")}</div></td></tr>`; }).join("") + "</tbody>";
+const leg = (title, order, col) => `<span><b>${title}:</b></span>` + order.filter((k) => R.some((r) => prim(r[{ Access: "access", Verdict: "verdict", Auth: "auth_primary" }[title]]) === k)).map((k) => `<span><i style="background:${col[k]}"></i>${L(k)}</span>`).join("");
+$("#matrixLegend").innerHTML = leg("Access", ACCESS, ACOL) + leg("Verdict", VERD, VCOL) + leg("Auth", AUTHS, AUCOL);
+
+// ---------- lanes ----------
+const chip = (r) => `<button class="chip" data-id="${r.id}" title="${esc(r.blocker)}">${esc(r.app)}</button>`;
+const grp = (label, rows) => rows.length ? `<div class="group"><div class="gl">${esc(label)} · ${rows.length}</div><div class="chips">${rows.map(chip).join("")}</div></div>` : "";
+const ready = R.filter((r) => r.verdict === "ready");
+const cav = R.filter((r) => r.verdict === "ready_with_caveats");
+const outreach = R.filter((r) => r.verdict === "blocked" || r.blocker_type === "partnership");
+const caveatOnly = cav.filter((r) => r.blocker_type !== "partnership");
+const by = (rows, k) => rows.filter((r) => r.blocker_type === k);
+$("#lanes").innerHTML = `
+  <div class="lane ok"><header><span class="eyebrow">Build now</span><span class="count">${ready.length}</span><p class="muted">Free credentials, documented API, no review needed to test.</p></header>
+    ${grp("OAuth2", ready.filter((r) => r.auth_primary === "oauth2"))}${grp("API key / token", ready.filter((r) => r.auth_primary !== "oauth2"))}</div>
+  <div class="lane warn"><header><span class="eyebrow">Build, then clear a gate</span><span class="count">${caveatOnly.length}</span><p class="muted">Buildable now. Launch needs a review, a paid tier or per-customer setup.</p></header>
+    ${grp("App / marketplace review", by(caveatOnly, "app_review"))}${grp("Paid plan", by(caveatOnly, "paid_plan"))}${grp("Per-tenant setup", by(caveatOnly, "per_tenant_setup"))}${grp("Local tool / other", caveatOnly.filter((r) => ["local_tool", "other", "self_hosted_only"].includes(r.blocker_type)))}</div>
+  <div class="lane bad"><header><span class="eyebrow">Needs outreach</span><span class="count">${outreach.length}</span><p class="muted">Credentials only via sales, partnership or an existing enterprise contract.</p></header>
+    ${grp("Partnership / sales gate", outreach.filter((r) => r.verdict !== "blocked"))}${grp("Blocked", outreach.filter((r) => r.verdict === "blocked"))}</div>`;
+
+// ---------- ledger ----------
+const opts = (el, label, vals) => { el.innerHTML = `<option value="">${label}</option>` + vals.map((v) => `<option value="${esc(v)}">${esc(L(v))}</option>`).join(""); };
+opts($("#fCat"), "All categories", cats.slice().sort());
+opts($("#fVerdict"), "Any verdict", VERD);
+opts($("#fAccess"), "Any access", ACCESS.filter((k) => R.some((r) => r.access === k)));
+opts($("#fAuth"), "Any primary auth", AUTHS.filter((k) => R.some((r) => r.auth_primary === k)));
+const COLS = [
+  ["id", "#"], ["app", "App"], ["category", "Category"], ["auth_primary", "Auth"], ["access", "Access"], ["api", "API"],
+  ["official_mcp", "MCP"], ["verdict", "Verdict"], ["blocker", "Main blocker"], ["confidence", "Conf."],
+];
+let sortKey = "id", sortDir = 1, openId = null;
+const RANK = { verdict: VERD, access: ACCESS, confidence: ["high", "medium", "low"] };
+function rowHTML(r) {
+  const fixes = (r.corrections || []).length;
+  const others = r.auth_methods.filter((m) => m !== r.auth_primary);
+  return `<tr class="row${openId === r.id ? " open" : ""}" data-id="${r.id}" tabindex="0" aria-expanded="${openId === r.id}">
+    <td class="mono num">${r.id}</td>
+    <td><div class="appname">${esc(r.app)}</div><div class="oneliner">${esc(r.one_liner)}</div></td>
+    <td class="muted">${esc(r.category)}</td>
+    <td class="authlist"><b>${esc(r.auth_primary)}</b>${others.length ? "<br>+ " + others.map(esc).join(", ") : ""}</td>
+    <td><span class="pill p-neutral" style="border-left:3px solid ${ACOL[r.access]}">${L(r.access)}</span></td>
+    <td class="authlist">${r.api_style.map(esc).join(" · ")}<br>${esc(r.api_breadth)}</td>
+    <td>${r.official_mcp === "official" ? `<span class="pill p-accent">Official</span>` : `<span class="muted">${L(r.official_mcp)}</span>`}</td>
+    <td><span class="pill v-${r.verdict}">${L(r.verdict)}</span></td>
+    <td style="max-width:28ch">${esc(r.blocker)}${fixes ? `<div class="fixmark">corrected ×${fixes}</div>` : ""}</td>
+    <td class="mono conf-${r.confidence}">${esc(r.confidence)}</td></tr>`;
+}
+function detailHTML(r) {
+  const ev = Object.entries(r.evidence || {}).filter(([, u]) => u).map(([k, u]) => `<div><span class="mono muted">${k}</span> <a href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a></div>`).join("");
+  const corr = (r.corrections || []).map((c) => `<div class="corr"><span><b>${esc(c.field)}</b>: <s>${esc(JSON.stringify(c.from))}</s> → <b>${esc(JSON.stringify(c.to))}</b> <span class="pill p-neutral">${esc(c.source)}</span></span><span class="muted">${esc(c.reason)}</span></div>`).join("");
+  return `<tr class="detail"><td colspan="${COLS.length}"><div class="detail-grid">
+    <div><span class="k">Auth</span><p>${esc(r.auth_notes)}</p></div>
+    <div><span class="k">Access / credentials</span><p>${esc(r.access_notes)}</p></div>
+    <div><span class="k">API surface</span><p>${esc(r.api_breadth_notes)} · webhooks: ${esc(r.webhooks)} · sandbox: ${esc(r.sandbox)}</p></div>
+    <div><span class="k">MCP</span><p>${esc(r.mcp_notes)}</p></div>
+    <div><span class="k">Toolkit notes</span><p>${esc(r.notes)}</p></div>
+    <div><span class="k">Evidence</span><div class="evlinks">${ev || '<span class="muted">none</span>'}</div></div>
+    ${r.uncertain_fields && r.uncertain_fields.length ? `<div><span class="k">Agent flagged as uncertain</span><p class="mono">${r.uncertain_fields.map(esc).join(", ")}</p></div>` : ""}
+    ${corr ? `<div style="grid-column:1/-1"><span class="k">Corrections made by the verification loops</span>${corr}</div>` : ""}
+  </div></td></tr>`;
+}
+function renderLedger() {
+  const q = $("#q").value.trim().toLowerCase(), fc = $("#fCat").value, fv = $("#fVerdict").value, fa = $("#fAccess").value, fu = $("#fAuth").value;
+  let rows = R.filter((r) => (!fc || r.category === fc) && (!fv || r.verdict === fv) && (!fa || r.access === fa) && (!fu || r.auth_primary === fu) &&
+    (!q || JSON.stringify([r.app, r.one_liner, r.blocker, r.notes, r.access_notes, r.auth_notes, r.mcp_notes, r.category]).toLowerCase().includes(q)));
+  const val = (r) => sortKey === "api" ? r.api_breadth : (RANK[sortKey] ? RANK[sortKey].indexOf(r[sortKey]) : prim(r[sortKey]));
+  rows.sort((a, b) => { const x = val(a), y = val(b); return (x > y ? 1 : x < y ? -1 : a.id - b.id) * sortDir; });
+  $("#ledger").innerHTML = `<thead><tr>${COLS.map(([k, l]) => `<th data-k="${k}" aria-sort="${sortKey === k ? (sortDir > 0 ? "ascending" : "descending") : "none"}">${l}${sortKey === k ? (sortDir > 0 ? " ↑" : " ↓") : ""}</th>`).join("")}</tr></thead><tbody>` +
+    rows.map((r) => rowHTML(r) + (openId === r.id ? detailHTML(r) : "")).join("") + "</tbody>";
+  $("#count").textContent = `${rows.length} of ${R.length}`;
+}
+["#q", "#fCat", "#fVerdict", "#fAccess", "#fAuth"].forEach((s) => $(s).addEventListener("input", renderLedger));
+$("#ledger").addEventListener("click", (e) => {
+  const th = e.target.closest("th"); if (th) { const k = th.dataset.k; sortDir = sortKey === k ? -sortDir : 1; sortKey = k; renderLedger(); return; }
+  const tr = e.target.closest("tr.row"); if (tr && !e.target.closest("a")) { const id = +tr.dataset.id; openId = openId === id ? null : id; renderLedger(); }
+});
+$("#ledger").addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && e.target.matches("tr.row")) { e.preventDefault(); e.target.click(); } });
+document.addEventListener("click", (e) => { const c = e.target.closest(".chip[data-id]"); if (!c) return;
+  ["#q", "#fCat", "#fVerdict", "#fAccess", "#fAuth"].forEach((s) => $(s).value = ""); openId = +c.dataset.id; renderLedger();
+  const row = document.querySelector(`tr.row[data-id="${openId}"]`); if (row) row.scrollIntoView({ block: "center", behavior: "smooth" }); });
+renderLedger();
+
+// ---------- agent ----------
+const A = I.agent || {};
+$("#agentLede").innerHTML = A.lede || "";
+$("#pipe").innerHTML = (A.steps || []).map((s, i) => `<div class="step${s.human ? " human" : ""}"><span class="n">STEP ${i + 1}${s.human ? " · HUMAN" : ""}</span><h3>${esc(s.title)}</h3><p>${s.body}</p>${s.out ? `<span class="out">${esc(s.out)}</span>` : ""}</div>`).join("");
+$("#humanList").innerHTML = (A.human || []).map((x) => `<li>${x}</li>`).join("");
+$("#agentFails").innerHTML = (A.fails || []).map((x) => `<li>${x}</li>`).join("");
+
+// ---------- verification ----------
+const V = I.verify || {};
+$("#verifyLede").innerHTML = V.lede || "";
+const accBars = [];
+const addGroup = (label, s, keys) => { if (!s) return; accBars.push(`<div class="accgroup"><div class="gl">${esc(label)} · ${s.n_apps} apps × fields = ${s.n_fields} checks</div>` +
+  keys.filter(([k]) => s[k]).map(([k, l, col]) => `<div class="accrow"><span>${l}</span><div class="bar"><span style="width:${s[k].accuracy}%;background:${col}"></span></div><span class="val">${s[k].accuracy}%</span></div>`).join("") + "</div>"); };
+const KEYS = [["pass0_closed_book", "Pass 0 · closed-book LLM", "var(--s6)"], ["pass1_grounded", "Pass 1 · doc-grounded agent", "var(--s2)"], ["final", "Final · after loops", "var(--ok)"]];
+addGroup("Calibration sample (used to find error patterns)", cal, KEYS);
+addGroup("Holdout sample (never used for fixes)", hold, KEYS);
+$("#accChart").innerHTML = accBars.length ? accBars.join("") + `<div class="axis"><span></span><div class="ticks"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div><span></span></div>` : `<p class="muted">Verification pending.</p>`;
+$("#loopTbl").innerHTML = `<table class="simple"><thead><tr><th>Loop</th><th>Result</th></tr></thead><tbody>${(V.loops || []).map((l) => `<tr><td>${l[0]}</td><td>${l[1]}</td></tr>`).join("")}</tbody></table>`;
+const FIELDS = ["auth_primary", "access", "api_style", "official_mcp", "verdict"];
+const fRow = (label, s) => s ? `<tr><td>${label}</td>${FIELDS.map((f) => ["pass0_closed_book", "pass1_grounded", "final"].map((k) => s[k] && s[k].by_field[f] != null ? `<td class="mono num">${s[k].by_field[f]}%</td>` : "<td>—</td>").join("")).join("")}</tr>` : "";
+$("#fieldTbl").innerHTML = `<thead><tr><th rowspan="2">Sample</th>${FIELDS.map((f) => `<th colspan="3">${f}</th>`).join("")}</tr><tr>${FIELDS.map(() => "<th>P0</th><th>P1</th><th>Final</th>").join("")}</tr></thead><tbody>${fRow("Calibration", cal)}${fRow("Holdout", hold)}</tbody>`;
+const C = D.corrections || [];
+$("#corrTbl").innerHTML = `<thead><tr><th>App</th><th>Field</th><th>From</th><th>To</th><th>Caught by</th><th>Why</th></tr></thead><tbody>` +
+  C.map((c) => `<tr><td><button class="chip" data-id="${c.id}">${esc(c.app)}</button></td><td class="mono">${esc(c.field)}</td><td class="mono miss">${esc(JSON.stringify(c.from))}</td><td class="mono hit">${esc(JSON.stringify(c.to))}</td><td><span class="pill p-neutral">${esc(c.source)}</span></td><td style="min-width:30ch">${esc(c.reason)}${c.evidence ? ` <a href="${esc(c.evidence)}" target="_blank" rel="noopener">source</a>` : ""}</td></tr>`).join("") + "</tbody>";
+const H = D.human || {};
+$("#humanLede").innerHTML = H.lede || "";
+$("#humanTbl").innerHTML = (H.rows && H.rows.length) ? `<thead><tr><th>App</th><th>Field</th><th>Agent said</th><th>Human found</th><th>Match</th><th>Page checked</th></tr></thead><tbody>` +
+  H.rows.map((h) => `<tr><td>${esc(h.app)}</td><td class="mono">${esc(h.field)}</td><td class="mono">${esc(h.agent)}</td><td class="mono">${esc(h.human)}</td><td class="${h.match ? "hit" : "miss"}">${h.match ? "yes" : "no"}</td><td><a href="${esc(h.url)}" target="_blank" rel="noopener">${esc(h.url)}</a></td></tr>`).join("") + "</tbody>"
+  : `<tbody><tr><td class="muted">Pending.</td></tr></tbody>`;
+
+// ---------- limits / run ----------
+$("#limitsList").innerHTML = (I.limits || []).map((x) => `<li>${x}</li>`).join("");
+$("#runLede").innerHTML = I.run_lede || "";
+$("#runCmds").textContent = (I.run_cmds || []).join("\n");
+$("#foot").innerHTML = I.footer || "";
+})();
+</script>

@@ -1,0 +1,8 @@
+358 unique evidence URLs: {'ok': 351, 'error': 7}
+  error        400  https://developers.facebook.com/docs/development/create-an-app/threads-use-case
+  error        400  https://developers.facebook.com/docs/marketing-api/overview/authorization
+  error        400  https://developers.facebook.com/docs/marketing-apis/overview
+  error        400  https://developers.facebook.com/docs/threads/get-started
+  error        400  https://developers.facebook.com/docs/threads/overview
+  error        400  https://developers.facebook.com/docs/whatsapp/access-tokens
+  error        400  https://developers.facebook.com/docs/whatsapp/cloud-api/get-started
