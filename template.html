@@ -253,7 +253,7 @@ details.more summary { cursor: pointer; font-weight: 600; font-size: 14px; }
   </div>
   <div class="card"><h3>Per-field accuracy</h3><div class="tscroll" style="border:0"><table class="simple" id="fieldTbl"></table></div></div>
   <div class="sechead"><h3>Every correction, with its source</h3>
-    <p class="muted">Hits and misses, shown as they happened. "From" is what the first grounded pass said.</p></div>
+    <p class="muted">Hits and misses, shown as they happened. "From" is what the first grounded pass said.</p><p class="muted" id="fixReviewLede"></p></div>
   <div class="tscroll"><table class="simple" id="corrTbl"></table></div>
   <div class="sechead"><h3>Human spot-check</h3><p class="muted" id="humanLede"></p></div>
   <div class="tscroll"><table class="simple" id="humanTbl"></table></div>
@@ -434,8 +434,14 @@ const FIELDS = ["auth_primary", "access", "api_style", "official_mcp", "verdict"
 const fRow = (label, s) => s ? `<tr><td>${label}</td>${FIELDS.map((f) => ["pass0_closed_book", "pass1_grounded", "final"].map((k) => s[k] && s[k].by_field[f] != null ? `<td class="mono num">${s[k].by_field[f]}%</td>` : "<td>—</td>").join("")).join("")}</tr>` : "";
 $("#fieldTbl").innerHTML = `<thead><tr><th rowspan="2">Sample</th>${FIELDS.map((f) => `<th colspan="3">${f}</th>`).join("")}</tr><tr>${FIELDS.map(() => "<th>P0</th><th>P1</th><th>Final</th>").join("")}</tr></thead><tbody>${fRow("Calibration", cal)}${fRow("Holdout", hold)}</tbody>`;
 const C = D.corrections || [];
-$("#corrTbl").innerHTML = `<thead><tr><th>App</th><th>Field</th><th>From</th><th>To</th><th>Caught by</th><th>Why</th></tr></thead><tbody>` +
-  C.map((c) => `<tr><td><button class="chip" data-id="${c.id}">${esc(c.app)}</button></td><td class="mono">${esc(c.field)}</td><td class="mono miss">${esc(JSON.stringify(c.from))}</td><td class="mono hit">${esc(JSON.stringify(c.to))}</td><td><span class="pill p-neutral">${esc(c.source)}</span></td><td style="min-width:30ch">${esc(c.reason)}${c.evidence ? ` <a href="${esc(c.evidence)}" target="_blank" rel="noopener">source</a>` : ""}</td></tr>`).join("") + "</tbody>";
+const clip = (s) => s && s.length > 110 ? s.slice(0, 107) + "…\"" : s;  // full value in the title tooltip and the app's row
+const FR = D.fix_review || {}, frDone = FR.status === "done";
+const frBy = Object.fromEntries((FR.rows || []).map((r) => [r.app, r]));
+$("#fixReviewLede").innerHTML = frDone ? FR.lede : "";
+const frCell = (app) => { const r = frBy[app]; if (!r) return "<td>—</td>";
+  return `<td class="${r.call === "accept" ? "hit" : r.call === "reject" ? "miss" : "muted"}">${esc(r.call)}${r.note ? `<div class="muted" style="min-width:24ch">${esc(r.note)}</div>` : ""}</td>`; };
+$("#corrTbl").innerHTML = `<thead><tr><th>App</th><th>Field</th><th>From</th><th>To</th><th>Caught by</th><th>Why</th>${frDone ? "<th>Human review</th>" : ""}</tr></thead><tbody>` +
+  C.map((c) => `<tr><td><button class="chip" data-id="${c.id}">${esc(c.app)}</button></td><td class="mono">${esc(c.field)}</td><td class="mono miss" title="${esc(JSON.stringify(c.from))}">${esc(clip(JSON.stringify(c.from)))}</td><td class="mono hit" title="${esc(JSON.stringify(c.to))}">${esc(clip(JSON.stringify(c.to)))}</td><td><span class="pill p-neutral">${esc(c.source)}</span></td><td style="min-width:30ch">${esc(c.reason)}${c.evidence ? ` <a href="${esc(c.evidence)}" target="_blank" rel="noopener">source</a>` : ""}</td>${frDone ? frCell(c.app) : ""}</tr>`).join("") + "</tbody>";
 const H = D.human || {};
 $("#humanLede").innerHTML = H.lede || "";
 $("#humanTbl").innerHTML = (H.rows && H.rows.length) ? `<thead><tr><th>App</th><th>Field</th><th>Agent said</th><th>Human found</th><th>Match</th><th>Human's note</th><th>Page checked</th></tr></thead><tbody>` +
