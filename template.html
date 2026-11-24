@@ -173,6 +173,7 @@ table.simple th, table.simple td { padding: 8px 10px; border-bottom: 1px solid v
 table.simple th { font-family: var(--mono); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); background: var(--sunk); }
 .tscroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
 .tscroll table.simple { min-width: 720px; }
+table.simple td.note { min-width: 240px; max-width: 420px; color: var(--muted); }
 .hit { color: var(--ok); font-weight: 600; } .miss { color: var(--bad); font-weight: 600; }
 pre.cmd { background: var(--sunk); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; overflow-x: auto; font-family: var(--mono); font-size: 12.5px; line-height: 1.6; margin: 0; }
 footer { padding-block: 40px 60px; color: var(--muted); font-size: 13px; }
@@ -300,7 +301,9 @@ const pct = (a, b) => b ? Math.round(1000 * a / b) / 10 : 0;
 const sc = D.scores || {}, cal = sc.calibration, hold = sc.holdout;
 const finalAcc = hold && hold.final ? hold.final.accuracy : null;  // only the holdout is an honest headline number
 $("#lede").innerHTML = `An agent pipeline researched auth, access gates, API surface, MCP and buildability for <b>${S.n} apps</b>, citing official docs for each answer.` +
-  (finalAcc != null ? ` Independent verifier agents, a real-browser link check and a human spot-check put the final field accuracy at <b>${finalAcc}%</b> on apps the pipeline never tuned on.` : "") +
+  (finalAcc != null ? ` Independent verifier agents, with disputed pages re-read in a real browser, put the final field accuracy at <b>${finalAcc}%</b> on apps the pipeline never tuned on.` : "") +
+  ((D.human && D.human.status === "done") ? (() => { const r = D.human.rows || [], u = r.filter((h) => h.match === null).length, m = r.filter((h) => h.match === false).length;
+    return ` A blind human spot-check of ${r.length} random fields matched the agent on <b>${D.human.hits}</b>` + (u ? `; ${u} could not be settled from the cited page` : "") + (m ? `; ${m} disagreed` : "") + "."; })() : "") +
   ` <b>${S.ready}</b> apps can be built today with self-serve credentials, <b>${S.caveats}</b> are buildable behind a gate, and <b>${S.blocked}</b> are blocked.`;
 $("#asof").textContent = I.as_of ? `Researched ${I.as_of}` : "";
 if (I.repo_url) { $("#repoLink").href = I.repo_url; }
@@ -435,8 +438,8 @@ $("#corrTbl").innerHTML = `<thead><tr><th>App</th><th>Field</th><th>From</th><th
   C.map((c) => `<tr><td><button class="chip" data-id="${c.id}">${esc(c.app)}</button></td><td class="mono">${esc(c.field)}</td><td class="mono miss">${esc(JSON.stringify(c.from))}</td><td class="mono hit">${esc(JSON.stringify(c.to))}</td><td><span class="pill p-neutral">${esc(c.source)}</span></td><td style="min-width:30ch">${esc(c.reason)}${c.evidence ? ` <a href="${esc(c.evidence)}" target="_blank" rel="noopener">source</a>` : ""}</td></tr>`).join("") + "</tbody>";
 const H = D.human || {};
 $("#humanLede").innerHTML = H.lede || "";
-$("#humanTbl").innerHTML = (H.rows && H.rows.length) ? `<thead><tr><th>App</th><th>Field</th><th>Agent said</th><th>Human found</th><th>Match</th><th>Page checked</th></tr></thead><tbody>` +
-  H.rows.map((h) => `<tr><td>${esc(h.app)}</td><td class="mono">${esc(h.field)}</td><td class="mono">${esc(h.agent)}</td><td class="mono">${esc(h.human)}</td><td class="${h.match ? "hit" : "miss"}">${h.match ? "yes" : "no"}</td><td><a href="${esc(h.url)}" target="_blank" rel="noopener">${esc(h.url)}</a></td></tr>`).join("") + "</tbody>"
+$("#humanTbl").innerHTML = (H.rows && H.rows.length) ? `<thead><tr><th>App</th><th>Field</th><th>Agent said</th><th>Human found</th><th>Match</th><th>Human's note</th><th>Page checked</th></tr></thead><tbody>` +
+  H.rows.map((h) => `<tr><td>${esc(h.app)}</td><td class="mono">${esc(h.field)}</td><td class="mono">${esc(h.agent)}</td><td class="mono">${esc(h.human)}</td><td class="${h.match === null ? "muted" : h.match ? "hit" : "miss"}">${h.match === null ? "unsure" : h.match ? "yes" : "no"}</td><td class="note">${esc(h.note || "")}</td><td><a href="${esc(h.url)}" target="_blank" rel="noopener">${esc(h.url)}</a></td></tr>`).join("") + "</tbody>"
   : `<tbody><tr><td class="muted">Pending.</td></tr></tbody>`;
 
 // ---------- limits / run ----------
