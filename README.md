@@ -88,6 +88,15 @@ python scripts/score.py
 python scripts/insights.py && python scripts/build_site.py
 ```
 
+## Human spot-check and redeploy
+
+```bash
+python scripts/human.py make     # blind checklist: data/verify/human-checklist.csv
+# open each URL, fill human_value from what the page says
+python scripts/human.py ingest   # -> data/verify/human.json
+bash scripts/publish.sh "Add human spot-check"
+```
+
 ## Known limits
 
 Small verification samples (150 + 75 field checks); verifiers share a model family with the researchers;
