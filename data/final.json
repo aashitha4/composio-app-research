@@ -185,7 +185,7 @@
       "oauth2"
     ],
     "auth_primary": "oauth2",
-    "auth_notes": "API keys are created under Settings > Developers > API, shown once, sent as Bearer, and can be limited to a role. OAuth is for external apps acting on behalf of users (separate OAuth docs, not fetched). The MCP server supports OAuth with automatic client registration, or an API key.",
+    "auth_notes": "OAuth 2.0 authorization code (dynamic client registration) is the documented method for an external app acting on behalf of a Twenty user; API keys (Settings > Developers > API, shown once, sent as Bearer, can be limited to a role) are for internal scripts and automation. The MCP server supports OAuth with automatic client registration, or an API key.",
     "access": "self_serve_free",
     "access_notes": "Open-source core is free to self-host (Docker Compose), giving $0 credentials. Twenty Cloud has no free plan: 30-day trial without a credit card, then Pro $9, Organization $39/user/month, Enterprise from $50k/yr. API and webhooks are included on all Cloud plans (50/100 calls per min on Pro/Org).",
     "api_style": [
@@ -203,7 +203,7 @@
     "blocker_type": "none",
     "evidence": {
       "docs": "https://docs.twenty.com/developers/introduction",
-      "auth": "https://docs.twenty.com/developers/extend/api",
+      "auth": "https://docs.twenty.com/developers/extend/oauth",
       "access": "https://twenty.com/pricing",
       "mcp": "https://docs.twenty.com/developers/extend/mcp"
     },
@@ -221,6 +221,22 @@
         "to": "oauth2",
         "source": "verifier",
         "reason": "Verifier disagreed; re-checked in browser. Twenty's OAuth page maps 'External app acting on behalf of a user' to OAuth Authorization Code (dynamic client registration); API keys are for internal scripts. The researcher's own note says it never fetched the OAuth page.",
+        "evidence": "https://docs.twenty.com/developers/extend/oauth"
+      },
+      {
+        "field": "evidence.auth",
+        "from": "https://docs.twenty.com/developers/extend/api",
+        "to": "https://docs.twenty.com/developers/extend/oauth",
+        "source": "verifier",
+        "reason": "Follow-on to the auth_primary fix, missed at the time and caught while preparing the human fix review: the record still cited the API-key page. Cite the OAuth page that settles it.",
+        "evidence": "https://docs.twenty.com/developers/extend/oauth"
+      },
+      {
+        "field": "auth_notes",
+        "from": "API keys are created under Settings > Developers > API, shown once, sent as Bearer, and can be limited to a role. OAuth is for external apps acting on behalf of users (separate OAuth docs, not fetched). The MCP server supports OAuth with automatic client registration, or an API key.",
+        "to": "OAuth 2.0 authorization code (dynamic client registration) is the documented method for an external app acting on behalf of a Twenty user; API keys (Settings > Developers > API, shown once, sent as Bearer, can be limited to a role) are for internal scripts and automation. The MCP server supports OAuth with automatic client registration, or an API key.",
+        "source": "verifier",
+        "reason": "Follow-on to the auth_primary fix: the old note said the OAuth docs were not fetched; the OAuth page was re-read in a browser during adjudication.",
         "evidence": "https://docs.twenty.com/developers/extend/oauth"
       }
     ]

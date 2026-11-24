@@ -58,6 +58,12 @@ def main():
     hv = jl("verify/human.json", {})
     h_unsure = [r for r in hv.get("rows", []) if r["match"] is None]
     h_miss = [r for r in hv.get("rows", []) if r["match"] is False]
+    fr = jl("verify/fix-review.json", {})
+    fr_txt = ""
+    if fr.get("status") == "done":
+        k = fr["counts"]
+        fr_txt = (f" I also reviewed every logged fix ({fr['n_fields']} field changes across {fr['n_apps']} apps; not blind): accepted {k['accept']} of {fr['n_apps']}"
+                  + (f", rejected {k['reject']}" if k["reject"] else "") + (f", unsure about {k['unsure']}" if k["unsure"] else "") + ".")
 
     findings = [
         dict(big=f"{auth['oauth2']}", unit="of 100 · OAuth2 primary",
@@ -112,7 +118,7 @@ def main():
             dict(title="Holdout verification", body="15 apps never used for any fix are verified by new adversarial verifiers against the final data. This is the headline accuracy.", out="data/verify/verifier-holdout-*.json"),
             dict(title="Human spot-check", human=True, body=(f"I checked {hv.get('n', 12)} randomly drawn fields by hand on the cited pages, blind to the agent's answer: {hv.get('hits')} of {hv.get('n')} matched"
                                                               + (f", and {len(h_unsure)} I could not settle from the cited page ({', '.join(esc(r['app']) for r in h_unsure)})" if h_unsure else "")
-                                                              + (f", and {len(h_miss)} disagreed ({', '.join(esc(r['app']) for r in h_miss)})" if h_miss else "") + "."
+                                                              + (f", and {len(h_miss)} disagreed ({', '.join(esc(r['app']) for r in h_miss)})" if h_miss else "") + "." + fr_txt
                                                               if hv.get("status") == "done" else "12 randomly drawn fields are checked by hand on the cited pages, blind to the agent's answer (scripts/human.py)."), out="data/verify/human.json"),
         ],
         human=[

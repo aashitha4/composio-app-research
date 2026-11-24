@@ -65,6 +65,7 @@ def main():
         "browser": jload("verify/browser-linkcheck.json", {}),
         "human": jload("verify/human.json", {"status": "pending", "rows": [], "lede": "Not done yet. Run <code>python scripts/human.py make</code>, check each page by hand, then <code>python scripts/human.py ingest</code>."}),
         "agent_run": jload("verify/agent_run.json", {}),
+        "fix_review": jload("verify/fix-review.json", {"status": "pending", "rows": []}),
     }
     tpl = (ROOT / "site" / "template.html").read_text(encoding="utf-8")
     blob = json.dumps(payload, ensure_ascii=False).replace("</", "<\\/")

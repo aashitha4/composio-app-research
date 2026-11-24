@@ -856,11 +856,11 @@
       "status": 200,
       "kind": "ok"
     },
-    "https://docs.twenty.com/developers/extend/api": {
+    "https://docs.twenty.com/developers/extend/mcp": {
       "status": 200,
       "kind": "ok"
     },
-    "https://docs.twenty.com/developers/extend/mcp": {
+    "https://docs.twenty.com/developers/extend/oauth": {
       "status": 200,
       "kind": "ok"
     },

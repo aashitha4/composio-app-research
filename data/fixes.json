@@ -129,6 +129,22 @@
   "reason": "Verifier disagreed; re-checked in browser. Twenty's OAuth page maps 'External app acting on behalf of a user' to OAuth Authorization Code (dynamic client registration); API keys are for internal scripts. The researcher's own note says it never fetched the OAuth page."
  },
  {
+  "id": 5,
+  "field": "evidence.auth",
+  "to": "https://docs.twenty.com/developers/extend/oauth",
+  "source": "verifier",
+  "reason": "Follow-on to the auth_primary fix, missed at the time and caught while preparing the human fix review: the record still cited the API-key page. Cite the OAuth page that settles it.",
+  "evidence": "https://docs.twenty.com/developers/extend/oauth"
+ },
+ {
+  "id": 5,
+  "field": "auth_notes",
+  "source": "verifier",
+  "to": "OAuth 2.0 authorization code (dynamic client registration) is the documented method for an external app acting on behalf of a Twenty user; API keys (Settings > Developers > API, shown once, sent as Bearer, can be limited to a role) are for internal scripts and automation. The MCP server supports OAuth with automatic client registration, or an API key.",
+  "reason": "Follow-on to the auth_primary fix: the old note said the OAuth docs were not fetched; the OAuth page was re-read in a browser during adjudication.",
+  "evidence": "https://docs.twenty.com/developers/extend/oauth"
+ },
+ {
   "id": 78,
   "field": "verdict",
   "to": "ready",

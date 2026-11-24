@@ -94,6 +94,12 @@ python scripts/insights.py && python scripts/build_site.py
 python scripts/human.py make     # blind checklist: data/verify/human-checklist.csv
 # open each URL, fill human_value from what the page says
 python scripts/human.py ingest   # -> data/verify/human.json
+
+# review of every logged fix (not blind: it shows each proposed change)
+python scripts/human.py fixes-make     # data/verify/fix-review.csv, one row per corrected app
+# fill your_call with accept / reject / unsure
+python scripts/human.py fixes-ingest   # -> data/verify/fix-review.json, shown beside each correction
+
 bash scripts/publish.sh "Add human spot-check"
 ```
 
