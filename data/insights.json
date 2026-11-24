@@ -94,15 +94,15 @@
     "out": "data/verify/verifier-holdout-*.json"
    },
    {
-    "title": "Human review + spot-check",
+    "title": "Human spot-check",
     "human": true,
-    "body": "Every logged fix and the precedence rule are reviewed by a person, and 12 randomly drawn fields are checked by hand, blind to the agent's answer (scripts/human.py).",
+    "body": "I checked 12 randomly drawn fields by hand on the cited pages, blind to the agent's answer: 11 of 12 matched, and 1 I could not settle from the cited page (Freshdesk).",
     "out": "data/verify/human.json"
    }
   ],
   "human": [
    "<b>Writing the definitions.</b> 'Self-serve vs gated' is a judgment call. The first definition was ambiguous, and the agents labelled the same situation two ways (HubSpot 'free' vs. Front 'approval'). The fix was a written precedence rule, not more agent runs.",
-   "<b>Settling disagreements.</b> When a verifier disagreed with a researcher, the page had to be read and a call made (Twenty's auth, Coda's verdict). The orchestrator agent proposed each call with the source; a person signs off on the fix log.",
+   "<b>Settling disagreements.</b> When a verifier disagreed with a researcher, the page had to be read and a call made (Twenty's auth, Coda's verdict). The orchestrator agent proposed each call with its source, and every fix is logged with its reason so a person can review it (data/fixes.json).",
    "<b>Bot-protected docs.</b> developer.salesforce.com, several help centres and Meta's docs refuse scripted fetches. A real browser was needed to confirm those pages.",
    "<b>Entity resolution.</b> fanbasis is now Commas, Paygent Connect runs on NMI's gateway docs, and 'YouTube Transcript' is a third-party service (transcriptapi.com). A human has to accept which entity is meant.",
    "<b>Accepting exceptions.</b> Four records still trip a lint rule on purpose (Clay, Xero, iPayX, fanbasis), each with a written reason."
@@ -113,7 +113,8 @@
    "<b>Over-cautious verdicts:</b> it marked Coda 'with caveats' only because auth is token-based, which the definitions do not treat as a gate.",
    "<b>Schema slips:</b> wrote <code>api_breadth: \"unknown\"</code> (not an allowed value) and cited zapier.com as an auth source.",
    "<b>Fell back to search snippets</b> when docs were JS-rendered or 403 (Lark, Gumroad, Salesforce, Otter). Those records are marked medium/low confidence rather than presented as certain.",
-   "<b>Saw a prompt injection</b> in vendor docs (text addressed to AI agents asking for a feedback report) and correctly ignored it. Docs are untrusted input."
+   "<b>Saw a prompt injection</b> in vendor docs (text addressed to AI agents asking for a feedback report) and correctly ignored it. Docs are untrusted input.",
+   "<b>Cited a page that does not carry the claim</b> (Freshdesk, verdict): the human spot-check could not confirm <code>ready_with_caveats</code> from it. Human's note: \"the page doesn&#x27;t mention the API or a Free plan. It only mentions a 14-day Enterprise trial.\" The answer may still be right, but that citation does not prove it."
   ]
  },
  "verify": {

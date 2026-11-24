@@ -77,7 +77,7 @@ prompt and schema as `research.py`. Then:
 | 4. Independent verifiers | 30-app stratified sample, claims only, try to prove wrong | 2/150 disputes, both upheld |
 | 5. Definition sweep | one written precedence rule applied to all 100 | 6 records relabelled |
 | 6. Holdout verifiers | 15 apps never used for fixes, adversarial | headline accuracy (see page) |
-| 7. Human | review of every fix + blind 12-field spot-check | see page |
+| 7. Human spot-check | 12 random fields checked by hand on the cited pages, blind to the agent's answer | 11 matched, 1 not settled by the cited page (Freshdesk), 0 disagreed |
 
 Reproduce the scoring and page from the committed data (no API key):
 

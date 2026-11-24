@@ -5,6 +5,7 @@
 import json
 import re
 from collections import Counter, defaultdict
+from html import escape as esc
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -55,6 +56,8 @@ def main():
     link = jl("verify/linkcheck-final.json", {}).get("summary") or jl("verify/linkcheck-pass1.json", {}).get("summary", {})
     nlinks = sum(link.values()) if link else 0
     hv = jl("verify/human.json", {})
+    h_unsure = [r for r in hv.get("rows", []) if r["match"] is None]
+    h_miss = [r for r in hv.get("rows", []) if r["match"] is False]
 
     findings = [
         dict(big=f"{auth['oauth2']}", unit="of 100 · OAuth2 primary",
@@ -107,11 +110,14 @@ def main():
             dict(title="Adjudication", body="The orchestrator agent re-read every disputed page in a real browser and settled it. The ambiguous definition (free sandbox vs. review-gated) got a written precedence rule. Every resulting fix is logged with its reason for human review.", out="data/verify/adjudication.json"),
             dict(title="Consistency sweep", body="The precedence rule is applied to all 100, not just the sample. 6 more records relabelled, each logged with its reason.", out="data/fixes.json"),
             dict(title="Holdout verification", body="15 apps never used for any fix are verified by new adversarial verifiers against the final data. This is the headline accuracy.", out="data/verify/verifier-holdout-*.json"),
-            dict(title="Human review + spot-check", human=True, body=(f"I reviewed every logged fix and the precedence rule, then checked {hv.get('n', 12)} randomly drawn fields by hand, blind to the agent's answer: {hv.get('hits')} of {hv.get('n')} matched." if hv.get("status") == "done" else "Every logged fix and the precedence rule are reviewed by a person, and 12 randomly drawn fields are checked by hand, blind to the agent's answer (scripts/human.py)."), out="data/verify/human.json"),
+            dict(title="Human spot-check", human=True, body=(f"I checked {hv.get('n', 12)} randomly drawn fields by hand on the cited pages, blind to the agent's answer: {hv.get('hits')} of {hv.get('n')} matched"
+                                                              + (f", and {len(h_unsure)} I could not settle from the cited page ({', '.join(esc(r['app']) for r in h_unsure)})" if h_unsure else "")
+                                                              + (f", and {len(h_miss)} disagreed ({', '.join(esc(r['app']) for r in h_miss)})" if h_miss else "") + "."
+                                                              if hv.get("status") == "done" else "12 randomly drawn fields are checked by hand on the cited pages, blind to the agent's answer (scripts/human.py)."), out="data/verify/human.json"),
         ],
         human=[
             "<b>Writing the definitions.</b> 'Self-serve vs gated' is a judgment call. The first definition was ambiguous, and the agents labelled the same situation two ways (HubSpot 'free' vs. Front 'approval'). The fix was a written precedence rule, not more agent runs.",
-            "<b>Settling disagreements.</b> When a verifier disagreed with a researcher, the page had to be read and a call made (Twenty's auth, Coda's verdict). The orchestrator agent proposed each call with the source; a person signs off on the fix log.",
+            "<b>Settling disagreements.</b> When a verifier disagreed with a researcher, the page had to be read and a call made (Twenty's auth, Coda's verdict). The orchestrator agent proposed each call with its source, and every fix is logged with its reason so a person can review it (data/fixes.json).",
             "<b>Bot-protected docs.</b> developer.salesforce.com, several help centres and Meta's docs refuse scripted fetches. A real browser was needed to confirm those pages.",
             "<b>Entity resolution.</b> fanbasis is now Commas, Paygent Connect runs on NMI's gateway docs, and 'YouTube Transcript' is a third-party service (transcriptapi.com). A human has to accept which entity is meant.",
             "<b>Accepting exceptions.</b> Four records still trip a lint rule on purpose (Clay, Xero, iPayX, fanbasis), each with a written reason.",
@@ -123,7 +129,10 @@ def main():
             "<b>Schema slips:</b> wrote <code>api_breadth: \"unknown\"</code> (not an allowed value) and cited zapier.com as an auth source.",
             "<b>Fell back to search snippets</b> when docs were JS-rendered or 403 (Lark, Gumroad, Salesforce, Otter). Those records are marked medium/low confidence rather than presented as certain.",
             "<b>Saw a prompt injection</b> in vendor docs (text addressed to AI agents asking for a feedback report) and correctly ignored it. Docs are untrusted input.",
-        ],
+        ] + [f"<b>Cited a page that does not carry the claim</b> ({esc(r['app'])}, {esc(r['field'])}): the human spot-check could not confirm "
+             f"<code>{esc(str(r['agent']))}</code> from it. Human's note: \"{esc(r['note'])}\" The answer may still be right, but that citation does not prove it."
+             for r in h_unsure] + [f"<b>Human disagreed</b> ({esc(r['app'])}, {esc(r['field'])}): agent said <code>{esc(str(r['agent']))}</code>, the page says "
+             f"<code>{esc(r['human'])}</code>. {esc(r['note'])}" for r in h_miss],
     )
 
     loops = [

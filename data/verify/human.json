@@ -1,0 +1,116 @@
+{
+ "status": "done",
+ "lede": "I opened each page myself and recorded what it says, without seeing the agent's answer first. 11 of 12 fields matched the agent; 1 I could not settle from the page. Rows are a seeded random draw (seed 2026) from all 100 apps.",
+ "hits": 11,
+ "n": 12,
+ "rows": [
+  {
+   "app": "LiveAgent",
+   "field": "official_mcp",
+   "agent": "official",
+   "human": "official",
+   "match": true,
+   "url": "https://support.liveagent.com/647358-MCP-Integration-for-Agents",
+   "note": ""
+  },
+  {
+   "app": "Supabase",
+   "field": "auth_primary",
+   "agent": "oauth2",
+   "human": "oauth2",
+   "match": true,
+   "url": "https://supabase.com/docs/guides/integrations/build-a-supabase-oauth-integration",
+   "note": ""
+  },
+  {
+   "app": "Aircall",
+   "field": "verdict",
+   "agent": "ready_with_caveats",
+   "human": "ready_with_caveats",
+   "match": true,
+   "url": "https://aircall.io/pricing/",
+   "note": "API is on all plans, but every plan is paid (from $30/licence/month, minimum 3 licences). There's a free trial, but the page doesn't say if it includes the API."
+  },
+  {
+   "app": "Jira",
+   "field": "verdict",
+   "agent": "ready",
+   "human": "ready",
+   "match": true,
+   "url": "https://developer.atlassian.com/platform/marketplace/getting-started/",
+   "note": "hesitated. The page offers a free developer instance with \"no request forms\". \"Submit for review\" appears only as a Marketplace listing step. It doesn't say outright whether you can use the app in production without Atlassian's approval."
+  },
+  {
+   "app": "higgsfield",
+   "field": "verdict",
+   "agent": "ready_with_caveats",
+   "human": "ready_with_caveats",
+   "match": true,
+   "url": "https://docs.higgsfield.ai/docs/help/faq.md",
+   "note": "API keys come from the dashboard, but the API is pay-as-you-go: you top up a balance and pay for each generation."
+  },
+  {
+   "app": "Google Ads",
+   "field": "auth_primary",
+   "agent": "oauth2",
+   "human": "oauth2",
+   "match": true,
+   "url": "https://developers.google.com/google-ads/api/docs/oauth/overview",
+   "note": "you also need a Google Ads developer token on top of OAuth."
+  },
+  {
+   "app": "Smartsheet",
+   "field": "auth_primary",
+   "agent": "oauth2",
+   "human": "oauth2",
+   "match": true,
+   "url": "https://developers.smartsheet.com/api/smartsheet/guides/advanced-topics/oauth",
+   "note": ""
+  },
+  {
+   "app": "Pylon",
+   "field": "official_mcp",
+   "agent": "official",
+   "human": "official",
+   "match": true,
+   "url": "https://docs.usepylon.com/pylon-docs/integrations/pylon-mcp",
+   "note": "US server https://mcp.usepylon.com, EU server https://mcp.eu.usepylon.com, set up under Settings > AI Controls > MCP Server"
+  },
+  {
+   "app": "Freshdesk",
+   "field": "verdict",
+   "agent": "ready_with_caveats",
+   "human": "unsure",
+   "match": null,
+   "url": "https://www.freshworks.com/freshdesk/pricing/",
+   "note": "the page doesn't mention the API or a Free plan. It only mentions a 14-day Enterprise trial."
+  },
+  {
+   "app": "HubSpot",
+   "field": "verdict",
+   "agent": "ready_with_caveats",
+   "human": "ready_with_caveats",
+   "match": true,
+   "url": "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/manage-apps-in-hubspot",
+   "note": "an app that hasn't been reviewed is capped at 25 installs (10 if you distribute it privately). The limit goes away after HubSpot reviews it and lists it on the Marketplace."
+  },
+  {
+   "app": "Xero",
+   "field": "official_mcp",
+   "agent": "official",
+   "human": "official",
+   "match": true,
+   "url": "https://developer.xero.com/faq/remote-mcp",
+   "note": "server https://api.xero.com/mcp/v1. The setup steps are on Xero's separate setup page (RMCP docs), not this FAQ."
+  },
+  {
+   "app": "Telegram",
+   "field": "verdict",
+   "agent": "ready",
+   "human": "ready",
+   "match": true,
+   "url": "https://core.telegram.org/bots/features",
+   "note": "hesitated. BotFather creates the bot and gives you the token straight away, with no approval or payment step. The page doesn't actually say \"free\", though."
+  }
+ ]
+}

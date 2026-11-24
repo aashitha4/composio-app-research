@@ -57,10 +57,13 @@ def ingest():
         agent = final[r["app"]][r["field"]]
         human = r["human_value"].strip()
         out.append({"app": r["app"], "field": r["field"], "agent": agent, "human": human,
-                    "match": human == agent, "url": r["url_to_check"], "note": r["note"]})
-    hits = sum(o["match"] for o in out)
-    lede = (f"I opened each page myself and recorded what it says, without looking at the agent's value first. "
-            f"{hits} of {len(out)} fields matched the agent. Rows are a seeded random draw (seed 2026) from all 100 apps.")
+                    "match": None if human == "unsure" else human == agent, "url": r["url_to_check"], "note": r["note"]})
+    hits = sum(o["match"] is True for o in out)
+    unsure = sum(o["match"] is None for o in out)
+    lede = (f"I opened each page myself and recorded what it says, without seeing the agent's answer first. "
+            f"{hits} of {len(out)} fields matched the agent"
+            + (f"; {unsure} I could not settle from the page" if unsure else "")
+            + ". Rows are a seeded random draw (seed 2026) from all 100 apps.")
     OUT.write_text(json.dumps({"status": "done", "lede": lede, "hits": hits, "n": len(out), "rows": out}, indent=1), encoding="utf-8")
     print(lede)
 

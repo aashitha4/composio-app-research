@@ -1,13 +1,13 @@
 app,field,url_to_check,allowed_values,human_value,note
-LiveAgent,official_mcp,https://support.liveagent.com/647358-MCP-Integration-for-Agents,official | community_only | none_found,,
-Supabase,auth_primary,https://supabase.com/docs/guides/integrations/build-a-supabase-oauth-integration,oauth2 | api_key | bearer_token | basic | jwt | hmac_signature | none | other,,
-Aircall,verdict,https://aircall.io/pricing/,ready | ready_with_caveats | blocked,,
-Jira,verdict,https://developer.atlassian.com/platform/marketplace/getting-started/,ready | ready_with_caveats | blocked,,
-higgsfield,verdict,https://docs.higgsfield.ai/docs/help/faq.md,ready | ready_with_caveats | blocked,,
-Google Ads,auth_primary,https://developers.google.com/google-ads/api/docs/oauth/overview,oauth2 | api_key | bearer_token | basic | jwt | hmac_signature | none | other,,
-Smartsheet,auth_primary,https://developers.smartsheet.com/api/smartsheet/guides/advanced-topics/oauth,oauth2 | api_key | bearer_token | basic | jwt | hmac_signature | none | other,,
-Pylon,official_mcp,https://docs.usepylon.com/pylon-docs/integrations/pylon-mcp,official | community_only | none_found,,
-Freshdesk,verdict,https://www.freshworks.com/freshdesk/pricing/,ready | ready_with_caveats | blocked,,
-HubSpot,verdict,https://developers.hubspot.com/docs/apps/developer-platform/build-apps/manage-apps-in-hubspot,ready | ready_with_caveats | blocked,,
-Xero,official_mcp,https://developer.xero.com/faq/remote-mcp,official | community_only | none_found,,
-Telegram,verdict,https://core.telegram.org/bots/features,ready | ready_with_caveats | blocked,,
+LiveAgent,official_mcp,https://support.liveagent.com/647358-MCP-Integration-for-Agents,official | community_only | none_found,official,
+Supabase,auth_primary,https://supabase.com/docs/guides/integrations/build-a-supabase-oauth-integration,oauth2 | api_key | bearer_token | basic | jwt | hmac_signature | none | other,oauth2,
+Aircall,verdict,https://aircall.io/pricing/,ready | ready_with_caveats | blocked,ready_with_caveats,"API is on all plans, but every plan is paid (from $30/licence/month, minimum 3 licences). There's a free trial, but the page doesn't say if it includes the API."
+Jira,verdict,https://developer.atlassian.com/platform/marketplace/getting-started/,ready | ready_with_caveats | blocked,ready,"hesitated. The page offers a free developer instance with ""no request forms"". ""Submit for review"" appears only as a Marketplace listing step. It doesn't say outright whether you can use the app in production without Atlassian's approval."
+higgsfield,verdict,https://docs.higgsfield.ai/docs/help/faq.md,ready | ready_with_caveats | blocked,ready_with_caveats,"API keys come from the dashboard, but the API is pay-as-you-go: you top up a balance and pay for each generation."
+Google Ads,auth_primary,https://developers.google.com/google-ads/api/docs/oauth/overview,oauth2 | api_key | bearer_token | basic | jwt | hmac_signature | none | other,oauth2,you also need a Google Ads developer token on top of OAuth.
+Smartsheet,auth_primary,https://developers.smartsheet.com/api/smartsheet/guides/advanced-topics/oauth,oauth2 | api_key | bearer_token | basic | jwt | hmac_signature | none | other,oauth2,
+Pylon,official_mcp,https://docs.usepylon.com/pylon-docs/integrations/pylon-mcp,official | community_only | none_found,official,"US server https://mcp.usepylon.com, EU server https://mcp.eu.usepylon.com, set up under Settings > AI Controls > MCP Server"
+Freshdesk,verdict,https://www.freshworks.com/freshdesk/pricing/,ready | ready_with_caveats | blocked,unsure,the page doesn't mention the API or a Free plan. It only mentions a 14-day Enterprise trial.
+HubSpot,verdict,https://developers.hubspot.com/docs/apps/developer-platform/build-apps/manage-apps-in-hubspot,ready | ready_with_caveats | blocked,ready_with_caveats,an app that hasn't been reviewed is capped at 25 installs (10 if you distribute it privately). The limit goes away after HubSpot reviews it and lists it on the Marketplace.
+Xero,official_mcp,https://developer.xero.com/faq/remote-mcp,official | community_only | none_found,official,"server https://api.xero.com/mcp/v1. The setup steps are on Xero's separate setup page (RMCP docs), not this FAQ."
+Telegram,verdict,https://core.telegram.org/bots/features,ready | ready_with_caveats | blocked,ready,"hesitated. BotFather creates the bot and gives you the token straight away, with no approval or payment step. The page doesn't actually say ""free"", though."

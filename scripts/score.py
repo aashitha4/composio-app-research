@@ -1,7 +1,8 @@
 """Score each pass against adjudicated ground truth. No API keys needed.
 
 Ground truth lives in data/verify/adjudication.json: one entry per (app, field) checked, with the
-value settled by the independent verifier + doc/browser re-check (+ human spot-check where done).
+value settled by the independent verifier + doc/browser re-check. The blind human spot-check is
+reported separately (data/verify/human.json) and does not feed these scores.
 
   python scripts/score.py     # prints a table, writes data/verify/scores.json
 """
