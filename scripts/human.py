@@ -109,7 +109,7 @@ def fixes_make():
     assert apps_with_fixes == {g[0] for g in FIX_GUIDE}, apps_with_fixes ^ {g[0] for g in FIX_GUIDE}
     rows = []
     for i, (app, url, phrase, q) in enumerate(FIX_GUIDE, 1):
-        cx = final[app]["corrections"]
+        cx = [c for c in final[app]["corrections"] if c["source"] != "human"]
         short = [f"{c['field']}: {_short(c['from'])} -> {_short(c['to'])}" for c in cx if c["field"] not in LONG_TEXT]
         text = [c["field"] for c in cx if c["field"] in LONG_TEXT]
         rows.append({"n": i, "app": app, "what_changed": "; ".join(short) + (f" (+ {', '.join(text)} text updated)" if text else ""),
@@ -118,7 +118,7 @@ def fixes_make():
         w = csv.DictWriter(fh, fieldnames=FIX_COLS)
         w.writeheader()
         w.writerows(rows)
-    print(f"wrote {FIX_CSV} ({len(rows)} apps, {sum(len(final[g[0]]['corrections']) for g in FIX_GUIDE)} field fixes)")
+    print(f"wrote {FIX_CSV} ({len(rows)} apps, {sum(1 for g in FIX_GUIDE for c in final[g[0]]['corrections'] if c['source'] != 'human')} field fixes)")
 
 
 def fixes_ingest():
@@ -128,16 +128,25 @@ def fixes_ingest():
     if bad:
         sys.exit(f"your_call must be one of {CALLS}; fix rows: {bad}")
     final = {r["app"]: r for r in json.loads((ROOT / "data" / "final.json").read_text(encoding="utf-8"))}
-    out = [{"app": r["app"], "call": r["your_call"].strip(), "note": r["note"], "n_fields": len(final[r["app"]]["corrections"])} for r in rows]
+    agent_fx = lambda app: [c for c in final[app]["corrections"] if c["source"] != "human"]  # what was reviewed
+    human_fx = lambda app: [c for c in final[app]["corrections"] if c["source"] == "human"]  # what the review changed
+    out = [{"app": r["app"], "call": r["your_call"].strip(), "note": r["note"], "n_fields": len(agent_fx(r["app"])),
+            "review_changes": [c["field"] for c in human_fx(r["app"])]} for r in rows]
     k = {c: sum(o["call"] == c for o in out) for c in CALLS}
     nf = sum(o["n_fields"] for o in out)
+    nh = sum(len(o["review_changes"]) for o in out)
+    reverted = [o["app"] for o in out if o["call"] == "reject" and o["review_changes"]]
     lede = (f"I reviewed every logged fix ({nf} field changes across {len(out)} apps) against its reason and source page. "
             f"This review is not blind, since it shows the proposed change. Accepted {k['accept']} of {len(out)} apps"
-            + (f", rejected {k['reject']}" if k["reject"] else "") + (f", unsure about {k['unsure']}" if k["unsure"] else "") + ".")
-    FIX_OUT.write_text(json.dumps({"status": "done", "lede": lede, "counts": k, "n_apps": len(out), "n_fields": nf, "rows": out}, indent=1), encoding="utf-8")
+            + (f", rejected {k['reject']}" if k["reject"] else "") + (f", unsure about {k['unsure']}" if k["unsure"] else "") + "."
+            + (f" Rejected fixes were reverted ({', '.join(reverted)})." if reverted else "")
+            + (f" Changes made because of the review are logged with source 'human' ({nh} field changes)." if nh else ""))
+    FIX_OUT.write_text(json.dumps({"status": "done", "lede": lede, "counts": k, "n_apps": len(out), "n_fields": nf, "n_review_changes": nh,
+                                   "reverted": reverted, "rows": out}, indent=1), encoding="utf-8")
     print(lede)
-    if k["reject"]:
-        print("NOTE: rejected fixes are still applied in data/final.json; decide whether to revert them in data/fixes.json.")
+    pending = [o["app"] for o in out if o["call"] == "reject" and not o["review_changes"]]
+    if pending:
+        print(f"NOTE: rejected fixes for {pending} are still applied in data/final.json; revert them in data/fixes.json (source 'human').")
 
 
 if __name__ == "__main__":

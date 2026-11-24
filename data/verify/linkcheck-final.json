@@ -1,6 +1,6 @@
 {
   "summary": {
-    "ok": 351,
+    "ok": 352,
     "error": 7
   },
   "urls": {
@@ -1181,6 +1181,10 @@
       "kind": "ok"
     },
     "https://supabase.com/pricing": {
+      "status": 200,
+      "kind": "ok"
+    },
+    "https://support-dev.discord.com/hc/en-us/articles/23926564536471-How-Do-I-Get-My-App-Verified": {
       "status": 200,
       "kind": "ok"
     },

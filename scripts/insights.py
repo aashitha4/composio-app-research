@@ -63,7 +63,15 @@ def main():
     if fr.get("status") == "done":
         k = fr["counts"]
         fr_txt = (f" I also reviewed every logged fix ({fr['n_fields']} field changes across {fr['n_apps']} apps; not blind): accepted {k['accept']} of {fr['n_apps']}"
-                  + (f", rejected {k['reject']}" if k["reject"] else "") + (f", unsure about {k['unsure']}" if k["unsure"] else "") + ".")
+                  + (f", rejected {k['reject']}" if k["reject"] else "") + (f", unsure about {k['unsure']}" if k["unsure"] else "")
+                  + (f"; reverted {', '.join(fr.get('reverted', []))}" if fr.get("reverted") else "") + ".")
+    # what the human fix review changed, straight from the fix log (source == "human")
+    hfx = [f for f in fixes if f["source"] == "human"]
+    h_apps = {f["id"] for f in hfx}
+    sweep_ids = {f["id"] for f in fixes if f["source"] == "sweep"}
+    sweep_reverted = [f for f in hfx if f["id"] in sweep_ids and f["field"] == "access"]
+    app_name = {r["id"]: r["app"] for r in R}
+    n_sweep = len(sweep_ids)
 
     findings = [
         dict(big=f"{auth['oauth2']}", unit="of 100 · OAuth2 primary",
@@ -114,7 +122,8 @@ def main():
             dict(title="Link check: script + browser", body=f"Every cited URL is requested. {nlinks} unique URLs. Bot-blocked ones are re-opened in a real browser. Result: zero dead links, no invented URLs.", out="data/verify/linkcheck-*.json"),
             dict(title="Independent verifiers", body="Fresh agents see only the claims (no URLs, no notes) and try to prove each of 5 fields wrong on a stratified sample of 30 (3 per category).", out="150 field checks"),
             dict(title="Adjudication", body="The orchestrator agent re-read every disputed page in a real browser and settled it. The ambiguous definition (free sandbox vs. review-gated) got a written precedence rule. Every resulting fix is logged with its reason for human review.", out="data/verify/adjudication.json"),
-            dict(title="Consistency sweep", body="The precedence rule is applied to all 100, not just the sample. 6 more records relabelled, each logged with its reason.", out="data/fixes.json"),
+            dict(title="Consistency sweep", body=f"The precedence rule is applied to all 100, not just the sample. {n_sweep} more records relabelled, each logged with its reason."
+                 + (f" The human review later reverted {len(sweep_reverted)} ({', '.join(app_name[f['id']] for f in sweep_reverted)})." if sweep_reverted else ""), out="data/fixes.json"),
             dict(title="Holdout verification", body="15 apps never used for any fix are verified by new adversarial verifiers against the final data. This is the headline accuracy.", out="data/verify/verifier-holdout-*.json"),
             dict(title="Human spot-check", human=True, body=(f"I checked {hv.get('n', 12)} randomly drawn fields by hand on the cited pages, blind to the agent's answer: {hv.get('hits')} of {hv.get('n')} matched"
                                                               + (f", and {len(h_unsure)} I could not settle from the cited page ({', '.join(esc(r['app']) for r in h_unsure)})" if h_unsure else "")
@@ -127,7 +136,11 @@ def main():
             "<b>Bot-protected docs.</b> developer.salesforce.com, several help centres and Meta's docs refuse scripted fetches. A real browser was needed to confirm those pages.",
             "<b>Entity resolution.</b> fanbasis is now Commas, Paygent Connect runs on NMI's gateway docs, and 'YouTube Transcript' is a third-party service (transcriptapi.com). A human has to accept which entity is meant.",
             "<b>Accepting exceptions.</b> Four records still trip a lint rule on purpose (Clay, Xero, iPayX, fanbasis), each with a written reason.",
-        ],
+        ] + ([f"<b>Overruling the agents.</b> Reviewing the fix log against the docs, I reverted {len(sweep_reverted)} relabel"
+              f"{'s' if len(sweep_reverted) != 1 else ''} ({', '.join(app_name[f['id']] for f in sweep_reverted)}) and had {len(h_apps - {f['id'] for f in sweep_reverted})} "
+              f"more record{'s' if len(h_apps - {f['id'] for f in sweep_reverted}) != 1 else ''} re-cited before accepting "
+              f"({', '.join(app_name[i] for i in sorted(h_apps - {f['id'] for f in sweep_reverted}))}). Every such change is logged with source 'human'."]
+             if hfx else []),
         fails=[
             "<b>Labelled identical situations differently</b> (6 apps) before the precedence rule. The per-record verifiers did not catch it either: they accepted both labels.",
             "<b>Never opened the key page</b> once: for Twenty it read the API-key page but not the OAuth page, so it picked the wrong primary auth.",
@@ -137,7 +150,12 @@ def main():
             "<b>Saw a prompt injection</b> in vendor docs (text addressed to AI agents asking for a feedback report) and correctly ignored it. Docs are untrusted input.",
         ] + [f"<b>Cited a page that does not carry the claim</b> ({esc(r['app'])}, {esc(r['field'])}): the human spot-check could not confirm "
              f"<code>{esc(str(r['agent']))}</code> from it. Human's note: \"{esc(r['note'])}\" The answer may still be right, but that citation does not prove it."
-             for r in h_unsure] + [f"<b>Human disagreed</b> ({esc(r['app'])}, {esc(r['field'])}): agent said <code>{esc(str(r['agent']))}</code>, the page says "
+             for r in h_unsure] + (
+            ["<b>Applied the precedence rule too broadly:</b> the sweep relabelled Grain as approval-gated, but any user can connect with personal-scope OAuth; "
+             "only workspace-wide access needs Grain verification. Caught and reverted in the human fix review."] if 100 in {f["id"] for f in sweep_reverted} else []) + (
+            ["<b>Cited the wrong gate:</b> Discord's record justified 'approval required' with the privileged-intent review, which now starts at 10,000 users and "
+             "no longer blocks installs. The human review challenged it; the real install cap is App Verification past 100 servers, which is now cited."]
+            if 26 in h_apps else []) + [f"<b>Human disagreed</b> ({esc(r['app'])}, {esc(r['field'])}): agent said <code>{esc(str(r['agent']))}</code>, the page says "
              f"<code>{esc(r['human'])}</code>. {esc(r['note'])}" for r in h_miss],
     )
 

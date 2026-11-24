@@ -20,7 +20,7 @@
    "big": "25",
    "unit": "apps · app review",
    "title": "The most common blocker is app review, not money",
-   "body": "25 apps need marketplace or app review before a multi-tenant OAuth app can serve other customers, versus 16 blocked by a paid plan and 11 by a partnership or sales gate. 21 of the 25 approval-gated apps are OAuth platforms with a marketplace: Marketing / Ads / Email / Social (5), Ecommerce (5), Support & Helpdesk (4), Communications & Messaging (4). Examples: Meta Ads, Google Ads, LinkedIn Ads, Shopify, Slack, HubSpot, Zendesk, Intercom.",
+   "body": "25 apps need marketplace or app review before a multi-tenant OAuth app can serve other customers, versus 16 blocked by a paid plan and 11 by a partnership or sales gate. 20 of the 24 approval-gated apps are OAuth platforms with a marketplace: Marketing / Ads / Email / Social (5), Ecommerce (5), Support & Helpdesk (4), Communications & Messaging (4). Examples: Meta Ads, Google Ads, LinkedIn Ads, Shopify, Slack, HubSpot, Zendesk, Intercom.",
    "so": "One repeatable app-review playbook (security questionnaire, scopes justification, demo video, privacy policy) unlocks a quarter of the list. That is an ops process worth owning."
   },
   {
@@ -70,7 +70,7 @@
    },
    {
     "title": "Link check: script + browser",
-    "body": "Every cited URL is requested. 358 unique URLs. Bot-blocked ones are re-opened in a real browser. Result: zero dead links, no invented URLs.",
+    "body": "Every cited URL is requested. 359 unique URLs. Bot-blocked ones are re-opened in a real browser. Result: zero dead links, no invented URLs.",
     "out": "data/verify/linkcheck-*.json"
    },
    {
@@ -85,7 +85,7 @@
    },
    {
     "title": "Consistency sweep",
-    "body": "The precedence rule is applied to all 100, not just the sample. 6 more records relabelled, each logged with its reason.",
+    "body": "The precedence rule is applied to all 100, not just the sample. 6 more records relabelled, each logged with its reason. The human review later reverted 1 (Grain).",
     "out": "data/fixes.json"
    },
    {
@@ -96,7 +96,7 @@
    {
     "title": "Human spot-check",
     "human": true,
-    "body": "I checked 12 randomly drawn fields by hand on the cited pages, blind to the agent's answer: 11 of 12 matched, and 1 I could not settle from the cited page (Freshdesk).",
+    "body": "I checked 12 randomly drawn fields by hand on the cited pages, blind to the agent's answer: 11 of 12 matched, and 1 I could not settle from the cited page (Freshdesk). I also reviewed every logged fix (23 field changes across 14 apps; not blind): accepted 13 of 14, rejected 1; reverted Grain.",
     "out": "data/verify/human.json"
    }
   ],
@@ -105,7 +105,8 @@
    "<b>Settling disagreements.</b> When a verifier disagreed with a researcher, the page had to be read and a call made (Twenty's auth, Coda's verdict). The orchestrator agent proposed each call with its source, and every fix is logged with its reason so a person can review it (data/fixes.json).",
    "<b>Bot-protected docs.</b> developer.salesforce.com, several help centres and Meta's docs refuse scripted fetches. A real browser was needed to confirm those pages.",
    "<b>Entity resolution.</b> fanbasis is now Commas, Paygent Connect runs on NMI's gateway docs, and 'YouTube Transcript' is a third-party service (transcriptapi.com). A human has to accept which entity is meant.",
-   "<b>Accepting exceptions.</b> Four records still trip a lint rule on purpose (Clay, Xero, iPayX, fanbasis), each with a written reason."
+   "<b>Accepting exceptions.</b> Four records still trip a lint rule on purpose (Clay, Xero, iPayX, fanbasis), each with a written reason.",
+   "<b>Overruling the agents.</b> Reviewing the fix log against the docs, I reverted 1 relabel (Grain) and had 1 more record re-cited before accepting (Discord). Every such change is logged with source 'human'."
   ],
   "fails": [
    "<b>Labelled identical situations differently</b> (6 apps) before the precedence rule. The per-record verifiers did not catch it either: they accepted both labels.",
@@ -114,7 +115,9 @@
    "<b>Schema slips:</b> wrote <code>api_breadth: \"unknown\"</code> (not an allowed value) and cited zapier.com as an auth source.",
    "<b>Fell back to search snippets</b> when docs were JS-rendered or 403 (Lark, Gumroad, Salesforce, Otter). Those records are marked medium/low confidence rather than presented as certain.",
    "<b>Saw a prompt injection</b> in vendor docs (text addressed to AI agents asking for a feedback report) and correctly ignored it. Docs are untrusted input.",
-   "<b>Cited a page that does not carry the claim</b> (Freshdesk, verdict): the human spot-check could not confirm <code>ready_with_caveats</code> from it. Human's note: \"the page doesn&#x27;t mention the API or a Free plan. It only mentions a 14-day Enterprise trial.\" The answer may still be right, but that citation does not prove it."
+   "<b>Cited a page that does not carry the claim</b> (Freshdesk, verdict): the human spot-check could not confirm <code>ready_with_caveats</code> from it. Human's note: \"the page doesn&#x27;t mention the API or a Free plan. It only mentions a 14-day Enterprise trial.\" The answer may still be right, but that citation does not prove it.",
+   "<b>Applied the precedence rule too broadly:</b> the sweep relabelled Grain as approval-gated, but any user can connect with personal-scope OAuth; only workspace-wide access needs Grain verification. Caught and reverted in the human fix review.",
+   "<b>Cited the wrong gate:</b> Discord's record justified 'approval required' with the privileged-intent review, which now starts at 10,000 users and no longer blocks installs. The human review challenged it; the real install cap is App Verification past 100 servers, which is now cited."
   ]
  },
  "verify": {
@@ -126,7 +129,7 @@
    ],
    [
     "Link check (script)",
-    "351 of 358 URLs OK; 7 bot-blocked; 0 dead"
+    "352 of 359 URLs OK; 7 bot-blocked; 0 dead"
    ],
    [
     "Link check (real browser)",

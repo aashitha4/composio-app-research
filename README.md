@@ -73,11 +73,12 @@ prompt and schema as `research.py`. Then:
 | 0. Closed-book baseline | LLM answers from memory, written before grounded results | 73.3% field accuracy (calibration) |
 | 1. Grounded researchers | official docs, cite only pages opened | 98.0% (calibration) |
 | 2. Lint v1 → v2 | schema + cross-field rules | 1 → 9 records flagged; 11 field fixes |
-| 3. Link check | script + real browser for bot-blocked pages | 358/358 evidence URLs resolve, 0 invented |
+| 3. Link check | script + real browser for bot-blocked pages | 359/359 evidence URLs resolve, 0 invented |
 | 4. Independent verifiers | 30-app stratified sample, claims only, try to prove wrong | 2/150 disputes, both upheld |
-| 5. Definition sweep | one written precedence rule applied to all 100 | 6 records relabelled |
+| 5. Definition sweep | one written precedence rule applied to all 100 | 6 records relabelled (human review later reverted 1, Grain) |
 | 6. Holdout verifiers | 15 apps never used for fixes, adversarial | headline accuracy (see page) |
 | 7. Human spot-check | 12 random fields checked by hand on the cited pages, blind to the agent's answer | 11 matched, 1 not settled by the cited page (Freshdesk), 0 disagreed |
+| 8. Human fix review | every logged fix (23 field changes, 14 apps) checked against its reason and page; not blind | 13 accepted (Discord after a better source was cited), 1 rejected and reverted (Grain); review changes logged as source `human` |
 
 Reproduce the scoring and page from the committed data (no API key):
 

@@ -438,10 +438,10 @@ const clip = (s) => s && s.length > 110 ? s.slice(0, 107) + "…\"" : s;  // ful
 const FR = D.fix_review || {}, frDone = FR.status === "done";
 const frBy = Object.fromEntries((FR.rows || []).map((r) => [r.app, r]));
 $("#fixReviewLede").innerHTML = frDone ? FR.lede : "";
-const frCell = (app) => { const r = frBy[app]; if (!r) return "<td>—</td>";
+const frCell = (app, src) => { const r = frBy[app]; if (src === "human") return `<td class="muted">change made in review</td>`; if (!r) return "<td>—</td>";
   return `<td class="${r.call === "accept" ? "hit" : r.call === "reject" ? "miss" : "muted"}">${esc(r.call)}${r.note ? `<div class="muted" style="min-width:24ch">${esc(r.note)}</div>` : ""}</td>`; };
 $("#corrTbl").innerHTML = `<thead><tr><th>App</th><th>Field</th><th>From</th><th>To</th><th>Caught by</th><th>Why</th>${frDone ? "<th>Human review</th>" : ""}</tr></thead><tbody>` +
-  C.map((c) => `<tr><td><button class="chip" data-id="${c.id}">${esc(c.app)}</button></td><td class="mono">${esc(c.field)}</td><td class="mono miss" title="${esc(JSON.stringify(c.from))}">${esc(clip(JSON.stringify(c.from)))}</td><td class="mono hit" title="${esc(JSON.stringify(c.to))}">${esc(clip(JSON.stringify(c.to)))}</td><td><span class="pill p-neutral">${esc(c.source)}</span></td><td style="min-width:30ch">${esc(c.reason)}${c.evidence ? ` <a href="${esc(c.evidence)}" target="_blank" rel="noopener">source</a>` : ""}</td>${frDone ? frCell(c.app) : ""}</tr>`).join("") + "</tbody>";
+  C.map((c) => `<tr><td><button class="chip" data-id="${c.id}">${esc(c.app)}</button></td><td class="mono">${esc(c.field)}</td><td class="mono miss" title="${esc(JSON.stringify(c.from))}">${esc(clip(JSON.stringify(c.from)))}</td><td class="mono hit" title="${esc(JSON.stringify(c.to))}">${esc(clip(JSON.stringify(c.to)))}</td><td><span class="pill p-neutral">${esc(c.source)}</span></td><td style="min-width:30ch">${esc(c.reason)}${c.evidence ? ` <a href="${esc(c.evidence)}" target="_blank" rel="noopener">source</a>` : ""}</td>${frDone ? frCell(c.app, c.source) : ""}</tr>`).join("") + "</tbody>";
 const H = D.human || {};
 $("#humanLede").innerHTML = H.lede || "";
 $("#humanTbl").innerHTML = (H.rows && H.rows.length) ? `<thead><tr><th>App</th><th>Field</th><th>Agent said</th><th>Human found</th><th>Match</th><th>Human's note</th><th>Page checked</th></tr></thead><tbody>` +

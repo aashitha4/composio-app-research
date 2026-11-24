@@ -165,5 +165,37 @@
   "to": "none (no OAuth for the REST API; users paste a personal token)",
   "source": "verifier",
   "reason": "Follows verdict=ready; caveat kept as a note."
+ },
+ {
+  "id": 26,
+  "field": "evidence.access",
+  "to": "https://support-dev.discord.com/hc/en-us/articles/23926564536471-How-Do-I-Get-My-App-Verified",
+  "source": "human",
+  "reason": "Human fix review challenged the relabel: the cited gateway page only covers privileged-intent review, which now starts at 10,000 users and no longer blocks installs. The general install cap is App Verification, required to scale past 100 servers; cite it.",
+  "evidence": "https://support-dev.discord.com/hc/en-us/articles/23926564536471-How-Do-I-Get-My-App-Verified"
+ },
+ {
+  "id": 26,
+  "field": "blocker",
+  "source": "human",
+  "evidence": "https://support-dev.discord.com/hc/en-us/articles/23926564536471-How-Do-I-Get-My-App-Verified",
+  "reason": "Follows the human review: name the real install cap first.",
+  "to": "App Verification (owner ID check) required past 100 servers; privileged intents need review above 10,000 users"
+ },
+ {
+  "id": 26,
+  "field": "access_notes",
+  "source": "human",
+  "evidence": "https://support-dev.discord.com/hc/en-us/articles/40281523410967-Changes-to-Privileged-Intent-Access-for-Discord-Apps",
+  "reason": "Follows the human review: the old note described the pre-2026 privileged-intent rule (100 guilds, installs blocked during review).",
+  "to": "Any developer creates an app and bot token free in the Developer Portal. App Verification (the owner's identity check through Stripe plus a checklist) is required for an app to scale past 100 servers (https://support-dev.discord.com/hc/en-us/articles/23926564536471-How-Do-I-Get-My-App-Verified). Privileged intents (MESSAGE_CONTENT, GUILD_MEMBERS, GUILD_PRESENCES) can be self-enabled until the app reaches 10,000 unique users; above that Discord reviews access (and again every year), and new installs are not blocked while review is pending (https://support-dev.discord.com/hc/en-us/articles/40281523410967-Changes-to-Privileged-Intent-Access-for-Discord-Apps)."
+ },
+ {
+  "id": 100,
+  "field": "access",
+  "to": "self_serve_free",
+  "source": "human",
+  "evidence": "https://developers.grain.com/authentication.html",
+  "reason": "Human fix review rejected the sweep relabel: any Grain user can connect a client with personal-scope OAuth (public clients need no registration), so there is no install cap. Only the workspace-wide scope needs Grain verification; that stays as the caveat."
  }
 ]

@@ -1,0 +1,121 @@
+{
+ "status": "done",
+ "lede": "I reviewed every logged fix (23 field changes across 14 apps) against its reason and source page. This review is not blind, since it shows the proposed change. Accepted 13 of 14 apps, rejected 1. Rejected fixes were reverted (Grain). Changes made because of the review are logged with source 'human' (4 field changes).",
+ "counts": {
+  "accept": 13,
+  "reject": 1,
+  "unsure": 0
+ },
+ "n_apps": 14,
+ "n_fields": 23,
+ "n_review_changes": 4,
+ "reverted": [
+  "Grain"
+ ],
+ "rows": [
+  {
+   "app": "HubSpot",
+   "call": "accept",
+   "note": "",
+   "n_fields": 1,
+   "review_changes": []
+  },
+  {
+   "app": "Attio",
+   "call": "accept",
+   "note": "",
+   "n_fields": 1,
+   "review_changes": []
+  },
+  {
+   "app": "Copper",
+   "call": "accept",
+   "note": "",
+   "n_fields": 1,
+   "review_changes": []
+  },
+  {
+   "app": "Discord",
+   "call": "accept",
+   "note": "Initially rejected: I read the approval as applying only to privileged intents. Accepted after seeing Discord's App Verification article (verification required past 100 servers).",
+   "n_fields": 1,
+   "review_changes": [
+    "evidence.access",
+    "blocker",
+    "access_notes"
+   ]
+  },
+  {
+   "app": "BigCommerce",
+   "call": "accept",
+   "note": "",
+   "n_fields": 1,
+   "review_changes": []
+  },
+  {
+   "app": "Grain",
+   "call": "reject",
+   "note": "Grain supports OAuth integrations for any Grain user; plan restrictions on workspace access are not app-review requirements.",
+   "n_fields": 1,
+   "review_changes": [
+    "access"
+   ]
+  },
+  {
+   "app": "Twenty",
+   "call": "accept",
+   "note": "",
+   "n_fields": 3,
+   "review_changes": []
+  },
+  {
+   "app": "Coda",
+   "call": "accept",
+   "note": "",
+   "n_fields": 3,
+   "review_changes": []
+  },
+  {
+   "app": "GoHighLevel",
+   "call": "accept",
+   "note": "",
+   "n_fields": 3,
+   "review_changes": []
+  },
+  {
+   "app": "fanbasis",
+   "call": "accept",
+   "note": "",
+   "n_fields": 4,
+   "review_changes": []
+  },
+  {
+   "app": "Sherlock",
+   "call": "accept",
+   "note": "",
+   "n_fields": 1,
+   "review_changes": []
+  },
+  {
+   "app": "Binance",
+   "call": "accept",
+   "note": "",
+   "n_fields": 1,
+   "review_changes": []
+  },
+  {
+   "app": "Paygent Connect",
+   "call": "accept",
+   "note": "",
+   "n_fields": 1,
+   "review_changes": []
+  },
+  {
+   "app": "Otter AI",
+   "call": "accept",
+   "note": "",
+   "n_fields": 1,
+   "review_changes": []
+  }
+ ]
+}
